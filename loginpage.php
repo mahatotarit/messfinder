@@ -58,34 +58,33 @@
                         <a href="registerpage.php" class="text signup-link">Signup Now</a>
                     </span>
                 </div>
-         </div>
-        </div>
         <?php
-        $error = " ";
-    if(isset($_POST['login-btn'])){
-        include "p/conn.php";
-        $phone = $_POST['login-phone'];
-        $pass = $_POST['login-password'];
-        
-        $sql = "SELECT * FROM users WHERE phone='{$phone}' and password='{$pass}'";
-        $error = "user does't exit";
+        if(isset($_POST['login-btn'])){
+            $login_btn = $_POST['login-btn'];
+            $login_phone = $_POST['login-phone'];
+            $login_password = $_POST['login-password'];
 
-        $result = mysqli_query($conn,$sql);
-        if(mysqli_num_rows($result)){
-            while($row = mysqli_fetch_assoc($result)){
-                session_start();
-                $_SESSION['phone'] = $row['phone'];
-                $_SESSION['phone'] = $row['password'];
-                $_SESSION['name'] = $row['name'];
-                $_SESSION['email'] = $row['email'];
+            include "php/config.php";
 
-                header('location:index.php');
+            $login_sql = "SELECT * FROM user WHERE phone='{$login_phone}' and password='{$login_password}'";
+            $login_sql_result = mysqli_query($conn,$login_sql);
+            if(mysqli_num_rows($login_sql_result)){
+                while($row = mysqli_fetch_assoc($login_sql_result)){
+
+                    session_start();
+                    $_SESSION['name'] = $row['name'];
+                    $_SESSION['phone'] = $row['phone'];
+                    $_SESSION['email'] = $row['email'];
+                    $_SESSION['password'] = $row['password'];
+                    header("location:index.php");
+                }
+            }else{
+                echo "<div style='color:red; text-align:center; font-size:15px; padding:10px 00px 00px 00px; '>user does't exit</div>";
             }
-        }else{
-            echo "<div style='color:red; text-align:center; font-size:15px; padding:10px; margin-top:-30px;'>". $error."</div>";
         }
-    }
-?>
+        ?>
+        </div>
+        </div>
     </div>
 </body>
 </html>

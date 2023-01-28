@@ -26,8 +26,8 @@
     <div class="container">
         <div class="img__profile">
             <img src="assets/image/profile.png" class="three-width" alt="profile" width="200" height="200" style="text-align:center; width:100px; height:100px;">
-            <div></div>
-            <div></div>
+            <div><?php session_start(); echo $_SESSION['name'];?></div>
+            <div><?php echo $_SESSION['email'];?></div>
         </div>
 
         <div class="item">
@@ -92,7 +92,7 @@
           
         <div class="item__logout">
             <i class="fa-solid fa-arrow-up-from-bracket" style="transform: rotateZ(90deg); color: red;"></i>
-            <span><a href="p/logout.php" style="color: red; width: 100%;display: inline-block;padding: 5px; font-size: 23px; text-decoration: none;">Logout</a></span>
+            <span><a href="php/logout.php" style="color: red; width: 100%;display: inline-block;padding: 5px; font-size: 23px; text-decoration: none;">Logout</a></span>
             <div class="icon">
                 <img class="logout" src="assets/icon/chevron-right.png" alt="more">
             </div>

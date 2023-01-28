@@ -1,3 +1,16 @@
+<?php
+   session_start();
+   if(isset($_SESSION['phone'])){
+       if(isset($_SESSION['password'])){
+          
+       }else{
+        header("location:loginpage.php");    
+       }
+   }else{
+    header("location:loginpage.php");
+   }
+?>
+
 <?php include 'mainheader.php'; ?>
     <div id="main-content">
         <div class="container">

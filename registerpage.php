@@ -23,7 +23,7 @@
             <div class="form login">
                 <span class="title">Register</span>
 
-                <form action="p/register-data-set.php" method="POST" id="register-from">
+                <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" id="register-from">
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" name="register-name" class="register-name" placeholder="Enter Your Name  "
@@ -76,6 +76,38 @@
                         <a href="loginpage.php" class="text signup-link">Login</a>
                     </span>
                 </div>
+
+                 <?php  
+                   if(isset($_POST['register-btn'])){
+                    $register_btn = $_POST['register-btn'];
+                    $register_name = $_POST['register-name'];
+                    $register_phone = $_POST['register-phone'];
+                    $register_email = $_POST['register-email'];
+                    $register_password = $_POST['register-password'];
+
+                    include "php/config.php";
+                     
+                    $phone_check_sql = "SELECT * FROM user WHERE phone = '{$register_phone}'";
+                    $phone_check_result = mysqli_query($conn,$phone_check_sql);
+                    if(mysqli_num_rows($phone_check_result)){
+                        echo "<div style='color:red; text-align:center; font-size:15px; padding:5px 00px 00px 00px;'>Phone Already Register</div>";
+                    }else{
+                        $insert_register_data_sql = "INSERT INTO user (name,phone,email,password) VALUES ('{$register_name}','{$register_phone}','{$register_email}','{$register_password}')";
+                        $insert_register_data_result = mysqli_query($conn,$insert_register_data_sql) or die("register failed");;
+                        if($insert_register_data_result){
+                            session_start();
+                            $_SESSION['name'] = $register_name;
+                            $_SESSION['phone'] = $register_phone;
+                            $_SESSION['email'] = $register_email;
+                            $_SESSION['password'] = $register_password;
+                            header("location:index.php");
+                        }else{
+                            
+                        }
+                    }
+                   }
+                 ?>
+
             </div>
         </div>
     </div>
