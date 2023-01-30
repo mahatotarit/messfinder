@@ -11,7 +11,7 @@ if(isset($_FILES['imagename'])){
 
         $type = explode('.',$file_name);
         $a = strtolower(end($type));
-        $extensions = array("jpeg","jpg","png");
+        $extensions = array("jpeg","jpg","png","webp");
         if(in_array($a,$extensions) === false){
             $errors[] = "this extensions file not allowed. please choose a jpg or png file";
         }

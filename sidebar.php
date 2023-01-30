@@ -11,7 +11,7 @@
 ?>
 <div id="sidebar" class="col-md-4">
     <!-- search box -->
-    <div class="search-box-container">
+    <!-- <div class="search-box-container">
         <h4>Search</h4>
         <form class="search-post" action="search.php" method ="GET">
             <div class="input-group">
@@ -21,28 +21,43 @@
                 </span>
             </div>
         </form>
-    </div>
+    </div> -->
     <!-- /search box -->
     <!-- recent posts box -->
+
     <div class="recent-post-container">
         <h4>Recent Posts</h4>
-        <div class="recent-post">
-            <a class="post-img" style="height:85px;" href="">
-                <img src="images/post-format.jpg" alt=""/>
+    
+    <?php 
+    include 'php/config.php';
+      $recent_post_sql = "SELECT * FROM allmess ORDER BY ID DESC LIMIT 2";
+       $recent_post_result = mysqli_query($conn,$recent_post_sql) or die("query failed");
+
+       if(mysqli_num_rows($recent_post_result)){
+        while($recent_row = mysqli_fetch_assoc($recent_post_result)){
+     ?>
+
+            <div class="recent-post">
+            <a class="post-img" style="height:80px;" href="">
+                <img src="mess_image/<?PHP echo $recent_row['imagename']; ?>" alt="" style="height:100%; width:100%;"/>
             </a>
             <div class="post-content">
-                <h5><a href="single.php">Lorem ipsum dolor sit amet</a></h5>
+                <h5><a href=""><?PHP echo $recent_row['messname']; ?></a></h5>
                 <span>
                     <i class="fa fa-tags" aria-hidden="true"></i>
-                    <a href='category.php'>Html</a>
+                    <a href='category.php'><?PHP echo $recent_row['bedavailable']; ?></a>
                 </span>
                 <span>
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    01 Nov, 2019
+                <i class="fa fa-user" aria-hidden="true"></i>
+                    <?PHP echo $recent_row['messtype']; ?>
                 </span>
                 <a class="read-more" href="single.php">read more</a>
             </div>
         </div>
-    </div>
+
+    <?PHP    }
+       }
+    ?>
     <!-- /recent posts box -->
+    </div>
 </div>

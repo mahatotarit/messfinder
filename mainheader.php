@@ -309,9 +309,9 @@ background-size: contain;
          <div class="cancel-icon">
            <span class="fas fa-times"></span>
           </div>
-         <form action="#">
-            <input type="search" class="search-data" style="font-weight:bold;" placeholder="Search" required>
-            <button type="submit" class="fas fa-search"></button>
+         <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST">
+            <input type="search" class="search-data" style="font-weight:bold;" name="home_search" placeholder="Search Location" required>
+            <button type="submit" class="fas fa-search" name="s_b"></button>
          </form>
       </nav>
       <script>

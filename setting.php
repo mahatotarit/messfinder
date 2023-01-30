@@ -138,7 +138,7 @@
           <p>Or copy link</p>
           <div class="field">
             <i class="url-icon uil uil-link icon_color"></i>
-            <input type="text" readonly value="example.com/share-link">
+            <input type="text" readonly value="https://messfinder.com">
             <button>Copy</button>
           </div>
         </div>
