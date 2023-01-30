@@ -123,9 +123,15 @@ nav .search-icon{
     padding: 0 50px;
   }
 }
-@media (max-width: 1140px){
+@media (max-width: 1054px){
+  #main-content{
+    padding-top:100px;
+  }
   nav{
     padding: 0px;
+    position:fixed;
+    width:100vw;
+    z-index: +99;
   }
   nav .logo{
     flex: 2;
@@ -281,7 +287,8 @@ background-size: contain;
 }
 </style>
 </head>
-<body>
+<body> 
+<!-- style="position:fixed; z-index:+99; width:100vw;" -->
   <nav>
     <div class="menu-icon">
       <span class="fas fa-bars"></span>
@@ -291,10 +298,10 @@ background-size: contain;
          </div>
          <div class="nav-items">
            <li><a style="user-select: none;" href="index.php">Home</a></li>
-            <li><a style="user-select: none;" href="#">About</a></li>
-            <li><a style="user-select: none;" href="setting.php">Settings</a></li>
+            <!-- <li><a style="user-select: none;" href="#">About</a></li> -->
             <li><a style="user-select: none;" href="addmess.php">Register Mess</a></li>
             <li><a style="user-select: none;" href="userprofile.php">Profile</a></li>
+            <li><a style="user-select: none;" href="setting.php">Settings</a></li>
          </div>
          <div class="search-icon">
             <span class="fas fa-search"></span>

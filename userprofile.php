@@ -1,3 +1,15 @@
+<?php
+   session_start();
+   if(isset($_SESSION['phone'])){
+       if(isset($_SESSION['password'])){
+          
+       }else{
+        header("location:loginpage.php");    
+       }
+   }else{
+    header("location:loginpage.php");
+   }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,13 +40,17 @@
 						class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
 						<div class="banner"><img src="assets/image/banner.jpg" style="width:100%; height:100%;" alt="">
 						</div>
-						<img src="assets/image/user1.jpg" alt="" class="img-circle mx-auto mb-3">
-						<h3 class="mb-4">Kiran Acharya</h3>
+						<img src="assets/image/profile.png" alt="" class="img-circle mx-auto mb-3">
+						<h3 class="mb-4"><?php echo $_SESSION['name'];?></h3>
 						<div class="text-left mb-4">
-							<p class="mb-2"><i class="fa fa-envelope mr-2"></i> kiranacharya287@gmail.com</p>
-							<p class="mb-2"><i class="fa fa-phone mr-2"></i> +91 9876543215</p>
-							<p class="mb-2"><i class="fa fa-globe mr-2"></i> kiranworkspace.com</p>
-							<p class="mb-2"><i class="fa fa-map-marker-alt mr-2"></i> Bangalore</p>
+							<p class="mb-2"><i class="fa fa-envelope mr-2"></i><?php echo $_SESSION['email'];?></p>
+							<p class="mb-2"><i class="fa fa-phone mr-2"></i> +91 <?php echo $_SESSION['phone'];?></p>
+							<?php if(isset($_SESSION['socal_link'])){?>
+							<p class="mb-2"><i class="fa fa-globe mr-2"></i><?php?></p>
+							<?php }
+							   if(isset($_SESSION['address'])){?>
+							<p class="mb-2"><i class="fa fa-map-marker-alt mr-2"></i></p>
+							<?php } ?>
 						</div>
 						<!-- <div class="social-links d-flex justify-content-center">
 							<a href="#!" class="mx-2"><img src="img/social/dribbble.svg" alt="Dribbble"></a>

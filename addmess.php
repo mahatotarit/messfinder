@@ -1,3 +1,15 @@
+<?php
+   session_start();
+   if(isset($_SESSION['phone'])){
+       if(isset($_SESSION['password'])){
+          
+       }else{
+        header("location:loginpage.php");    
+       }
+   }else{
+    header("location:loginpage.php");
+   }
+?>
 <!DOCTYPE html>
 <!--=== Coding by CodingLab | www.codinglabweb.com === -->
 <html lang="en">
@@ -222,7 +234,7 @@
     <div class="container">
         <header>Register a new Mess</header>
 
-        <form action="abcd.php" method="POST" enctype="multipart/form-data">
+        <form action="php/mess_details.php" method="POST" enctype="multipart/form-data">
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Mess Details</span>
@@ -230,27 +242,27 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Mess Name</label>
-                            <input type="text" name="messname" placeholder="Enter your name" >
+                            <input type="text" name="messname" placeholder="Enter your name"  required>
                         </div>
 
                         <div class="input-field">
                             <label>Price</label>
-                            <input type="number" placeholder="Price per Bed" >
+                            <input type="number" name="price" placeholder="Price per Bed"  required>
                         </div>
 
                         <div class="input-field">
                             <label>Mess Location</label>
-                            <input type="text" placeholder="Mess Address" >
+                            <input type="text" name="messlocation" placeholder="Mess Address"  required>
                         </div>
 
                         <div class="input-field">
                             <label>Mess Contect No</label>
-                            <input type="number" placeholder="Enter mobile number" >
+                            <input type="number" name="messcontactno" placeholder="Enter mobile number"  required>
                         </div>
 
                         <div class="input-field">
                             <label>Type</label>
-                            <select >
+                            <select name="messtype" required>
                                 <option disabled selected>Select Type</option>
                                 <option>Boys</option>
                                 <option>Girls</option>
@@ -260,7 +272,7 @@
 
                         <div class="input-field">
                             <label>About</label>
-                            <input type="text" placeholder="Enter Mess Details" >
+                            <input type="text" name="messabout" placeholder="Enter Mess Details"  required>
                         </div>
                     </div>
                 </div>
@@ -271,7 +283,7 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Food Facility</label>
-                            <select >
+                            <select name="foodfacility" required>
                                 <option disabled selected>Food Available?</option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -281,7 +293,7 @@
 
                         <div class="input-field">
                             <label>Bathroom</label>
-                            <select >
+                            <select name="bathroom" required>
                                 <option disabled selected>Bathroom Available?</option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -291,22 +303,22 @@
 
                         <div class="input-field">
                             <label>Mess Owner Name</label>
-                            <input type="text" placeholder="Owner Name" >
+                            <input type="text" name="ownername" placeholder="Owner Name"  required>
                         </div>
 
 
                         <div class="input-field">
                             <label>Bed Available?</label>
-                            <select >
+                            <select name="bedavailable" required>
                                 <option disabled selected>Bed Available?</option>
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option>Available</option>
+                                <option>Not Available</option>
                             </select>
                         </div>
 
                         <div class="input-field">
                             <label>Extra Electricity Cost</label>
-                            <select >
+                            <select name="electricity" required>
                                 <option disabled selected>Choose</option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -314,17 +326,17 @@
                         </div>
                         <div class="input-field">
                             <label>Extra Facility</label>
-                            <input type="text" placeholder="Extra Facility" >
+                            <input type="text" name="extrafacility" placeholder="Extra Facility"  required>
                         </div>
 
                         <div class="input-field">
                             <label style="text-align: center;">Upload Images</label>
-                            <input style="border:none;" name="post-image[]" type="file" multiple >
+                            <input style="border:none;" name="imagename" type="file" multiple>
                         </div>
                     </div>
                         <div>
                             <button class="nextBtn">
-                                <input type="submit" value="Submit"
+                                <input type="submit" name="add_mess_button" value="Submit"
                                 style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%;">
                             </button>
                     </div>
