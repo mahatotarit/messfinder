@@ -30,7 +30,7 @@
     
     <?php 
     include 'php/config.php';
-      $recent_post_sql = "SELECT * FROM allmess ORDER BY ID DESC LIMIT 2";
+      $recent_post_sql = "SELECT * FROM allmess ORDER BY ID DESC LIMIT 4";
        $recent_post_result = mysqli_query($conn,$recent_post_sql) or die("query failed");
 
        if(mysqli_num_rows($recent_post_result)){
@@ -51,7 +51,7 @@
                 <i class="fa fa-user" aria-hidden="true"></i>
                     <?PHP echo $recent_row['messtype']; ?>
                 </span>
-                <a class="read-more" href="single.php">read more</a>
+                <a class="read-more" href="preview.php?id=<?php echo $recent_row['id']; ?>">read more</a>
             </div>
         </div>
 

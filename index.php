@@ -66,7 +66,7 @@
                                         <p class="description">
                                         <?PHP  echo $row1['messlocation']; ?>
                                          </p>
-                                        <a class='read-more pull-right' href=''>read more</a>
+                                        <a class='read-more pull-right' href='preview.php?id=<?php echo $row1['id'];?>'>read more</a>
                                     </div>
                                 </div>
                             </div>
