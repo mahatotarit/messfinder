@@ -46,15 +46,22 @@ if($_POST['add_mess_button']){
    $extrafacility = $_POST['extrafacility'];
     $bathroom = $_POST['bathroom'];
     $add_mess_btn = $_POST['add_mess_button'];
+    
+    session_start();
+    $messcheck = "hide";
+    $authorname = $_SESSION['name'];
+    $authorphone = $_SESSION['phone'];
+    $authoremail = $_SESSION['email'];
+    $authorpassword = $_SESSION['password'];
 
-   echo $insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,imagename) VALUES 
-   ('{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$file_name}')";
+   $insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,imagename,messcheck,authorname,authorphone,authoremail,authorpassword) VALUES 
+   ('{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$file_name}','{$messcheck}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}')";
    
    $insert_result = mysqli_query($conn,$insert_sql);
    if($insert_result){
     header("location:../index.php");
    }else{
-    "failed";
+    echo "failed";
    }
 }
 ?>

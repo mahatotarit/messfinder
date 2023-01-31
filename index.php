@@ -33,7 +33,7 @@
                        $home_page_search_input = $_POST['home_search'];
                        $get_data_sql = "SELECT * FROM allmess WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%'";
                       }else{
-                        $get_data_sql = "SELECT * FROM allmess"; // default sql query.
+                        $get_data_sql = "SELECT * FROM allmess WHERE messcheck='show'"; // default sql query.
                       }
 
                       $get_data_result = mysqli_query($conn,$get_data_sql) or die("query failed");

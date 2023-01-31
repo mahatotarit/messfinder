@@ -298,10 +298,25 @@ background-size: contain;
          </div>
          <div class="nav-items">
            <li><a style="user-select: none;" href="index.php">Home</a></li>
-            <!-- <li><a style="user-select: none;" href="#">About</a></li> -->
-            <li><a style="user-select: none;" href="addmess.php">Register Mess</a></li>
-            <li><a style="user-select: none;" href="userprofile.php">Profile</a></li>
-            <li><a style="user-select: none;" href="setting.php">Settings</a></li>
+           <li><a style="user-select: none;" href="addmess.php">Register Mess</a></li>
+           <li><a style="user-select: none;" href="userprofile.php">Profile</a></li>
+           <li><a style="user-select: none;" href="setting.php">Settings</a></li>
+
+           <!-- admin button show using admin user -->
+           <!-- admin button show using admin user -->
+           <?php 
+             include "php/config.php";
+             $admin_name = $_SESSION['name'];
+             $admin_phone = $_SESSION['phone'];
+             $admin_password = $_SESSION['password'];
+
+             $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_password}'";
+             $admin_button_show_result = mysqli_query($conn,$admin_button_show_sql);
+             if(mysqli_num_rows($admin_button_show_result)){
+                
+               echo '<li><a style="user-select: none;" href="admin.php">Admin</a></li>';
+             }
+           ?>
          </div>
          <div class="search-icon">
             <span class="fas fa-search"></span>

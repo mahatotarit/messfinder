@@ -30,7 +30,7 @@
     
     <?php 
     include 'php/config.php';
-      $recent_post_sql = "SELECT * FROM allmess ORDER BY ID DESC LIMIT 4";
+      $recent_post_sql = "SELECT * FROM allmess WHERE messcheck='show' ORDER BY ID DESC LIMIT 4";
        $recent_post_result = mysqli_query($conn,$recent_post_sql) or die("query failed");
 
        if(mysqli_num_rows($recent_post_result)){

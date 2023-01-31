@@ -35,7 +35,6 @@
                         <input type="password" name="login-password" class="login-password" placeholder="Enter Your password" id="login-password" required>
                         <i class="uil uil-lock icon"></i>
                         <small></small>
-                        <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
                     <div class="checkbox-text">
