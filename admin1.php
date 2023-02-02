@@ -147,9 +147,9 @@
                     </div>
                     <div style="display:flex; justify-content:center; align-items:center;margin:5px 00px 10px 00px;">
                         <button id="show_btn"
-                            style="padding:5px; margin:2px 15px 2px 15px;background-color:green; border-color:green; border-radius:5px; color:white; font-weight:bold;"><a href="admin.php"><span class="las la-eye" style="font-size:160%;"></span></a></button>
+                            style="padding:5px; margin:2px 15px 2px 15px;background-color:green; border-color:green; border-radius:5px; color:white; font-weight:bold;"><a href="admin.php" style="color:white;"><span class="las la-eye" style="font-size:160%;"></span></a></button>
                         <button id="hide_btn"
-                            style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><a href="admin1.php"><span class="fa-sharp fa-solid fa-eye-slash" style="font-size:150%;"></span></a></button>
+                            style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><a href="admin1.php" style="color:white;"><span class="fa-sharp fa-solid fa-eye-slash" style="font-size:150%;"></span></a></button>
                     </div>
 
                     
@@ -197,7 +197,12 @@
                                        $admin_page_show_sql = "SELECT * FROM allmess";
                                        if(isset($_POST['find_allmess_post_btn'])){
                                             $find_allmess_post_input = $_POST['find_allmess_post_input'];
-                                            $admin_page_show_sql = "SELECT * FROM allmess WHERE id={$find_allmess_post_input}";
+                                            if(preg_match("/^[A-z]*$/",$find_allmess_post_input)){
+                                                $admin_page_show_sql = "SELECT * FROM allmess";
+                                            }else{
+                                                $admin_page_show_sql = "SELECT * FROM allmess
+                                                WHERE id LIKE '%$find_allmess_post_input%'";
+                                            }
                                        }
                                        $admin_page_show_result = mysqli_query($conn,$admin_page_show_sql);
                                        if(mysqli_num_rows($admin_page_show_result)){
@@ -273,3 +278,4 @@
 </body>
 
 </html>
+<?php   mysqli_close($conn); ?>

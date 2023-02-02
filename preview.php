@@ -157,3 +157,4 @@ function slideImage(){
 
 window.addEventListener('resize', slideImage);
 </script>
+<?php   mysqli_close($conn); ?>

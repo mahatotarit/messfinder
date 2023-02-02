@@ -134,4 +134,5 @@
 
 
   }
+  mysqli_close($conn);
 ?>

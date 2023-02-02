@@ -23,17 +23,61 @@
         </div>
       </header>
       <main>
-        <div class="notif_card unread">
-          <img src="../assets\image\avatar-kimberly-smith.webp" alt="avatar" />
+
+
+
+        <!-- post card start -->
+        <?php
+          include '../php/config.php';
+          session_start();
+          $authorphone = $_SESSION['phone'];
+          $authorpassword = $_SESSION['password'];
+          $get_my_post_sql = "SELECT * FROM allmess WHERE authorphone = '{$authorphone}' and authorpassword =  '{$authorpassword}' ";
+          $get_my_post_result = mysqli_query($conn,$get_my_post_sql) or die("query failed 33");
+          while($row = mysqli_fetch_assoc($get_my_post_result)){ ?>
+            <div class="notif_card unread">
+          <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row['imagename'];?>" alt="mess image" />
+          <div class="description">
+            <p class="user_activity">
+              <strong><?php echo $row['messname'];?></strong><br> reacted to your recent post
+            </p>
+            <p class="time">1m ago</p>
+          </div>
+          <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?allmesseditid=<?php echo  $row['id'];?>" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
+        </div>
+      <?php     }
+        ?>
+
+        <!-- second table  -->
+        <!-- second table  -->
+        <?php
+          include '../php/config.php';
+          $authorphone1 = $_SESSION['phone'];
+          $authorpassword1 = $_SESSION['password'];
+          $get_my_post_sql1 = "SELECT * FROM showpost WHERE authorphone = '{$authorphone1}' and authorpassword =  '{$authorpassword1}' ";
+          $get_my_post_result1 = mysqli_query($conn,$get_my_post_sql1) or die("query failed 33");
+          while($row1 = mysqli_fetch_assoc($get_my_post_result1)){?>
+             <div class="notif_card unread">
+          <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row1['imagename'];?>" alt="avatar" />
           <div class="description">
             <p class="user_activity">
               <strong>Mark Webber</strong><br> reacted to your recent post
             </p>
             <p class="time">1m ago</p>
           </div>
-          <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
+          <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?showposteditid=<?php echo  $row1['id'];?>" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
         </div>
-        
+        <?php  }
+        ?>
+        <!-- post card end -->
+        <!-- post card end -->
+
+
+
+
+
+
+
         </div>
 
       </main>
@@ -63,3 +107,5 @@ markAll.addEventListener("click", () => {
 
 
 </script>
+
+<?php   mysqli_close($conn); ?>

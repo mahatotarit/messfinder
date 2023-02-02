@@ -1,4 +1,9 @@
-
+<?php 
+  session_start();
+  if(isset($_SESSION['phone'])){
+    header("location:index.php");
+  }
+?>
 <!DOCTYPE html>
 <!-- === Coding by CodingLab | www.codinglabweb.com === -->
 <html lang="en">

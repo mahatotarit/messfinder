@@ -31,7 +31,7 @@ if(isset($_FILES['imagename'])){
   // collect add_mess form data
   // collect add_mess form data
 
-if($_POST['add_mess_button']){
+if(isset($_POST['add_mess_button'])){
     include "config.php";
    $messname = $_POST['messname'];
    $price = $_POST['price'];
@@ -63,4 +63,5 @@ if($_POST['add_mess_button']){
     echo "failed  63";
    }
 }
+mysqli_close($conn);
 ?>

@@ -91,3 +91,4 @@
         </div>
     </div>
 <?php include 'footer.php'; ?>
+<?php   mysqli_close($conn); ?>
