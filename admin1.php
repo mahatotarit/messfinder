@@ -152,7 +152,8 @@
                             style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><a href="admin1.php"><span class="fa-sharp fa-solid fa-eye-slash" style="font-size:150%;"></span></a></button>
                     </div>
 
-                    <div class="records table-responsive" id="first-hide-div">
+                    
+                    <div class="records table-responsive" id="second-hide-div">
 
                         <div class="record-header">
                             <div class="add">
@@ -161,17 +162,13 @@
                                     <option value="">ID</option>
                                 </select> -->
                             </div>
-                               
 
                             <div class="browse">
-                                <!-- search mess name and id -->
-                                <!-- search mess name and id -->
-
                                 <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST"
                                     style="display:flex; padding:00px; margin:00px; box-sizing:border-box;">
-                                    <input type="number" placeholder="Search" class="record-search" name="admin_search_input" required>
-                                    <input type="submit"
-                                        style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;" name="admin_search_btn">
+                                    <input type="number" placeholder="Search" class="record-search" name="find_allmess_post_input">
+                                    <input type="submit" name="find_allmess_post_btn"
+                                        style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;">
                                 </form>
                             </div>
                         </div>
@@ -196,21 +193,14 @@
                                     <!-- first row start in table -->
                                     <!-- start php loop -->
                                     <?php 
-
-                                            $admin_page_show_sql = "";
-                                            $admin_page_show_sql = "SELECT * FROM showpost";
-                                            if(isset($_POST['admin_search_btn'])){
-                                                $search_id = $_POST['admin_search_input'];
-                                                if(preg_match("/^[A-z]*$/",$search_id)){
-                                                    $admin_page_show_sql = "SELECT * FROM showpost";
-                                                }else{
-                                                    $admin_page_show_sql = "SELECT * FROM showpost WHERE id={$search_id}";
-                                                }
-                                            }else{
-  
-                                            }
+                                       $admin_page_show_sql = "";
+                                       $admin_page_show_sql = "SELECT * FROM allmess";
+                                       if(isset($_POST['find_allmess_post_btn'])){
+                                            $find_allmess_post_input = $_POST['find_allmess_post_input'];
+                                            $admin_page_show_sql = "SELECT * FROM allmess WHERE id={$find_allmess_post_input}";
+                                       }
                                        $admin_page_show_result = mysqli_query($conn,$admin_page_show_sql);
-                                       if(mysqli_num_rows($admin_page_show_result) > 0){
+                                       if(mysqli_num_rows($admin_page_show_result)){
                                           while($result_row4 = mysqli_fetch_assoc($admin_page_show_result)){
                                      ?>
                                     <tr>
@@ -247,17 +237,19 @@
                                         <td class="action">
                                             <!-- Delete Update and Read -->
                                             <div class="actions">
-                                                <a href="php/check_mess.php?delete_post_from_showpost=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash"
+                                                <a href="php/check_mess.php?delete_from_allmess=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash"
                                                         style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
                                                 <a href=""> <i class="fa-solid fa-pen-to-square"
                                                         style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
-                                                        <a href="php/check_mess.php?hide_from_showpost=<?php echo $result_row4['id']; ?>"> <i class="fa-sharp fa-solid fa-eye-slash"
-                                                            style="color:rgb(50, 50, 0); margin:5% 5%;cursor: pointer;"></i></a>
+                                                <a href="php/check_mess.php?success_id=<?php echo $result_row4['id']; ?>"> <i
+                                                        class="fa-solid fa-square-check"
+                                                        style="color:rgb(0, 202, 0); margin:10% 10%;cursor: pointer;"></i></a>
                                             </div>
                                         </td>
                                     </tr>
 
                                     <?php     }
+                                       }else{
                                        }
                                     ?>
 

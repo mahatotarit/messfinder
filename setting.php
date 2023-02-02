@@ -101,6 +101,16 @@
         <img src="assets/icon/chevron-right.png" alt="more">
       </div>
     </div>
+
+    <div class="item">
+      <i class="fa-solid fa-user-plus icon_color"></i>
+      <span><a href="settings/your_activity.php"
+          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Your Activity</a></span>
+      <div class="icon">
+        <img src="assets/icon/chevron-right.png" alt="more">
+      </div>
+    </div>
+
     <div class="item">
       <i class="fa-regular fa-comment icon_color"></i>
       <span><a href="settings/feedback.php"
