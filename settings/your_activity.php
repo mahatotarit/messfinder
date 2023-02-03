@@ -39,9 +39,9 @@
           <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row['imagename'];?>" alt="mess image" />
           <div class="description">
             <p class="user_activity">
-              <strong><?php echo $row['messname'];?></strong><br> reacted to your recent post
+              <strong><?php echo $row['messname'];?></strong><br><?php echo $row['messlocation'];?>
             </p>
-            <p class="time">1m ago</p>
+            <p class="time" style="font-size:10px;"><?php echo $row['postdate'];?></p>
           </div>
           <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?allmesseditid=<?php echo  $row['id'];?>" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
         </div>
@@ -61,9 +61,9 @@
           <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row1['imagename'];?>" alt="avatar" />
           <div class="description">
             <p class="user_activity">
-              <strong>Mark Webber</strong><br> reacted to your recent post
+              <strong><?php echo $row1['messname'];?></strong><br> <?php echo $row1['messlocation'];?>
             </p>
-            <p class="time">1m ago</p>
+            <p class="time" style="font-size:10px;"><?php echo $row1['postdate'];?></p>
           </div>
           <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?showposteditid=<?php echo  $row1['id'];?>" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
         </div>

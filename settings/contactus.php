@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Form</title>
-    <script
+    <!-- <script
     src="https://kit.fontawesome.com/64d58efce2.js"
     crossorigin="anonymous"
-    ></script>
+    ></script> -->
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+      /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"); */
 
 * {
   margin: 0;
@@ -87,6 +87,7 @@ form {
   z-index: 10;
   overflow: hidden;
   position: relative;
+  background-color:white;
 }
 
 .title {
@@ -105,10 +106,10 @@ form {
 .input {
   width: 100%;
   outline: none;
-  border: 2px solid #fafafa;
+  border: 2px solid ;
   background: none;
   padding: 0.6rem 1.2rem;
-  color: #fff;
+  color: black;
   font-weight: 500;
   font-size: 0.95rem;
   letter-spacing: 0.5px;
@@ -159,7 +160,7 @@ textarea.input {
 
 .btn:hover {
   background-color: transparent;
-  color: #fff;
+  color: blue;
 }
 
 .input-container span {
@@ -442,29 +443,21 @@ textarea.input {
           <span class="circle one"></span>
           <span class="circle two"></span>
 
-          <form action="index.html" autocomplete="off">
-            <h3 class="title">Contact us</h3>
+          <form action="../php/contactus_data.php" autocomplete="off" method="POST">
+            <h3 class="title" style="color:black;">Contact us</h3>
             <div class="input-container">
-              <input type="text" name="name" class="input" />
-              <label for="">Username</label>
-              <span>Username</span>
+              <input type="text" name="name" class="input"  placeholder="name"  required/>
             </div>
             <div class="input-container">
-              <input type="email" name="email" class="input" />
-              <label for="">Email</label>
-              <span>Email</span>
+              <input type="email" name="email" class="input"  placeholder="email" required/>
             </div>
             <div class="input-container">
-              <input type="tel" name="phone" class="input" />
-              <label for="">Phone</label>
-              <span>Phone</span>
+              <input type="tel" name="phone" class="input" placeholder="Phone"  required/>
             </div>
             <div class="input-container textarea">
-              <textarea name="message" class="input"></textarea>
-              <label for="">Message</label>
-              <span>Message</span>
+              <textarea name="message" class="input" placeholder="Message" required></textarea>
             </div>
-            <input type="submit" value="Send" class="btn" />
+            <input type="submit" style="border:1px solid black;" value="Send" class="btn" name="send_btn"/>
           </form>
         </div>
       </div>
@@ -473,3 +466,24 @@ textarea.input {
     <script src="app.js"></script>
   </body>
 </html>
+
+<?php 
+  // if(isset($_POST['send_btn'])){
+  //   include 'config.php';
+  //  echo $a = "<script>confirm('send data')</script>";
+  //  if($a == true){
+  //   $name = $_POST['name'];
+  //  $email = $_POST['email'];
+  //  $phone = $_POST['phone'];
+  //  $message = $_POST['message'];
+  //  session_start();
+  //  $authorphone = $_SESSION['phone'];
+
+  //  $sql = "INSERT INTO contactus (name,phone,email,message,authorphone) VALUES ('{$name}','{$phone}','{$email}','{$message}','{$authorphone}')";
+  //  $result = mysqli_query($conn,$sql);
+  //  if($result){
+  //    header('location:../setting.php');
+  //  }
+  //  }
+  // }
+?>

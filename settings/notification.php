@@ -18,39 +18,38 @@
       <header>
         <div class="notif_box">
           <h2 class="title">Notifications</h2>
-          <span id="notifes"></span>
         </div>
-        <p id="mark_all">Mark all as read</p>
       </header>
       <main>
-        <div class="notif_card unread">
-          <img src="../assets\image\avatar-kimberly-smith.webp" alt="avatar" />
+        <?php 
+          include '../php/config.php';
+          $sql = "SELECT * FROM notificatioin";
+          $result = mysqli_query($conn,$sql);
+          if(mysqli_num_rows($result)){
+            while($row = mysqli_fetch_assoc($result)){?>
+              
+              <div class="notif_card" style="border:1px solid black; background-color:rgb(250, 250, 250);">
+          <img style="width:50px; height:50px; border-radius:50%;" src="../mess_image/<?php echo $row['image'];?>" alt="avatar" />
           <div class="description">
             <p class="user_activity">
-              <strong>Mark Webber</strong> reacted to your recent post
-              <b>My first tournament today!</b>
-            </p>
-            <p class="time">1m ago</p>
+              <strong><?php echo $row['heading'];?></strong><br><?php echo $row['about'];?></p>
+            <p class="time" style="font-size:10px;"><?php echo $row['time'];?></p>
           </div>
         </div>
 
-        <div class="notif_card">
-          <img src="../assets\image\avatar-kimberly-smith.webp" alt="avatar" />
-          <div class="description">
-            <p class="user_activity">
-              <strong>Anna Kim</strong> left the group
-              <strong class="link">Chess Club</strong>
-            </p>
-            <p class="time">2 weeks ago</p>
-          </div>
-        </div>
+          <?php  }
+          }else{
+            echo  "<div style='text-align:center;'>No Record Found</div>";
+          }
+        ?>
+        
       </main>
     </div>
 
     <script src="app.js"></script>
   </body>
 </html>
-<script>
+<!-- <script>
   const unreadMessages = document.querySelectorAll(".unread");
 const unread = document.getElementById("notifes");
 const markAll = document.getElementById("mark_all");
@@ -70,4 +69,4 @@ markAll.addEventListener("click", () => {
 })
 
 
-</script>
+</script> -->
