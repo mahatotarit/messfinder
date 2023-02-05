@@ -29,12 +29,12 @@ if (isset($_SESSION['phone'])) {
 
                     //   home page search button 
                     //   home page search button 
-                    if (isset($_POST['s_b'])) {
-                        $home_page_search_input = $_POST['home_search'];
-                        $get_data_sql = "SELECT * FROM showpost WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%'";
-                    } else {
-                        $get_data_sql = "SELECT * FROM showpost"; // default sql query.
-                    }
+                      if(isset($_POST['s_b'])){
+                       $home_page_search_input = $_POST['home_search'];
+                       $get_data_sql = "SELECT * FROM allmess WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%'";
+                      }else{
+                        $get_data_sql = "SELECT * FROM allmess"; // default sql query.
+                      }
 
                     $get_data_result = mysqli_query($conn, $get_data_sql) or die("query failed 39");
                     if (mysqli_num_rows($get_data_result)) {

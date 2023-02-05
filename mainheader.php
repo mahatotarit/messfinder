@@ -316,7 +316,10 @@ background-size: contain;
              if(mysqli_num_rows($admin_button_show_result)){
                 
                echo '<li><a style="user-select: none;" href="admin.php">Admin</a></li>';
+<<<<<<< HEAD
                echo '<li><a style="user-select: none;" href="send_notification.php">Send Notification</a></li>';
+=======
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
              }
            ?>
          </div>

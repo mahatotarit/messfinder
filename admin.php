@@ -61,10 +61,13 @@
             transform:rotateX(20deg);
             width:50px;
             }
+<<<<<<< HEAD
             #show_btn{
                 box-shadow:2px 2px 5px black;
                 border:4px inset black;
             }
+=======
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
     </style>
 </head>
 
@@ -151,11 +154,22 @@
                     </div>
                     <div style="display:flex; justify-content:center; align-items:center;margin:5px 00px 10px 00px;">
                         <button id="show_btn"
+<<<<<<< HEAD
                             style="padding:5px; margin:2px 15px 2px 15px;background-color:green; border-color:green; border-radius:5px; color:white; font-weight:bold;"><a href="admin.php" style="color:white;"><span class="las la-eye" style="font-size:160%;"></span></a></button>
                         <button id="hide_btn"
                             style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><a href="admin1.php" style="color:white;"><span class="fa-sharp fa-solid fa-eye-slash" style="font-size:150%;"></span></a></button>
                     </div>
 
+=======
+                            style="padding:5px; margin:2px 15px 2px 15px;background-color:green; border-color:green; border-radius:5px; color:white; font-weight:bold;"><span class="las la-eye" style="font-size:160%;"></span></button>
+                        <button id="hide_btn"
+                            style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><span class="fa-sharp fa-solid fa-eye-slash" style="font-size:150%;"></span></button>
+                    </div>
+
+                    <!-- index page show mess -->
+                    <!-- index page show mess -->
+                    <!-- index page show mess -->
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
                     <div class="records table-responsive" id="first-hide-div">
 
                         <div class="record-header">
@@ -173,7 +187,11 @@
 
                                 <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST"
                                     style="display:flex; padding:00px; margin:00px; box-sizing:border-box;">
+<<<<<<< HEAD
                                     <input type="number" placeholder="Search" class="record-search" name="admin_search_input" required>
+=======
+                                    <input type="search" placeholder="Search" class="record-search" name="admin_search_input" required>
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
                                     <input type="submit"
                                         style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;" name="admin_search_btn">
                                 </form>
@@ -202,6 +220,7 @@
                                     <?php 
 
                                             $admin_page_show_sql = "";
+<<<<<<< HEAD
                                             $admin_page_show_sql = "SELECT * FROM showpost";
                                             if(isset($_POST['admin_search_btn'])){
                                                 $search_id = $_POST['admin_search_input'];
@@ -211,11 +230,21 @@
                                                     $admin_page_show_sql = "SELECT * FROM allmess
                                                     WHERE id LIKE '%$search_id%'";
                                                 }
+=======
+                                            $admin_page_show_sql = "SELECT * FROM allmess WHERE messcheck='show'";
+                                            if(isset($_POST['admin_search_btn'])){
+                                                $search_id = $_POST['admin_search_input'];
+                                                $admin_page_show_sql = "SELECT * FROM allmess WHERE id={$search_id}";
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
                                             }else{
   
                                             }
                                        $admin_page_show_result = mysqli_query($conn,$admin_page_show_sql);
+<<<<<<< HEAD
                                        if(mysqli_num_rows($admin_page_show_result) > 0){
+=======
+                                       if(mysqli_num_rows($admin_page_show_result)){
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
                                           while($result_row4 = mysqli_fetch_assoc($admin_page_show_result)){
                                      ?>
                                     <tr>
@@ -231,7 +260,11 @@
                                                 // print_r($image_array2);
                                                 ?>
                                                 <div class="client-img bg-img"
+<<<<<<< HEAD
                                                     style="background-image: url(mess_image/<?php echo $image_array2[0];?>)">
+=======
+                                                    style="background-image: url(mess_image/<?php echo $result_row4['imagename'];?>)">
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
                                                 </div>
                                                 <div class="client-info">
                                                     <h4 style="font-size:15px;">
@@ -258,11 +291,19 @@
                                         <td class="action">
                                             <!-- Delete Update and Read -->
                                             <div class="actions">
+<<<<<<< HEAD
                                                 <a href="php/check_mess.php?delete_post_from_showpost=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash"
                                                         style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
                                                 <a href=""> <i class="fa-solid fa-pen-to-square"
                                                         style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
                                                         <a href="php/check_mess.php?hide_from_showpost=<?php echo $result_row4['id']; ?>"> <i class="fa-sharp fa-solid fa-eye-slash"
+=======
+                                                <a href=""> <i class="fa-solid fa-trash"
+                                                        style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
+                                                <a href=""> <i class="fa-solid fa-pen-to-square"
+                                                        style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
+                                                        <a href="php/check_mess.php?hid=<?php echo  $result_row4['id'];?>"> <i class="fa-sharp fa-solid fa-eye-slash"
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
                                                             style="color:rgb(50, 50, 0); margin:5% 5%;cursor: pointer;"></i></a>
                                             </div>
                                         </td>
@@ -281,6 +322,124 @@
                         </div>
 
                     </div>
+<<<<<<< HEAD
+=======
+                    <!-- index page show mess -->
+                    <!-- index page show mess -->
+                    <!-- index page show mess -->
+
+
+                    <!-- all hide mess -->
+                    <!-- all hide mess -->
+                    <!-- all hide mess -->
+                    <div class="records table-responsive display_hide" id="second-hide-div">
+
+                        <div class="record-header">
+                            <div class="add">
+                                <span>Entries</span>
+                                <select name="" id="">
+                                    <option value="">ID</option>
+                                </select>
+                            </div>
+
+                            <div class="browse">
+                                <form action="" method=""
+                                    style="display:flex; padding:00px; margin:00px; box-sizing:border-box;">
+                                    <input type="search" placeholder="Search" class="record-search">
+                                    <input type="submit"
+                                        style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <table width="100%">
+                                <!-- table head start -->
+                                <thead>
+                                    <tr>
+                                        <th>Id No</th>
+                                        <th><span class="las la-sort"></span>Mess Name</th>
+                                        <th><span class="las la-sort"></span>User Name</th>
+                                        <th><span class="las la-sort"></span>Mobile</th>
+                                        <th><span class="las la-sort"></span>Mess Address</th>
+                                        <th><span class="las la-sort"></span>Email</th>
+                                        <th><span class="las la-sort"></span>Password</th>
+                                        <th><span class="las la-sort"></span>Actions</th>
+                                    </tr>
+                                </thead>
+                                <!-- // table body start -->
+                                <tbody>
+                                    <!-- first row start in table -->
+                                    <!-- start php loop -->
+                                    <?php 
+                                       $admin_page_show_sql = "SELECT * FROM allmess WHERE messcheck='hide'";
+                                       $admin_page_show_result = mysqli_query($conn,$admin_page_show_sql);
+                                       if(mysqli_num_rows($admin_page_show_result)){
+                                          while($result_row4 = mysqli_fetch_assoc($admin_page_show_result)){
+                                     ?>
+                                    <tr>
+                                        <td class="id-td" style="padding-left: 0.7rem;">
+                                            <?php echo $result_row4['id'];?>
+                                        </td>
+                                        <td class="mess-td">
+                                            <div class="client">
+                                                <div class="client-img bg-img"
+                                                    style="background-image: url(mess_image/<?php echo $result_row4['imagename'];?>)">
+                                                </div>
+                                                <div class="client-info">
+                                                    <h4 style="font-size:15px;">
+                                                        <?php echo $result_row4['messname'];?>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="user-td">
+                                            <?php echo $result_row4['ownername'];?>
+                                        </td>
+                                        <td class="phone-td">
+                                            <?php echo $result_row4['messcontactno'];?>
+                                        </td>
+                                        <td class="address-td">
+                                            <?php echo $result_row4['messlocation'];?>
+                                        </td>
+                                        <td class="email-td">
+                                            <?php echo $result_row4['authoremail'];?>
+                                        </td>
+                                        <td class="password-td">
+                                            <?php echo $result_row4['authorpassword'];?>
+                                        </td>
+                                        <td class="action">
+                                            <!-- Delete Update and Read -->
+                                            <div class="actions">
+                                                <a href=""> <i class="fa-solid fa-trash"
+                                                        style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
+                                                <a href=""> <i class="fa-solid fa-pen-to-square"
+                                                        style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
+                                                <a href="php/check_mess.php?sid=<?php echo  $result_row4['id'];?>"> <i
+                                                        class="fa-solid fa-square-check"
+                                                        style="color:rgb(0, 202, 0); margin:10% 10%;cursor: pointer;"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <?php     }
+                                       }
+                                    ?>
+
+
+                                    <!-- first row end in table -->
+                                </tbody>
+                                <!-- table body close -->
+
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- all hide mess -->
+                    <!-- all hide mess -->
+                    <!-- all hide mess -->
+
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
                 </div>
             </div>
 
@@ -292,3 +451,34 @@
 </body>
 
 </html>
+<<<<<<< HEAD
+=======
+<!-- admin page change script -->
+<!-- admin page change script -->
+<script>
+
+    let show_btn = document.getElementById("show_btn");
+    let hide_btn = document.getElementById("hide_btn");
+
+    let show_div_btn = document.getElementById("first-hide-div");
+    let hide_div_btn = document.getElementById("second-hide-div");
+
+    show_btn.addEventListener("click", function () {
+        console.log("ok");
+        show_div_btn.setAttribute("class", "records table-responsive");
+        hide_div_btn.setAttribute("class", "records table-responsive display_hide");
+
+        show_btn.setAttribute("class", "clicked_btn");
+        hide_btn.setAttribute("class", "");
+    });
+
+    hide_btn.addEventListener("click", function () {
+        console.log(" not ok");
+        show_div_btn.setAttribute("class", "records table-responsive display_hide");
+        hide_div_btn.setAttribute("class", "records table-responsive");
+
+        hide_btn.setAttribute("class", "clicked_btn");
+        show_btn.setAttribute("class", "");
+    });
+</script>
+>>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
