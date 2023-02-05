@@ -18,6 +18,7 @@
           $extrafacility = $_POST['edit_extrafacility'];
            $bathroom = $_POST['edit_bathroom'];
 
+
       $edit_id = $_POST['edit_id'];
       $edit_r_table = $_POST['edit_r_table'];
       
@@ -41,8 +42,15 @@
      if($edit_r_table == "showposteditid"){
         include "config.php";
 
-       $insert_sql1 = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom) VALUES ('{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}')";
-       
+        session_start();
+        $authorname = $_SESSION['name'];
+        $authorphone = $_SESSION['phone'];
+        $authoremail = $_SESSION['email'];
+        $authorpassword = $_SESSION['password'];
+        $postdate = date("d m y");
+
+       echo $insert_sql1 = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,authorname,authorphone,authoremail,authorpassword,postdate,imagename) VALUES ('{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdate}','{$file_name}')";
+
       $result3 = mysqli_query($conn,$insert_sql1);
       if($result3){
          $delete_showpost_sql = "DELETE FROM showpost WHERE id = {$edit_id}";
@@ -58,5 +66,4 @@
      }
     }
   }
-  mysqli_close($conn);
 ?>

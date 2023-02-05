@@ -330,8 +330,8 @@
                         </div>
 
                         <div class="input-field">
-                            <label style="text-align: center;">Upload Images</label>
-                            <input style="border:none;" name="imagename" type="file" multiple>
+                            <label style="text-align: center; font-weight:bold; color:blue;">Upload 4 Images</label>
+                            <input style="border:none;" name="imagename[]" type="file" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4">
                         </div>
                     </div>
                         <div>

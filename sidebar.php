@@ -39,7 +39,11 @@
 
             <div class="recent-post">
             <a class="post-img" style="height:80px;" href="">
-                <img src="mess_image/<?PHP echo $recent_row['imagename']; ?>" alt="" style="height:100%; width:100%;"/>
+            <?php   
+                $image_name = $recent_row['imagename'];
+                $image_array = explode(",",$image_name);
+            ?>
+                <img src="mess_image/<?php echo $image_array[0]; ?>" alt="" style="height:100%; width:100%;"/>
             </a>
             <div class="post-content">
                 <h5><a href=""><?PHP echo $recent_row['messname']; ?></a></h5>

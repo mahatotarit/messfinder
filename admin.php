@@ -61,6 +61,10 @@
             transform:rotateX(20deg);
             width:50px;
             }
+            #show_btn{
+                box-shadow:2px 2px 5px black;
+                border:4px inset black;
+            }
     </style>
 </head>
 
@@ -220,8 +224,14 @@
                                         </td>
                                         <td class="mess-td">
                                             <div class="client">
+                                                <?php
+                                                $image_name2 = $result_row4['imagename'];
+                                                // print_r($image_name2);
+                                                $image_array2 = explode(",", $image_name2);
+                                                // print_r($image_array2);
+                                                ?>
                                                 <div class="client-img bg-img"
-                                                    style="background-image: url(mess_image/<?php echo $result_row4['imagename'];?>)">
+                                                    style="background-image: url(mess_image/<?php echo $image_array2[0];?>)">
                                                 </div>
                                                 <div class="client-info">
                                                     <h4 style="font-size:15px;">

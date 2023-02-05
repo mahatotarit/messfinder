@@ -54,8 +54,8 @@
 
          $post_imagename1 = $collect_delete_post_row['imagename'];
          $post_id1 = $collect_delete_post_row['id'];
-
-         if(unlink("../mess_image/{$post_imagename1}")){
+           unlink("../mess_image/{$post_imagename1}");
+         if(true){
              $delete_post_from_showpost = "DELETE FROM showpost WHERE id={$post_id1}";
              $delete_post_from_result = mysqli_query($conn,$delete_post_from_showpost);
             if($delete_post_from_result){

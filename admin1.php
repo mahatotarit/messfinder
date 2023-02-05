@@ -2,37 +2,36 @@
 <!-- 230 to 330 line number -->
 
 <?php
-   session_start();
-   if(isset($_SESSION['phone'])){
-       if(isset($_SESSION['password'])){
-          
-       }else{
-        header("location:loginpage.php");    
-       }
-   }else{
+session_start();
+if (isset($_SESSION['phone'])) {
+    if (isset($_SESSION['password'])) {
+    } else {
+        header("location:loginpage.php");
+    }
+} else {
     header("location:loginpage.php");
-   }
+}
 ?>
 
-<?php 
-             include "php/config.php";
-             $admin_name = $_SESSION['name'];
-             $admin_phone = $_SESSION['phone'];
-             $admin_password = $_SESSION['password'];
+<?php
+include "php/config.php";
+$admin_name = $_SESSION['name'];
+$admin_phone = $_SESSION['phone'];
+$admin_password = $_SESSION['password'];
 
-             $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_password}'";
-             $admin_button_show_result = mysqli_query($conn,$admin_button_show_sql);
-             if(mysqli_num_rows($admin_button_show_result)){
-              }else{
-                header("location:index.php");
-              }
- ?>
-
-
+$admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_password}'";
+$admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
+if (mysqli_num_rows($admin_button_show_result)) {
+} else {
+    header("location:index.php");
+}
+?>
 
 
 
-<?php include "mainheader.php";?>
+
+
+<?php include "mainheader.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,8 +41,7 @@
     <title>Modern Admin Dashboard</title>
     <link rel="stylesheet" href="all-css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <style>
         @media (max-width: 1054px) {
             nav {
@@ -56,11 +54,17 @@
         .display_hide {
             display: none;
         }
-        .clicked_btn{
-            box-shadow:0px 12px 4px rgb(56, 56, 56);
-            transform:rotateX(20deg);
-            width:50px;
-            }
+
+        .clicked_btn {
+            box-shadow: 0px 12px 4px rgb(56, 56, 56);
+            transform: rotateX(20deg);
+            width: 50px;
+        }
+
+        #hide_btn {
+            box-shadow: 2px 2px 5px black;
+            border: 4px inset black;
+        }
     </style>
 </head>
 
@@ -86,15 +90,15 @@
                                 <!-- total user register -->
                                 <!-- total user register -->
                                 <h2>
-                                    <?php 
-                                      include "php/config.php";
-                                      $total_user_sql = "SELECT * FROM user order by id desc limit 1";
-                                      $total_user_result = mysqli_query($conn,$total_user_sql);
-                                      if(mysqli_num_rows($total_user_result)){
-                                          while($row9898 = mysqli_fetch_assoc($total_user_result)){
+                                    <?php
+                                    include "php/config.php";
+                                    $total_user_sql = "SELECT * FROM user order by id desc limit 1";
+                                    $total_user_result = mysqli_query($conn, $total_user_sql);
+                                    if (mysqli_num_rows($total_user_result)) {
+                                        while ($row9898 = mysqli_fetch_assoc($total_user_result)) {
                                             echo $row9898['id'];
                                         }
-                                      }
+                                    }
                                     ?>
                                 </h2>
                                 <span class="las la-user-friends"></span>
@@ -128,13 +132,13 @@
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                      $total_mess_show_sql5 = "SELECT * FROM allmess order by id desc limit 1";
-                                      $total_mess_show_sql5_result = mysqli_query($conn,$total_mess_show_sql5);
-                                      if(mysqli_num_rows($total_mess_show_sql5_result )){
-                                        while ($total_mess_add = mysqli_fetch_assoc($total_mess_show_sql5_result )) {
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess order by id desc limit 1";
+                                    $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
+                                    if (mysqli_num_rows($total_mess_show_sql5_result)) {
+                                        while ($total_mess_add = mysqli_fetch_assoc($total_mess_show_sql5_result)) {
                                             echo $total_mess_add['id'];
                                         }
-                                      }
+                                    }
                                     ?>
                                 </h2>
                                 <span class="fa-solid fa-house-chimney" style="font-size:150%;"></span>
@@ -146,13 +150,11 @@
 
                     </div>
                     <div style="display:flex; justify-content:center; align-items:center;margin:5px 00px 10px 00px;">
-                        <button id="show_btn"
-                            style="padding:5px; margin:2px 15px 2px 15px;background-color:green; border-color:green; border-radius:5px; color:white; font-weight:bold;"><a href="admin.php" style="color:white;"><span class="las la-eye" style="font-size:160%;"></span></a></button>
-                        <button id="hide_btn"
-                            style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><a href="admin1.php" style="color:white;"><span class="fa-sharp fa-solid fa-eye-slash" style="font-size:150%;"></span></a></button>
+                        <button id="show_btn" style="padding:5px; margin:2px 15px 2px 15px;background-color:green; border-color:green; border-radius:5px; color:white; font-weight:bold;"><a href="admin.php" style="color:white;"><span class="las la-eye" style="font-size:160%;"></span></a></button>
+                        <button id="hide_btn" style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><a href="admin1.php" style="color:white;"><span class="fa-sharp fa-solid fa-eye-slash" style="font-size:150%;"></span></a></button>
                     </div>
 
-                    
+
                     <div class="records table-responsive" id="second-hide-div">
 
                         <div class="record-header">
@@ -164,11 +166,9 @@
                             </div>
 
                             <div class="browse">
-                                <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST"
-                                    style="display:flex; padding:00px; margin:00px; box-sizing:border-box;">
+                                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" style="display:flex; padding:00px; margin:00px; box-sizing:border-box;">
                                     <input type="number" placeholder="Search" class="record-search" name="find_allmess_post_input">
-                                    <input type="submit" name="find_allmess_post_btn"
-                                        style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;">
+                                    <input type="submit" name="find_allmess_post_btn" style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;">
                                 </form>
                             </div>
                         </div>
@@ -192,70 +192,71 @@
                                 <tbody>
                                     <!-- first row start in table -->
                                     <!-- start php loop -->
-                                    <?php 
-                                       $admin_page_show_sql = "";
-                                       $admin_page_show_sql = "SELECT * FROM allmess";
-                                       if(isset($_POST['find_allmess_post_btn'])){
-                                            $find_allmess_post_input = $_POST['find_allmess_post_input'];
-                                            if(preg_match("/^[A-z]*$/",$find_allmess_post_input)){
-                                                $admin_page_show_sql = "SELECT * FROM allmess";
-                                            }else{
-                                                $admin_page_show_sql = "SELECT * FROM allmess
+                                    <?php
+                                    $admin_page_show_sql = "";
+                                    $admin_page_show_sql = "SELECT * FROM allmess";
+                                    if (isset($_POST['find_allmess_post_btn'])) {
+                                        $find_allmess_post_input = $_POST['find_allmess_post_input'];
+                                        if (preg_match("/^[A-z]*$/", $find_allmess_post_input)) {
+                                            $admin_page_show_sql = "SELECT * FROM allmess";
+                                        } else {
+                                            $admin_page_show_sql = "SELECT * FROM allmess
                                                 WHERE id LIKE '%$find_allmess_post_input%'";
-                                            }
-                                       }
-                                       $admin_page_show_result = mysqli_query($conn,$admin_page_show_sql);
-                                       if(mysqli_num_rows($admin_page_show_result)){
-                                          while($result_row4 = mysqli_fetch_assoc($admin_page_show_result)){
-                                     ?>
-                                    <tr>
-                                        <td class="id-td" style="padding-left: 0.7rem;">
-                                            <?php echo $result_row4['id'];?>
-                                        </td>
-                                        <td class="mess-td">
-                                            <div class="client">
-                                                <div class="client-img bg-img"
-                                                    style="background-image: url(mess_image/<?php echo $result_row4['imagename'];?>)">
-                                                </div>
-                                                <div class="client-info">
-                                                    <h4 style="font-size:15px;">
-                                                        <?php echo $result_row4['messname'];?>
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="user-td">
-                                            <?php echo $result_row4['ownername'];?>
-                                        </td>
-                                        <td class="phone-td">
-                                            <?php echo $result_row4['messcontactno'];?>
-                                        </td>
-                                        <td class="address-td">
-                                            <?php echo $result_row4['messlocation'];?>
-                                        </td>
-                                        <td class="email-td">
-                                            <?php echo $result_row4['authoremail'];?>
-                                        </td>
-                                        <td class="password-td">
-                                            <?php echo $result_row4['authorpassword'];?>
-                                        </td>
-                                        <td class="action">
-                                            <!-- Delete Update and Read -->
-                                            <div class="actions">
-                                                <a href="php/check_mess.php?delete_from_allmess=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash"
-                                                        style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
-                                                <a href=""> <i class="fa-solid fa-pen-to-square"
-                                                        style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
-                                                <a href="php/check_mess.php?success_id=<?php echo $result_row4['id']; ?>"> <i
-                                                        class="fa-solid fa-square-check"
-                                                        style="color:rgb(0, 202, 0); margin:10% 10%;cursor: pointer;"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        }
+                                    }
+                                    $admin_page_show_result = mysqli_query($conn, $admin_page_show_sql);
+                                    if (mysqli_num_rows($admin_page_show_result)) {
+                                        while ($result_row4 = mysqli_fetch_assoc($admin_page_show_result)) {
+                                    ?>
+                                            <tr>
+                                                <td class="id-td" style="padding-left: 0.7rem;">
+                                                    <?php echo $result_row4['id']; ?>
+                                                </td>
+                                                <td class="mess-td">
+                                                    <div class="client">
+                                                    <?php
+                                                $image_name2 = $result_row4['imagename'];
+                                                // print_r($image_name2);
+                                                $image_array2 = explode(",", $image_name2);
+                                                // print_r($image_array2);
+                                                ?>
+                                                        <div class="client-img bg-img" style="background-image: url(mess_image/<?php echo $image_array2[0]; ?>)">
+                                                        </div>
+                                                        <div class="client-info">
+                                                            <h4 style="font-size:15px;">
+                                                                <?php echo $result_row4['messname']; ?>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="user-td">
+                                                    <?php echo $result_row4['ownername']; ?>
+                                                </td>
+                                                <td class="phone-td">
+                                                    <?php echo $result_row4['messcontactno']; ?>
+                                                </td>
+                                                <td class="address-td">
+                                                    <?php echo $result_row4['messlocation']; ?>
+                                                </td>
+                                                <td class="email-td">
+                                                    <?php echo $result_row4['authoremail']; ?>
+                                                </td>
+                                                <td class="password-td">
+                                                    <?php echo $result_row4['authorpassword']; ?>
+                                                </td>
+                                                <td class="action">
+                                                    <!-- Delete Update and Read -->
+                                                    <div class="actions">
+                                                        <a href="php/check_mess.php?delete_from_allmess=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash" style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
+                                                        <a href=""> <i class="fa-solid fa-pen-to-square" style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
+                                                        <a href="php/check_mess.php?success_id=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-square-check" style="color:rgb(0, 202, 0); margin:10% 10%;cursor: pointer;"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
                                     <?php     }
-                                       }else{
-                                       }
+                                    } else {
+                                    }
                                     ?>
 
 
@@ -278,4 +279,4 @@
 </body>
 
 </html>
-<?php   mysqli_close($conn); ?>
+<?php mysqli_close($conn); ?>

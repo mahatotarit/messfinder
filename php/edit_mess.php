@@ -392,9 +392,9 @@
                         </div>
 
                         <div class="input-field" style="margin-left:50px; text-align:center;">
-                            <!-- <img style="width:150px; height:150px; border-radius:5px;" src="../mess_image/<?php echo $row6['imagename'];?>" alt="Old image"> -->
+                            <!-- <img style="width:150px; height:150px; border-radius:5px;" src="../mess_image/" alt="Old image"> -->
                             <!-- <input style="border:none;" name="edit_imagename" type="file"> -->
-                            <input style="border:none;" name="edit_old_image" type="hidden">
+                            <input style="border:none;" name="edit_old_image" type="hidden" value="<?php echo $row6['imagename'];?>">
                         </div>
                     </div>
                         <div>
