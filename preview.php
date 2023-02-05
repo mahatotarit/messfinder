@@ -118,7 +118,7 @@ if (isset($_GET['id'])) {
                         foreach ($image_array1 as $ok1) { ?>
                       <div class="img-item" style="width: 25%;">
                         <a href="#" data-id="<?php echo $number1; ?>">
-                          <img src="mess_image/<?php echo $ok1; ?>" alt="shoe image" style="width:100%; height:100%;">
+                          <img src="mess_image/<?php echo $ok1; ?>" alt="Mess Image" style="width:100%; height:100%;">
                         </a>
                       </div>
 
@@ -165,7 +165,7 @@ if (isset($_GET['id'])) {
               <button type="button" class="btn">
                 <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
               </button>
-              <button type="button" class="btn">Call</button>
+              <!-- <button type="button" class="btn">Call</button> -->
             </div>
 
             <!-- <div class = "social-links">

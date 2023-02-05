@@ -19,13 +19,13 @@ if (isset($_FILES['imagename'])) {
                 die();
             }
 
-            move_uploaded_file($_FILES['imagename']['tmp_name'][$key], '../mess_image/' . $val.time());
+            move_uploaded_file($_FILES['imagename']['tmp_name'][$key], '../mess_image/'.time() . $val);
         }
 
         // collect all image 
         // collect all image 
         foreach ($_FILES['imagename']['name'] as $key => $val) {
-            $image = $image . "," . $_FILES["imagename"]['name'][$key].time();
+            $image = $image .",".time(). $_FILES["imagename"]['name'][$key];
         }
     }
 }
