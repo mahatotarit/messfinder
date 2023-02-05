@@ -55,7 +55,11 @@
       $get_my_post_result1 = mysqli_query($conn, $get_my_post_sql1) or die("query failed 33");
       while ($row1 = mysqli_fetch_assoc($get_my_post_result1)) { ?>
         <div class="notif_card unread">
-          <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row1['imagename']; ?>" alt="avatar" />
+          <?php
+          $image_name_string = $row1['imagename'];
+          $image_name_array = explode(",", $image_name_string);
+          ?>
+          <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $image_name_array[0]; ?>" alt="avatar" />
           <div class="description">
             <p class="user_activity">
               <strong><?php echo $row1['messname']; ?></strong><br> <?php echo $row1['messlocation']; ?>

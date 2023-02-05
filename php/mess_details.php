@@ -7,7 +7,7 @@ if (isset($_FILES['imagename'])) {
 
             $type = explode('.', $_FILES['imagename']['name'][$key]);
             $a = strtolower(end($type));
-            $extensions = array("jpeg", "jpg", "png", "webp");
+            $extensions = array("jpeg","jpg", "png", "webp");
             if (in_array($a, $extensions) === false) {
                 $errors[] = "this extensions file not allowed. please choose a jpg or png file";
                 print_r($errors);
@@ -48,15 +48,7 @@ if (isset($_POST['add_mess_button'])) {
     $extrafacility = $_POST['extrafacility'];
     $bathroom = $_POST['bathroom'];
     $add_mess_btn = $_POST['add_mess_button'];
-    
-    session_start();
-    $messcheck = "hide";
-    $authorname = $_SESSION['name'];
-    $authorphone = $_SESSION['phone'];
-    $authoremail = $_SESSION['email'];
-    $authorpassword = $_SESSION['password'];
 
-<<<<<<< HEAD
     session_start();
     $authorname = $_SESSION['name'];
     $authorphone = $_SESSION['phone'];
@@ -74,16 +66,5 @@ if (isset($_POST['add_mess_button'])) {
     } else {
         echo "failed  63";
     }
-=======
-   $insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,imagename,messcheck,authorname,authorphone,authoremail,authorpassword) VALUES 
-   ('{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$file_name}','{$messcheck}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}')";
-   
-   $insert_result = mysqli_query($conn,$insert_sql);
-   if($insert_result){
-    header("location:../index.php");
-   }else{
-    echo "failed";
-   }
->>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
 }
 mysqli_close($conn);

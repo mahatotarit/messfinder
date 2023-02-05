@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (isset($_SESSION['phone'])) {
@@ -15,7 +14,17 @@ if (isset($_SESSION['phone'])) {
         height: 100%;
     }
 </style>
-<?php include 'mainheader.php'; ?>
+<?php
+include 'mainheader.php';
+$pagenation_limit = 2;
+if (isset($_GET['page'])) {
+    $current_page = $_GET['page'];
+} else {
+    $current_page = 1;
+}
+$page_offset = ($current_page - 1) * $pagenation_limit;
+
+?>
 <div id="main-content">
     <div class="container">
         <div class="row">
@@ -29,12 +38,12 @@ if (isset($_SESSION['phone'])) {
 
                     //   home page search button 
                     //   home page search button 
-                      if(isset($_POST['s_b'])){
-                       $home_page_search_input = $_POST['home_search'];
-                       $get_data_sql = "SELECT * FROM allmess WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%'";
-                      }else{
-                        $get_data_sql = "SELECT * FROM allmess"; // default sql query.
-                      }
+                    if (isset($_GET['s_b'])) {
+                        $home_page_search_input = $_GET['home_search'];
+                        $get_data_sql = "SELECT * FROM showpost WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%'";
+                    } else {
+                        $get_data_sql = "SELECT * FROM showpost LIMIT {$page_offset} , {$pagenation_limit}"; // default sql query.
+                    }
 
                     $get_data_result = mysqli_query($conn, $get_data_sql) or die("query failed 39");
                     if (mysqli_num_rows($get_data_result)) {
@@ -80,14 +89,39 @@ if (isset($_SESSION['phone'])) {
                     } else {
                         echo "<h3 style='text-align:center; padding:5px;'>No Record Found</h3>";
                     }
+
+
+                    // pagenation code 
+                    // pagenation code 
+                    // pagenation code 
+
+                    $pagenation_sql1 = "SELECT * FROM showpost";
+                    $pagenation_result = mysqli_query($conn, $pagenation_sql1);
+                    if (mysqli_num_rows($pagenation_result)) {
+                        $pagenation_total_records = mysqli_num_rows($pagenation_result);
+
+                        $pagenation_total_pages = ceil($pagenation_total_records / $pagenation_limit);
+                        // page numberr start
+                        echo "<ul class='pagination'>";
+                        if ($current_page > 1) {
+                            echo "<li><a href='index.php?page=" . ($current_page - 1) . "'>Pre</a></li>";
+                        }
+                        for ($i = 1; $i <= $pagenation_total_pages; $i++) {
+                            if ($i == $current_page) {
+                                $pagenation_active = "active";
+                            } else {
+                                $pagenation_active = "";
+                            }
+                            echo '<li class="' . $pagenation_active . '"><a href="index.php?page=' . $i . '">' . $i . '</a></li>';
+                        }
+                        if ($pagenation_total_pages > $current_page) {
+                            echo "<li><a href='index.php?page=" . ($current_page + 1) . "'>Next</a></li>";
+                        } else {
+                        }
+                        echo "</ul>";
+                    }
+
                     ?>
-
-
-                    <ul class='pagination'>
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                    </ul>
                 </div><!-- /post-container -->
             </div>
             <?php include 'sidebar.php'; ?>

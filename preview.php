@@ -41,15 +41,16 @@ if (isset($_GET['id'])) {
             color: black;
             font-size: 20px;
           }
-          .img-display{
-            border:2px solid #337ab7;
+
+          .img-display {
+            border: 2px solid #337ab7;
           }
 
           .back_btn {
             display: inline-block;
             -ms-transform: rotate(20deg);
             /* IE 9 */
-            transform: rotate(180deg);  
+            transform: rotate(180deg);
           }
 
           @media((max-width: 600px)) {
@@ -64,11 +65,12 @@ if (isset($_GET['id'])) {
               font-weight: bold;
               border-radius: 50%;
               background-color: white;
-              box-shadow:0px 0px 1px rgb(20,20,20);
+              box-shadow: 0px 0px 1px rgb(20, 20, 20);
             }
-            .img-display{
-            border:none;
-          }
+
+            .img-display {
+              border: none;
+            }
 
           }
         </style>
@@ -77,9 +79,9 @@ if (isset($_GET['id'])) {
       <body>
 
         <div class="card-wrapper">
-          <div class="back_btn_div">
-            <a href="index.php" class="back_a"><span style="width:100%; height:100%; border-radius:50%" class="back_btn">&#x279C;</span></a>
-          </div>
+          <!-- <div class="back_btn_div"> -->
+          <!-- <a href="index.php" class="back_a"><span style="width:100%; height:100%; border-radius:50%" class="back_btn">&#x279C;</span></a>
+          </div> -->
           <div class="card">
             <!-- card left -->
             <div class="product-imgs">

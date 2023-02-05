@@ -6,7 +6,6 @@
 // }else{
 //     header('location:loginpage.php');
 // }
-
 ?>
 
 <!DOCTYPE html>
@@ -316,10 +315,7 @@ background-size: contain;
              if(mysqli_num_rows($admin_button_show_result)){
                 
                echo '<li><a style="user-select: none;" href="admin.php">Admin</a></li>';
-<<<<<<< HEAD
                echo '<li><a style="user-select: none;" href="send_notification.php">Send Notification</a></li>';
-=======
->>>>>>> b71ebaa65e11f4e0eadb5204e374160e5c2b8387
              }
            ?>
          </div>
@@ -329,9 +325,9 @@ background-size: contain;
          <div class="cancel-icon">
            <span class="fas fa-times"></span>
           </div>
-         <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST">
+         <form action="" method="GET">
             <input type="search" class="search-data" style="font-weight:bold;" name="home_search" placeholder="Search Location" required>
-            <button type="submit" class="fas fa-search" name="s_b"></button>
+            <button type="submit" class="fas fa-search" name="s_b" value="search"></button>
          </form>
       </nav>
       <script>
