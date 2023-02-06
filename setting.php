@@ -139,11 +139,11 @@
         <div class="content">
           <p>Share this link via</p>
           <ul class="icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/sharer.php?u=https://messfinder.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="http://twitter.com/share?text=WebsiteLink-&url=https://messfinder.com&hashtags=#PHP" target="_blank"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=&text=<?php urlencode("Refer-Your-Friends-"); ?>https://messfinder.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://telegram.me/share/url?url=https://messfinder.com.php&text=Share-Your-Friends" target="_blank"><i class="fab fa-telegram-plane"></i></a>
           </ul>
           <p>Or copy link</p>
           <div class="field">
