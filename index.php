@@ -57,7 +57,7 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                                         $image_name = $row1['imagename'];
                                         $image_array = explode(",", $image_name);
                                         ?>
-                                        <a class="post-img" href=""><img src="mess_image/<?php echo $image_array[0]; ?>" alt="messimage" /></a>
+                                        <a class="post-img"><img src="mess_image/<?php echo $image_array[0]; ?>" alt="messimage" /></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="inner-content clearfix">

@@ -88,11 +88,12 @@
                     include "php/config.php";
                      
                     $phone_check_sql = "SELECT * FROM user WHERE phone = '{$register_phone}'";
+                     $default_image = "profile.png";
                     $phone_check_result = mysqli_query($conn,$phone_check_sql);
                     if(mysqli_num_rows($phone_check_result)){
                         echo "<div style='color:red; text-align:center; font-size:15px; padding:5px 00px 00px 00px;'>Phone Already Register</div>";
                     }else{
-                        $insert_register_data_sql = "INSERT INTO user (name,phone,email,password) VALUES ('{$register_name}','{$register_phone}','{$register_email}','{$register_password}')";
+                        $insert_register_data_sql = "INSERT INTO user (name,phone,email,password,image) VALUES ('{$register_name}','{$register_phone}','{$register_email}','{$register_password}','{$default_image}')";
                         $insert_register_data_result = mysqli_query($conn,$insert_register_data_sql) or die("register failed");;
                         if($insert_register_data_result){
                             session_start();
@@ -105,6 +106,7 @@
                             
                         }
                     }
+                    mysqli_close($conn);
                    }
                  ?>
 
@@ -114,4 +116,3 @@
 </body>
 
 </html>
-<?php   mysqli_close($conn); ?>

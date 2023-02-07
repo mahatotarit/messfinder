@@ -38,7 +38,7 @@
      ?>
 
             <div class="recent-post">
-            <a class="post-img" style="height:80px;" href="">
+            <a class="post-img" style="height:80px;">
             <?php   
                 $image_name = $recent_row['imagename'];
                 $image_array = explode(",",$image_name);

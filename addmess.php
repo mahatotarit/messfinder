@@ -1,14 +1,19 @@
 <?php
-   session_start();
-   if(isset($_SESSION['phone'])){
-       if(isset($_SESSION['password'])){
-          
-       }else{
-        header("location:loginpage.php");    
-       }
-   }else{
+session_start();
+if (isset($_SESSION['phone'])) {
+} else {
     header("location:loginpage.php");
-   }
+}
+?>
+<?php
+if (isset($_POST['ok'])) {
+    echo '
+      <div style="width:100vw; height:100vh;" class="loader_div">
+      <div class="loader">
+      </div>
+      </div>
+';
+}
 ?>
 <!DOCTYPE html>
 <!--=== Coding by CodingLab | www.codinglabweb.com === -->
@@ -228,13 +233,66 @@
             }
         }
     </style>
+    <style>
+        .loader {
+            position: absolute;
+            z-index: +1111;
+            top: 35%;
+            left: 47%;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+
+        .loader_div {
+            z-index: +1;
+            background-color: rgba(0, 0, 0, 0.34);
+            position: absolute;
+            top: 00%;
+            left: 00%;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .text {
+            position: absolute;
+            top: 80px;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <header>Register a new Mess</header>
 
-        <form action="php/mess_details.php" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Mess Details</span>
@@ -242,22 +300,22 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Mess Name</label>
-                            <input type="text" name="messname" placeholder="Enter your name"  required>
+                            <input type="text" name="messname" placeholder="Enter your name" required>
                         </div>
 
                         <div class="input-field">
                             <label>Price</label>
-                            <input type="number" name="price" placeholder="Price per Bed"  required>
+                            <input type="number" name="price" placeholder="Price per Bed" required>
                         </div>
 
                         <div class="input-field">
                             <label>Mess Location</label>
-                            <input type="text" name="messlocation" placeholder="Mess Address"  required>
+                            <input type="text" name="messlocation" placeholder="Mess Address" required>
                         </div>
 
                         <div class="input-field">
                             <label>Mess Contect No</label>
-                            <input type="number" name="messcontactno" placeholder="Enter mobile number"  required>
+                            <input type="number" name="messcontactno" placeholder="Enter mobile number" required>
                         </div>
 
                         <div class="input-field">
@@ -272,7 +330,7 @@
 
                         <div class="input-field">
                             <label>About</label>
-                            <input type="text" name="messabout" placeholder="Enter Mess Details"  required>
+                            <input type="text" name="messabout" placeholder="Enter Mess Details" required>
                         </div>
                     </div>
                 </div>
@@ -303,7 +361,7 @@
 
                         <div class="input-field">
                             <label>Mess Owner Name</label>
-                            <input type="text" name="ownername" placeholder="Owner Name"  required>
+                            <input type="text" name="ownername" placeholder="Owner Name" required>
                         </div>
 
 
@@ -326,7 +384,7 @@
                         </div>
                         <div class="input-field">
                             <label>Extra Facility</label>
-                            <input type="text" name="extrafacility" placeholder="Extra Facility"  required>
+                            <input type="text" name="extrafacility" placeholder="Extra Facility" required>
                         </div>
 
                         <div class="input-field">
@@ -334,20 +392,19 @@
                             <input style="border:none;" name="imagename[]" type="file" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4">
                         </div>
                     </div>
-                        <div>
-                            <button class="nextBtn">
-                                <input type="submit" name="add_mess_button" value="Submit"
-                                style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%;">
-                            </button>
+                    <div>
+                        <button class="nextBtn" id="btn_input">
+                            <input type="submit" name="add_mess_button" value="Submit" style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%;">
+                            <input type="text" name="ok" id="ok" hidden value="ok">
+                        </button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-
-    <!--<script src="script.js"></script>-->
 </body>
 
 </html>
-<script>
-</script>
+<?php
+include 'php/mess_details.php';
+?>

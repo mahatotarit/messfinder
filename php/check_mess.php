@@ -137,7 +137,7 @@ if (isset($_GET['delete_from_allmess'])) {
    $mess_check_sql2 = "DELETE FROM allmess WHERE id={$check_id2}";
    $mess_check_result2 = mysqli_query($conn, $mess_check_sql2);
    if ($mess_check_result2) {
-      header("location:../admin.php");
+      header("location:../admin1.php");
    } else {
       echo "not ok";
    }

@@ -92,12 +92,10 @@ if (mysqli_num_rows($admin_button_show_result)) {
                                 <h2>
                                     <?php
                                     include "php/config.php";
-                                    $total_user_sql = "SELECT * FROM user order by id desc limit 1";
+                                    $total_user_sql = "SELECT * FROM user";
                                     $total_user_result = mysqli_query($conn, $total_user_sql);
                                     if (mysqli_num_rows($total_user_result)) {
-                                        while ($row9898 = mysqli_fetch_assoc($total_user_result)) {
-                                            echo $row9898['id'];
-                                        }
+                                        echo $total_uuser1 = mysqli_num_rows($total_user_result);
                                     }
                                     ?>
                                 </h2>
@@ -132,12 +130,10 @@ if (mysqli_num_rows($admin_button_show_result)) {
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                    $total_mess_show_sql5 = "SELECT * FROM allmess order by id desc limit 1";
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
-                                        while ($total_mess_add = mysqli_fetch_assoc($total_mess_show_sql5_result)) {
-                                            echo $total_mess_add['id'];
-                                        }
+                                        echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
                                     }
                                     ?>
                                 </h2>

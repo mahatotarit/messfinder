@@ -163,7 +163,7 @@ if (isset($_GET['id'])) {
 
             <div class="purchase-info">
               <button type="button" class="btn">
-                <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
+                <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
               </button>
               <!-- <button type="button" class="btn">Call</button> -->
             </div>

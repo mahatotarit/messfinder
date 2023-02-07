@@ -1,14 +1,13 @@
 <?php
-   session_start();
-   if(isset($_SESSION['phone'])){
-       if(isset($_SESSION['password'])){
-          
-       }else{
-        header("location:loginpage.php");    
-       }
-   }else{
-    header("location:loginpage.php");
-   }
+session_start();
+if (isset($_SESSION['phone'])) {
+	if (isset($_SESSION['password'])) {
+	} else {
+		header("location:loginpage.php");
+	}
+} else {
+	header("location:loginpage.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +16,7 @@
 	<meta charset="UTF-8">
 	<title>Profile Card UI Design</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" type="text/css"
-		href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 	<link rel="stylesheet" type="text/css" href="all-css/userprofile.css">
 	<style>
@@ -36,21 +34,20 @@
 
 			<div class="row">
 				<div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-					<div
-						class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+					<div class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
 						<div class="banner"><img src="assets/image/banner.jpg" style="width:100%; height:100%;" alt="">
 						</div>
-						<img src="assets/image/profile.png" alt="" class="img-circle mx-auto mb-3">
-						<h3 class="mb-4"><?php echo $_SESSION['name'];?></h3>
+						<img src="<?php if(isset($_SESSION['image'])){
+							echo "mess_image/" . $_SESSION['image'];
+						} else {
+							echo "assets/image/profile.png";
+						}?>" alt="" class="img-circle mx-auto mb-3">
+						<h3 class="mb-4"><?php echo $_SESSION['name']; ?></h3>
 						<div class="text-left mb-4">
-							<p class="mb-2"><i class="fa fa-envelope mr-2"></i><?php echo $_SESSION['email'];?></p>
-							<p class="mb-2"><i class="fa fa-phone mr-2"></i> +91 <?php echo $_SESSION['phone'];?></p>
-							<?php if(isset($_SESSION['socal_link'])){?>
-							<p class="mb-2"><i class="fa fa-globe mr-2"></i><?php?></p>
-							<?php }
-							   if(isset($_SESSION['address'])){?>
-							<p class="mb-2"><i class="fa fa-map-marker-alt mr-2"></i></p>
-							<?php } ?>
+							<p class="mb-2"><i class="fa fa-envelope mr-2"></i><?php echo $_SESSION['email']; ?></p>
+							<p class="mb-2"><i class="fa fa-phone mr-2"></i> +91 <?php echo $_SESSION['phone']; ?></p>
+							<p class="mb-2"><i class="fa fa-phone mr-2"></i> +91 <?php echo $_SESSION['password']; ?></p>
+							<!-- <p class="mb-2"><i class="fa fa-phone mr-2"></i></p> -->
 						</div>
 						<!-- <div class="social-links d-flex justify-content-center">
 							<a href="#!" class="mx-2"><img src="img/social/dribbble.svg" alt="Dribbble"></a>
@@ -58,6 +55,9 @@
 							<a href="#!" class="mx-2"><img src="img/social/linkedin.svg" alt="Linkedin"></a>
 							<a href="#!" class="mx-2"><img src="img/social/youtube.svg" alt="Youtube"></a>
 						</div> -->
+						<div class="edit_div_btn">
+                            <button class="edit_btn" style="border-radius:5px; width:90px;"><a href="php/edit_profile.php">Edit</a></button>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -39,8 +39,12 @@
   </div>
   <div class="container">
     <div class="img__profile">
-      <img src="assets/image/profile.png" class="three-width" alt="profile" width="200" height="200"
-        style="text-align:center; width:100px; height:100px;">
+      <img src="<?php if (isset($_SESSION['image'])) {
+									echo "mess_image/".$_SESSION['image'];
+							} else {
+									echo "assets/image/profile.png";
+								}?>" class="three-width" alt="profile" width="200" height="200"
+        style="text-align:center; width:100px; height:100px; border-radius: 50%;">
       <div>
         <?php echo $_SESSION['name'];?>
       </div>
