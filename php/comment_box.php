@@ -70,6 +70,93 @@
             display: none
         }
     </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .full-boxer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .box-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .comment-box:hover {
+            margin-top: 12px;
+        }
+
+        .comment-box {
+            width: 500px;
+            background: white;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .Profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 60px;
+            height: 60px;
+            box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .Name {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+
+        .Name strong {
+            color: black;
+            font-size: 18px;
+        }
+
+        .Name span {
+            color: gray;
+            margin-top: 2px;
+        }
+
+        .comment p {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -86,27 +173,73 @@
             </form>
         </div>
     </body>
+    <!-- right side mess details div start -->
+    <!-- right side mess details div start -->
+    <section class="main">
+        <div class="full-boxer">
+            <div class="comment-box" style="height:150px; overflow:hidden;">
+                <div class="box-top">
+                    <div class="Profile">
+                        <div class="profile-image">
+                            <img src="image/1.png">
+                        </div>
+                        <div class="Name">
+                            <strong>Ranidi Lochana</strong>
+                            <span>@Ranidi Lochana</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </p>
+                </div>
+            </div>
+            <div class="comment-box" style="height:150px; overflow:hidden;">
+                <div class="box-top">
+                    <div class="Profile">
+                        <div class="profile-image">
+                            <img src="image/1.png">
+                        </div>
+                        <div class="Name">
+                            <strong>Ranidi Lochana</strong>
+                            <span>@Ranidi Lochana</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </p>
+                </div>
+            </div>
 
+        </div>
+    </section>
+    <!-- right side mess details div start -->
+    <!-- right side mess details div start -->
 </html>
 <script>
     var feild = document.querySelector('textarea');
-var backUp = feild.getAttribute('placeholder');
-var btn = document.querySelector('.comment_btn');
-var clear = document.getElementById('clear')
+    var backUp = feild.getAttribute('placeholder');
+    var btn = document.querySelector('.comment_btn');
+    var clear = document.getElementById('clear')
 
-feild.onfocus = function () {
-    this.setAttribute('placeholder', '');
-    this.style.borderColor = '#333';
-    btn.style.display = 'block';
-}
+    feild.onfocus = function() {
+        this.setAttribute('placeholder', '');
+        this.style.borderColor = '#333';
+        btn.style.display = 'block';
+    }
 
-feild.onblur = function () {
-    this.setAttribute('placeholder', backUp);
-    this.style.borderColor = '#aaa'
-}
+    feild.onblur = function() {
+        this.setAttribute('placeholder', backUp);
+        this.style.borderColor = '#aaa'
+    }
 
-clear.onclick = function () {
-    btn.style.display = 'none';
-    feild.value = '';
-}
+    clear.onclick = function() {
+        btn.style.display = 'none';
+        feild.value = '';
+    }
 </script>

@@ -147,26 +147,26 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="product-detail">
-                <h2>about this Mess: </h2>  
-               <p><?php echo $single_result['messabout']; ?></p>
-                 <ul>
-                   <li>Food Facility: <span><?php echo $single_result['foodfacility']; ?></span></li>
-                   <li>Bed Available: <span><?php echo $single_result['bedavailable']; ?></span  ></li>
-                    <li>Bathroom: <span><?php echo $single_result['bathroom']; ?></span></li>  
-                    <li>Contect: <span><?php echo $single_result['messcontactno']; ?></span></li>
-                      <li>Contect Email: <span>this12@gmail.com</span></li>
-                      <p><?php echo $single_result['extrafacility']; ?></p>
-                    </ul>
-                   </div>
-       
-                   <div class="purchase-info">
-                       <button type="button" class="btn">
-                         <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
-                       </button>
-                       <!-- <button type="button" class="btn">Call</button> -->
-                     </div>
-       
-                     <!-- <div class = "social-links">
+              <h2>about this Mess: </h2>
+              <p><?php echo $single_result['messabout']; ?></p>
+              <ul>
+                <li>Food Facility: <span><?php echo $single_result['foodfacility']; ?></span></li>
+                <li>Bed Available: <span><?php echo $single_result['bedavailable']; ?></span></li>
+                <li>Bathroom: <span><?php echo $single_result['bathroom']; ?></span></li>
+                <li>Contect: <span><?php echo $single_result['messcontactno']; ?></span></li>
+                <li>Contect Email: <span>this12@gmail.com</span></li>
+                <p><?php echo $single_result['extrafacility']; ?></p>
+              </ul>
+            </div>
+
+            <div class="purchase-info">
+              <button type="button" class="btn">
+                <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
+              </button>
+              <!-- <button type="button" class="btn">Call</button> -->
+            </div>
+
+            <!-- <div class = "social-links">
                      <p>Share At: </p>
                      <a href = "#">
                        <i class = "fab fa-facebook-f"></i>
@@ -184,7 +184,7 @@ if (isset($_GET['id'])) {
                  <i class = "fab fa-pinterest"></i>
                </a>
              </div> -->
-             <?php include 'php/comment_box.php';?>
+            <?php include 'php/comment_box.php'; ?>
           </div>
           </div>
         </div>

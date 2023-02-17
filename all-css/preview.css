@@ -221,7 +221,7 @@ img {
         height: 100vh;
         display: flex;
         justify-content: center;
-        align-items: center;
+        /* align-items: center; */
     }
 
     .product-imgs {
@@ -232,5 +232,19 @@ img {
 
     .product-content {
         padding-top: 0;
+        height: 100vh;
+        overflow: auto;
     }
+
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.product-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.product-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
