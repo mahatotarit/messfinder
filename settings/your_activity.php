@@ -31,18 +31,21 @@
       $authorpassword = $_SESSION['password'];
       $get_my_post_sql = "SELECT * FROM allmess WHERE authorphone = '{$authorphone}' and authorpassword =  '{$authorpassword}' ";
       $get_my_post_result = mysqli_query($conn, $get_my_post_sql) or die("query failed 33");
-      while ($row = mysqli_fetch_assoc($get_my_post_result)) { ?>
-        <div class="notif_card unread">
-          <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row['imagename']; ?>" alt="mess image" />
-          <div class="description">
-            <p class="user_activity">
-              <strong><?php echo $row['messname']; ?></strong><br><?php echo $row['messlocation']; ?>
-            </p>
-            <p class="time" style="font-size:10px;"><?php echo $row['postdate']; ?></p>
+      if (mysqli_num_rows($get_my_post_result) > 0) {
+        while ($row = mysqli_fetch_assoc($get_my_post_result)) {
+      ?>
+          <div class="notif_card unread">
+            <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row['messimage1']; ?>" alt="mess image" />
+            <div class="description">
+              <p class="user_activity">
+                <strong><?php echo $row['messname']; ?></strong><br><?php echo $row['messlocation']; ?>
+              </p>
+              <p class="time" style="font-size:10px;"><?php echo $row['postdate']; ?></p>
+            </div>
+            <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?allmesseditid=<?php echo  $row['id']; ?>" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
           </div>
-          <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?allmesseditid=<?php echo  $row['id']; ?>" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
-        </div>
       <?php }
+      }
       ?>
 
       <!-- second table  -->
@@ -55,11 +58,7 @@
       $get_my_post_result1 = mysqli_query($conn, $get_my_post_sql1) or die("query failed 33");
       while ($row1 = mysqli_fetch_assoc($get_my_post_result1)) { ?>
         <div class="notif_card unread">
-          <?php
-          $image_name_string = $row1['imagename'];
-          $image_name_array = explode(",", $image_name_string);
-          ?>
-          <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $image_name_array[0]; ?>" alt="avatar" />
+          <img style="width:50px; height:50px; border-radius:50%; overflow:hidden;" src="../mess_image/<?php echo $row1['messimage1']; ?>" alt="avatar" />
           <div class="description">
             <p class="user_activity">
               <strong><?php echo $row1['messname']; ?></strong><br> <?php echo $row1['messlocation']; ?>

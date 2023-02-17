@@ -5,6 +5,16 @@ if (isset($_SESSION['phone'])) {
     header("location:loginpage.php");
 }
 
+if (isset($_GET['ji_jij_jdfhdhg_jdfhhsf_jdhfhsgdf'])) {
+    $match_id = $_GET['ji_jij_jdfhdhg_jdfhhsf_jdhfhsgdf'];
+    $match_id1 = "bdshgfsdgvnkdfjjshdfhgsdhbnsduhygadhbdjnfjhsdgfhsbdjfhkjds78tgsjjfdhshgfv7s7d786ds8ftsd6fts78yfsbdfbsndfsfgdfhfv";
+    if ($match_id == $match_id1) {
+    } else {
+        die();
+    }
+} else {
+    header("location:../addmess.php");
+}
 ?>
 <!DOCTYPE html>
 <!--=== Coding by CodingLab | www.codinglabweb.com === -->
@@ -44,7 +54,7 @@ if (isset($_SESSION['phone'])) {
         .container {
             position: relative;
             max-width: 900px;
-            width: 100%;
+            width: 25%;
             border-radius: 6px;
             padding: 30px 30px 5px 30px;
             margin: 0 15px;
@@ -223,6 +233,48 @@ if (isset($_SESSION['phone'])) {
                 width: 100%;
             }
         }
+
+        @media (min-width:1600px) {
+            .container {
+                width: 25%;
+            }
+        }
+
+        @media (max-width:1500px) {
+            .container {
+                width: 35%;
+            }
+        }
+
+        @media (max-width:1581px) {
+            .container {
+                width: 45%;
+            }
+        }
+
+        @media (max-width:850px) {
+            .container {
+                width: 60%;
+            }
+        }
+
+        @media (max-width:600px) {
+            .container {
+                width: 70%;
+            }
+        }
+
+        @media (max-width:550px) {
+            .container {
+                width: 75%;
+            }
+        }
+
+        @media (max-width:450px) {
+            .container {
+                width: 100%;
+            }
+        }
     </style>
     <style>
         .loader {
@@ -313,115 +365,44 @@ if (isset($_SESSION['phone'])) {
 </head>
 
 <body>
-    <div class="container">
-        <header>Register a new Mess</header>
+    <div class="container w-50">
+        <header>Upload Mess Image</header>
 
-        <form method="POST" enctype="multipart/form-data" id="add_mess_form" autocomplete="off">
+        <form method="POST" enctype="multipart/form-data" id="add_mess_form">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Mess Details</span>
+                    <span class="title">Mess Image</span>
 
-                    <div class="fields">
-                        <div class="input-field">
-                            <label>Mess Name</label>
-                            <input type="text" name="messname" placeholder="Enter your mess name" id="messname" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Price</label>
-                            <input type="number" name="price" placeholder="Price per Bed" id="price" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Mess Location</label>
-                            <input type="text" name="messlocation" placeholder="Mess Address" id="messlocation" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Mess Contect No</label>
-                            <input type="number" name="messcontactno" placeholder="Enter mobile number" id="messcontactno" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Type</label>
-                            <select name="messtype" id="messtype" required>
-                                <option disabled selected>Select Type</option>
-                                <option>Boys</option>
-                                <option>Girls</option>
-                                <option>Family Flate</option>
-                            </select>
-                        </div>
-
-                        <div class="input-field">
-                            <label>About</label>
-                            <input type="text" name="messabout" placeholder="Enter Mess Details" id="messabout" required>
-                        </div>
+                    <!-- all file input start -->
+                    <!-- all file input  start -->
+                    <div class="input-field" style="display:flex;">
+                        <input style="border: none; background-color:rgb(225, 225, 225); text-align:center;" class="upload-box_file" name="imagename1" type="file" id="file1" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4" required>
+                        <!-- <input style="border:none;" name="imagename2" type="file" id="file2" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4" style="border:1px solid black;" required> -->
+                        <!-- <input style="border:none;" name="imagename3" type="file" id="file3" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4" style="border:1px solid black;" required> -->
+                        <!-- <input style="border:none;" name="imagename4" type="file" id="file4" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4" style="border:1px solid black;" required> -->
                     </div>
+                    <div class="input-field" style="display:flex;">
+                        <input style="border:none; background-color:rgb(225, 225, 225); " class="upload-box_file" name="imagename2" type="file" id="file2" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4" required>
+                    </div>
+                    <div class="input-field" style="display:flex;">
+                        <input style="border:none; background-color:rgb(225, 225, 225); " class="upload-box_file" name="imagename3" type="file" id="file3" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4" required>
+                    </div>
+                    <div class="input-field" style="display:flex;">
+                        <input style="border:none;  background-color:rgb(225, 225, 225);" class="upload-box_file" name="imagename4" type="file" id="file4" multiple accept="image/jpg, image/jpeg, image/png, image/webp" min="1" max="4" required>
+                    </div>
+                    <!-- all file input end -->
+                    <!-- all file input  end -->
                 </div>
-
-                <div class="details ID">
-
-
-                    <div class="fields">
-                        <div class="input-field">
-                            <label>Food Facility</label>
-                            <select name="foodfacility" id="foodfacility" required>
-                                <option disabled selected>Food Available?</option>
-                                <option>Yes</option>
-                                <option>No</option>
-                                <!-- <option>Family Flate</option> -->
-                            </select>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Bathroom</label>
-                            <select name="bathroom" id="bathroom" required>
-                                <option disabled selected>Bathroom Available?</option>
-                                <option>Yes</option>
-                                <option>No</option>
-                                <!-- <option>Family Flate</option> -->
-                            </select>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Mess Owner Name</label>
-                            <input type="text" name="ownername" placeholder="Owner Name" id="ownername" required>
-                        </div>
-
-
-                        <div class="input-field">
-                            <label>Bed Available?</label>
-                            <select name="bedavailable" id="bedavailable" required>
-                                <option disabled selected>Bed Available?</option>
-                                <option>Available</option>
-                                <option>Not Available</option>
-                            </select>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Extra Electricity Cost</label>
-                            <select name="electricity" id="electricity" required>
-                                <option disabled selected>Choose</option>
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
-                        </div>
-                        <div class="input-field">
-                            <label>Extra Facility</label>
-                            <input type="text" name="extrafacility" placeholder="Extra Facility" id="extrafacility" required>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                        <span class="nextBtn">
-                            <input type="submit" name="add_mess_button" value="Submit" style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%; height:120%; padding:10px;">
-                        </span>
-                    </div>
+                <div>
+                    <br>
+                    <span class="nextBtn">
+                        <input type="submit" name="add_mess_button" value="Submit" style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%; height:120%; padding:10px;">
+                        <input type="text" vlaue='ok' name='ok' id='ok' hidden>
+                    </span>
                 </div>
             </div>
-        </form>
-        <div class="error_show_div" style="text-align:center; color:red; overflow-x:auto; font-size:12px; padding:5px;"></div>
     </div>
+    </form>
     <!-- loading animation div -->
     <div class="loading_animation_div loading_hide" style=" position:absolute; justify-content:center; align-items:center; top:00px; left:00px; width:100vw; height:100vh; background-color:rgba(132, 132, 132, 0.642);">
         <div class="loader"></div>
@@ -430,6 +411,10 @@ if (isset($_SESSION['phone'])) {
 </body>
 
 </html>
+
+
+
+
 <script>
     let form = document.querySelector('#add_mess_form');
 
@@ -439,21 +424,20 @@ if (isset($_SESSION['phone'])) {
 
     function image_load_function(e) {
         e.preventDefault();
-
-
         loading_animation_div.setAttribute("class", "loading_animation_div");
 
         let ajax = new XMLHttpRequest();
-        ajax.open("POST", "php/mess_details.php", true);
+        ajax.open("POST", "image_upload_file.php", true);
         ajax.onload = () => {
             if (ajax.status === 200) {
                 console.log(ajax.responseText);
                 if (ajax.responseText == "ok") {
                     form.reset();
-                    window.location.href = "php/image_upload.php?ji_jij_jdfhdhg_jdfhhsf_jdhfhsgdf=bdshgfsdgvnkdfjjshdfhgsdhbnsduhygadhbdjnfjhsdgfhsbdjfhkjds78tgsjjfdhshgfv7s7d786ds8ftsd6fts78yfsbdfbsndfsfgdfhfv";
+                    alert("mess register successfully");
+                    loading_animation_div.setAttribute("class", "loading_animation_div");
+                    window.location.href = "../index.php";
                 } else {
                     loading_animation_div.setAttribute("class", "loading_animation_div loading_hide");
-                    document.querySelector(".error_show_div").innerHTML = ajax.responseText;
                     console.log("falied");
                 }
                 console.log(ajax.responseText);

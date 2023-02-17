@@ -27,7 +27,12 @@ if (isset($_GET['success_id'])) {
    $post_authoremail = $collect_all_post_data_row['authoremail'];
    $post_authorpassword = $collect_all_post_data_row['authorpassword'];
 
-   $insert_showpost = "INSERT INTO showpost (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}')";
+   $messimage1 = $collect_all_post_data_row['messimage1'];
+   $messimage2 = $collect_all_post_data_row['messimage2'];
+   $messimage3 = $collect_all_post_data_row['messimage3'];
+   $messimage4 = $collect_all_post_data_row['messimage4'];
+
+   $insert_showpost = "INSERT INTO showpost (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}')";
 
    $insert_showpost_result = mysqli_query($conn, $insert_showpost);
    if ($insert_showpost_result) {
@@ -35,7 +40,7 @@ if (isset($_GET['success_id'])) {
       $delete_post_from_allmess_sql = "DELETE FROM allmess WHERE id={$success_id}";
       $delete_post_from_allmess_result = mysqli_query($conn, $delete_post_from_allmess_sql);
       if ($delete_post_from_allmess_result) {
-         header("location:../admin.php");
+         header("location:../admin1.php");
       } else {
          echo "delete failed 40";
       }
@@ -57,12 +62,11 @@ if (isset($_GET['delete_post_from_showpost'])) {
    $delete_post_image_sql = "SELECT * FROM showpost WHERE id={$delete_post_from_showpost}";
    $delete_post_image_result = mysqli_query($conn, $delete_post_image_sql);
    $image_row = mysqli_fetch_assoc($delete_post_image_result);
-   $image_namae_array = explode(",", $image_row['imagename']);
-   
-   foreach($image_namae_array as $delete_image){
-      unlink("../mess_image/{$delete_image}");
-   }
 
+   unlink("../mess_image/{$image_row['messimage1']}");
+   unlink("../mess_image/{$image_row['messimage2']}");
+   unlink("../mess_image/{$image_row['messimage3']}");
+   unlink("../mess_image/{$image_row['messimage4']}");
 
    if (true) {
       $delete_post_from_showpost = "DELETE FROM showpost WHERE id={$post_id1}";
@@ -102,7 +106,12 @@ if (isset($_GET['hide_from_showpost'])) {
    $post_authoremail = $collect_all_post_data_row1['authoremail'];
    $post_authorpassword = $collect_all_post_data_row1['authorpassword'];
 
-   $insert_showpost1 = "INSERT INTO allmess (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}')";
+   $messimage1 = $collect_all_post_data_row1['messimage1'];
+   $messimage2 = $collect_all_post_data_row1['messimage2'];
+   $messimage3 = $collect_all_post_data_row1['messimage3'];
+   $messimage4 = $collect_all_post_data_row1['messimage4'];
+
+   $insert_showpost1 = "INSERT INTO allmess (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}')";
 
    $insert_showpost_result1 = mysqli_query($conn, $insert_showpost1);
    if ($insert_showpost_result1) {
@@ -129,11 +138,12 @@ if (isset($_GET['delete_from_allmess'])) {
    $delete_post_image_sql = "SELECT * FROM allmess WHERE id={$check_id2}";
    $delete_post_image_result = mysqli_query($conn, $delete_post_image_sql);
    $image_row = mysqli_fetch_assoc($delete_post_image_result);
-   $image_namae_array = explode(",", $image_row['imagename']);
-   print_r($image_namae_array);
-   foreach($image_namae_array as $delete_image){
-      unlink("../mess_image/{$delete_image}");
-   }
+
+   unlink("../mess_image/{$image_row['messimage1']}");
+   unlink("../mess_image/{$image_row['messimage2']}");
+   unlink("../mess_image/{$image_row['messimage3']}");
+   unlink("../mess_image/{$image_row['messimage4']}");
+
    $mess_check_sql2 = "DELETE FROM allmess WHERE id={$check_id2}";
    $mess_check_result2 = mysqli_query($conn, $mess_check_sql2);
    if ($mess_check_result2) {

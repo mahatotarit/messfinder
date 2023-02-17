@@ -1,92 +1,135 @@
 <?php
-if (isset($_POST['add_mess_button'])) {
-    echo '
-                <div style="width:100vw; height:100vh;" class="loader_div">
-            <div class="loader">
-            </div>
-        </div>
-    ';
+
+
+if (!empty($_POST['messname'])) {
+    $messname = $_POST['messname'];
+    if (preg_match('/^[A-z 0-9 ]/', trim($messname))) {
+    } else {
+        echo "Please Enter Mess Name";
+        die();
+    }
+} else {
+    echo "Enter Mess Name";
+    die();
 }
-if (isset($_FILES['imagename'])) {
-    // test loading animaton
-    $image_order1 = "";
-    $image_order2 = "";
-    foreach ($_FILES['imagename']['name'] as $key => $val) {
-        $image_order2 = $_FILES['imagename']['name'][$key];
+if (!empty($_POST['price'])) {
+    $price = $_POST['price'];
+
+    if (preg_match('/^[0-9]{3,}$/', trim($price))) {
+    } else {
+        echo "Mess Price greaterthen 100";
+        die();
     }
-    // test loading animaton
-    $image = "";
-    if (isset($_FILES['imagename'])) {
-        $image_order = "";
-
-        foreach ($_FILES['imagename']['name'] as $key => $val) {
-
-            $type = explode('.', $_FILES['imagename']['name'][$key]);
-            $a = strtolower(end($type));
-            $extensions = array("jpeg", "jpg", "png", "webp");
-            if (in_array($a, $extensions) === false) {
-                $errors[] = "this extensions file not allowed. please choose a jpg or png file";
-                print_r($errors);
-                die();
-            }
-            if ($_FILES['imagename']['size'][$key] < 5242880) {
-            } else {
-                echo "file size must be 5mb" . $_FILES['imagename']['name'][$key];
-                die();
-            }
-            move_uploaded_file($_FILES['imagename']['tmp_name'][$key], 'mess_image/' . time() . $val);
-            $image_order1 = $_FILES['imagename']['name'][$key];
-        }
-        // collect all image 
-        // collect all image 
-        foreach ($_FILES['imagename']['name'] as $key => $val) {
-            $image = $image . "," . time() . $_FILES["imagename"]['name'][$key];
-        }
-
-        //   collect add_mess form data
-        //   collect add_mess form data
-
-        if (isset($_POST['add_mess_button'])) {
-            include "config.php";
-            $messname = $_POST['messname'];
-            $price = $_POST['price'];
-            $messlocation = $_POST['messlocation'];
-            $messcontactno = $_POST['messcontactno'];
-            $messtype = $_POST['messtype'];
-            $messabout = $_POST['messabout'];
-            $foodfacility = $_POST['foodfacility'];
-            $ownername = $_POST['ownername'];
-            $bedavailable = $_POST['bedavailable'];
-            $electricity = $_POST['electricity'];
-            $extrafacility = $_POST['extrafacility'];
-            $bathroom = $_POST['bathroom'];
-            $add_mess_btn = $_POST['add_mess_button'];
-
-            // session_start();
-            $authorname = $_SESSION['name'];
-            $authorphone = $_SESSION['phone'];
-            $authoremail = $_SESSION['email'];
-            $authorpassword = $_SESSION['password'];
-            $postdate = date("d m y");
-            $final_image = substr($image, 1);
-
-            $insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,imagename,authorname,authorphone,authoremail,authorpassword,postdate) VALUES 
-      ('{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$final_image}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdate}')";
-
-            $insert_result = mysqli_query($conn, $insert_sql);
-            if ($insert_result) {
-                if ($image_order1 == $image_order2) {
-                    echo "
-                   <script>
-                     console.log('ok');
-                     window.location.href = 'index.php';
-                   </script>
-                ";
-                }
-            } else {
-                echo "failed  63";
-            }
-            mysqli_close($conn);
-        }
+    if (preg_match('/^[0-9]{3,5}$/', trim($price))) {
+    } else {
+        echo "Mess Price lessthen 99999";
+        die();
     }
+} else {
+    echo "Enter Mess Price";
+    die();
+}
+if (!empty($_POST['messlocation'])) {
+    $messlocation = $_POST['messlocation'];
+    if (preg_match('/^[A-z 0-9 ]/', trim($messlocation))) {
+    } else {
+        echo "Enter Mess Location";
+        die();
+    }
+} else {
+    echo "Enter Mess messlocation";
+    die();
+}
+if (!empty($_POST['messcontactno'])) {
+    $messcontactno = $_POST['messcontactno'];
+    if (preg_match('/^[0-9]{10}$/', trim($messcontactno))) {
+    } else {
+        echo "Invalid Mess Contact Number";
+        die();
+    }
+} else {
+    echo "Enter Mess Contact No.";
+    die();
+}
+if (!empty($_POST['messtype'])) {
+    $messtype = $_POST['messtype'];
+} else {
+    echo "Enter Mess Type";
+    die();
+}
+if (!empty($_POST['messabout'])) {
+    $messabout = $_POST['messabout'];
+    if (preg_match('/^[A-z 0-9 ]/', trim($messabout))) {
+    } else {
+        echo "Enter Mess About";
+        die();
+    }
+} else {
+    echo "Enter Mess About";
+    die();
+}
+if (!empty($_POST['foodfacility'])) {
+    $foodfacility = $_POST['foodfacility'];
+} else {
+    echo "Enter Food Facility";
+    die();
+}
+if (!empty($_POST['bathroom'])) {
+    $bathroom = $_POST['bathroom'];
+} else {
+    echo "Enter Bathroom";
+    die();
+}
+if (!empty($_POST['ownername'])) {
+    $ownername = $_POST['ownername'];
+    if (preg_match('/^[A-z 0-9 ]/', trim($ownername))) {
+    } else {
+        echo "Enter mess OwnerName";
+        die();
+    }
+} else {
+    echo "Enter Mess OwnerName";
+    die();
+}
+if (!empty($_POST['bedavailable'])) {
+    $bedavailable = $_POST['bedavailable'];
+} else {
+    echo "Enter Bed Available";
+    die();
+}
+if (!empty($_POST['electricity'])) {
+    $electricity = $_POST['electricity'];
+} else {
+    echo "Enter Electricity";
+    die();
+}
+if (!empty($_POST['extrafacility'])) {
+    $extrafacility = $_POST['extrafacility'];
+    if (preg_match('/^[A-z 0-9 ]/', trim($extrafacility))) {
+    } else {
+        echo "Enter extrafacility";
+        die();
+    }
+} else {
+    echo "Enter Extra Facility";
+    die();
+}
+// INsert database
+
+include 'config.php';
+
+session_start();
+$postdata = date('d m y');
+$authorname = $_SESSION['name'];
+$authorphone = $_SESSION['phone'];
+$authoremail = $_SESSION['email'];
+$authorpassword = $_SESSION['password'];
+
+
+$insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,authorname,authorphone,authoremail,authorpassword,postdate) VALUES ('{$messname}','{$price}','{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdata}')";
+
+if (mysqli_query($conn, $insert_sql)) {
+    echo "ok";
+} else {
+    echo "Mess Register failed";
 }

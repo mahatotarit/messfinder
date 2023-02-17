@@ -6,7 +6,7 @@
         header("location:loginpage.php");    
        }
    }else{
-    header("location:loginpage.php");
+    // header("location:loginpage.php");
    }
 ?>
 <div id ="footer">

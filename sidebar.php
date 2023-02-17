@@ -1,13 +1,13 @@
 <?php
-   if(isset($_SESSION['phone'])){
-       if(isset($_SESSION['password'])){
+//    if(isset($_SESSION['phone'])){
+//        if(isset($_SESSION['password'])){
           
-       }else{
-        header("location:loginpage.php");    
-       }
-   }else{
-    header("location:loginpage.php");
-   }
+//        }else{
+//         header("location:loginpage.php");    
+//        }
+//    }else{
+//     header("location:loginpage.php");
+//    }
 ?>
 <div id="sidebar" class="col-md-4">
     <!-- search box -->
@@ -39,11 +39,7 @@
 
             <div class="recent-post">
             <a class="post-img" style="height:80px;">
-            <?php   
-                $image_name = $recent_row['imagename'];
-                $image_array = explode(",",$image_name);
-            ?>
-                <img src="mess_image/<?php echo $image_array[0]; ?>" alt="" style="height:100%; width:100%;"/>
+                <img src="mess_image/<?php echo $recent_row['messimage1']; ?>" alt="" style="height:100%; width:100%;"/>
             </a>
             <div class="post-content">
                 <h5><a href=""><?PHP echo $recent_row['messname']; ?></a></h5>

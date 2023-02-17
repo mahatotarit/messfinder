@@ -68,10 +68,11 @@
             $login_btn = $_POST['login-btn'];
             $login_phone = $_POST['login-phone'];
             $login_password = $_POST['login-password'];
+            $filter_login_password = md5($login_password);
 
             include "php/config.php";
 
-            $login_sql = "SELECT * FROM user WHERE phone='{$login_phone}' and password='{$login_password}'";
+            $login_sql = "SELECT * FROM user WHERE phone='{$login_phone}' and password='{$filter_login_password}'";
             $login_sql_result = mysqli_query($conn,$login_sql);
             if(mysqli_num_rows($login_sql_result)){
                 while($row = mysqli_fetch_assoc($login_sql_result)){
@@ -80,7 +81,7 @@
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['phone'] = $row['phone'];
                     $_SESSION['email'] = $row['email'];
-                    $_SESSION['password'] = $row['password'];
+                    $_SESSION['password'] = $login_password;
                     header("location:index.php");
                 }
             }else{

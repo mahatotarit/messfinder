@@ -1,13 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['phone'])) {
-    if (isset($_SESSION['password'])) {
-    } else {
-        header("location:loginpage.php");
-    }
-} else {
-    header("location:loginpage.php");
-}
+// if (isset($_SESSION['phone'])) {
+//     if (isset($_SESSION['password'])) {
+//     } else {
+//         header("location:loginpage.php");
+//     }
+// } else {
+//     header("location:loginpage.php");
+// }
 ?>
 <style>
     #main-content .post-content img {
@@ -16,7 +16,7 @@ if (isset($_SESSION['phone'])) {
 </style>
 <?php
 include 'mainheader.php';
-$pagenation_limit = 2;
+$pagenation_limit = 4;
 if (isset($_GET['page'])) {
     $current_page = $_GET['page'];
 } else {
@@ -42,7 +42,7 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                         $home_page_search_input = $_GET['home_search'];
                         $get_data_sql = "SELECT * FROM showpost WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%'";
                     } else {
-                        $get_data_sql = "SELECT * FROM showpost LIMIT {$page_offset} , {$pagenation_limit}"; // default sql query.
+                        $get_data_sql = "SELECT * FROM showpost ORDER BY id DESC LIMIT {$page_offset} , {$pagenation_limit}"; // default sql query.
                     }
 
                     $get_data_result = mysqli_query($conn, $get_data_sql) or die("query failed 39");
@@ -53,11 +53,7 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                             <div class="post-content">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <?php
-                                        $image_name = $row1['imagename'];
-                                        $image_array = explode(",", $image_name);
-                                        ?>
-                                        <a class="post-img"><img src="mess_image/<?php echo $image_array[0]; ?>" alt="messimage" /></a>
+                                        <a class="post-img"><img src="mess_image/<?php echo $row1['messimage1'];?>" alt="messimage" /></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="inner-content clearfix">

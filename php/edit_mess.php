@@ -1,14 +1,13 @@
 <?php
-   session_start();
-   if(isset($_SESSION['phone'])){
-       if(isset($_SESSION['password'])){
-          
-       }else{
-        header("location:loginpage.php");    
-       }
-   }else{
+session_start();
+if (isset($_SESSION['phone'])) {
+    if (isset($_SESSION['password'])) {
+    } else {
+        header("location:loginpage.php");
+    }
+} else {
     header("location:loginpage.php");
-   }
+}
 ?>
 <!DOCTYPE html>
 <!--=== Coding by CodingLab | www.codinglabweb.com === -->
@@ -226,20 +225,20 @@
     <div class="container">
         <header>Register a new Mess</header>
 
-        <?php 
-           include 'config.php';
+        <?php
+        include 'config.php';
 
-           if(isset($_GET['allmesseditid'])){
+        if (isset($_GET['allmesseditid'])) {
             $sql6 = "SELECT * FROM allmess WHERE id={$_GET['allmesseditid']}";
             $r_table = "allmesseditid";
         }
-        if(isset($_GET['showposteditid'])){
-               $sql6 = "SELECT * FROM showpost WHERE id={$_GET['showposteditid']}";
-               $r_table = "showposteditid";
-           }
+        if (isset($_GET['showposteditid'])) {
+            $sql6 = "SELECT * FROM showpost WHERE id={$_GET['showposteditid']}";
+            $r_table = "showposteditid";
+        }
 
-         $result6 = mysqli_query($conn,$sql6);
-         $row6 = mysqli_fetch_assoc($result6);
+        $result6 = mysqli_query($conn, $sql6);
+        $row6 = mysqli_fetch_assoc($result6);
         ?>
 
         <form action="edit_mess_save.php" method="POST" enctype="multipart/form-data">
@@ -250,53 +249,53 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Mess Name</label>
-                            <input type="text" name="edit_messname" placeholder="Enter your name" value="<?php echo $row6['messname'];?>"  required>
-                            <input type="hidden" name="edit_id" placeholder="Enter your name" value="<?php echo $row6['id'];?>">
-                            <input type="hidden" name="edit_r_table" placeholder="Enter your name" value="<?php echo  $r_table?>">
+                            <input type="text" name="edit_messname" placeholder="Enter your name" value="<?php echo $row6['messname']; ?>" required>
+                            <input type="hidden" name="edit_id" placeholder="Enter your name" value="<?php echo $row6['id']; ?>">
+                            <input type="hidden" name="edit_r_table" placeholder="Enter your name" value="<?php echo  $r_table ?>">
                         </div>
 
                         <div class="input-field">
                             <label>Price</label>
-                            <input type="number" name="edit_price" placeholder="Price per Bed" value="<?php echo $row6['price'];?>"  required>
+                            <input type="number" name="edit_price" placeholder="Price per Bed" value="<?php echo $row6['price']; ?>" required>
                         </div>
 
                         <div class="input-field">
                             <label>Mess Location</label>
-                            <input type="text" name="edit_messlocation" placeholder="Mess Address" value="<?php echo $row6['messlocation'];?>"  required>
+                            <input type="text" name="edit_messlocation" placeholder="Mess Address" value="<?php echo $row6['messlocation']; ?>" required>
                         </div>
 
                         <div class="input-field">
                             <label>Mess Contect No</label>
-                            <input type="number" name="edit_messcontactno" placeholder="Enter mobile number" value="<?php echo $row6['messcontactno'];?>"  required>
+                            <input type="number" name="edit_messcontactno" placeholder="Enter mobile number" value="<?php echo $row6['messcontactno']; ?>" required>
                         </div>
 
                         <div class="input-field">
                             <label>Type</label>
                             <select name="edit_messtype" required>
                                 <option disabled>Select Type</option>
-                                <?php 
-                                  if($row6['messtype'] == "Boys"){
+                                <?php
+                                if ($row6['messtype'] == "Boys") {
                                     echo "<option selected>Boys</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Boys</option>";
-                                  }
-                                  if($row6['messtype'] == "Girls"){
+                                }
+                                if ($row6['messtype'] == "Girls") {
                                     echo "<option selected>Girls</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Girls</option>";
-                                  }
-                                  if($row6['messtype'] == "Family Flate"){
+                                }
+                                if ($row6['messtype'] == "Family Flate") {
                                     echo "<option selected>Family Flate</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Family Flate</option>";
-                                  }
+                                }
                                 ?>
                             </select>
                         </div>
 
                         <div class="input-field">
                             <label>About</label>
-                            <input type="text" name="edit_messabout" placeholder="Enter Mess Details" value="<?php echo $row6['messabout'];?>"  required>
+                            <input type="text" name="edit_messabout" placeholder="Enter Mess Details" value="<?php echo $row6['messabout']; ?>" required>
                         </div>
                     </div>
                 </div>
@@ -308,18 +307,18 @@
                         <div class="input-field">
                             <label>Food Facility</label>
                             <select name="edit_foodfacility" required>
-                                <option disabled >Food Available?</option>
-                                <?php 
-                                  if($row6['foodfacility'] == "Yes"){
+                                <option disabled>Food Available?</option>
+                                <?php
+                                if ($row6['foodfacility'] == "Yes") {
                                     echo "<option selected>Yes</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Yes</option>";
-                                  }
-                                  if($row6['foodfacility'] == "No"){
+                                }
+                                if ($row6['foodfacility'] == "No") {
                                     echo "<option selected>No</option>";
-                                  }else{
+                                } else {
                                     echo "<option>No</option>";
-                                  }
+                                }
                                 ?>
                             </select>
                         </div>
@@ -328,24 +327,24 @@
                             <label>Bathroom</label>
                             <select name="edit_bathroom" required>
                                 <option disabled>Bathroom Available?</option>
-                                <?php 
-                                  if($row6['bathroom'] == "Yes"){
+                                <?php
+                                if ($row6['bathroom'] == "Yes") {
                                     echo "<option selected>Yes</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Yes</option>";
-                                  }
-                                  if($row6['bathroom'] == "No"){
+                                }
+                                if ($row6['bathroom'] == "No") {
                                     echo "<option selected>No</option>";
-                                  }else{
+                                } else {
                                     echo "<option>No</option>";
-                                  }
+                                }
                                 ?>
                             </select>
                         </div>
 
                         <div class="input-field">
                             <label>Mess Owner Name</label>
-                            <input type="text" name="edit_ownername" placeholder="Owner Name"  value="<?php echo $row6['ownername'];?>" required>
+                            <input type="text" name="edit_ownername" placeholder="Owner Name" value="<?php echo $row6['ownername']; ?>" required>
                         </div>
 
 
@@ -353,17 +352,17 @@
                             <label>Bed Available?</label>
                             <select name="edit_bedavailable" required>
                                 <option disabled>Bed Available?</option>
-                                <?php 
-                                  if($row6['bedavailable'] == "Available"){
+                                <?php
+                                if ($row6['bedavailable'] == "Available") {
                                     echo "<option selected>Available</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Available</option>";
-                                  }
-                                  if($row6['bedavailable'] == "Not Available"){
+                                }
+                                if ($row6['bedavailable'] == "Not Available") {
                                     echo "<option selected>Not Available</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Not Available</option>";
-                                  }
+                                }
                                 ?>
                             </select>
                         </div>
@@ -372,36 +371,35 @@
                             <label>Extra Electricity Cost</label>
                             <select name="edit_electricity" required>
                                 <option disabled selected>Choose</option>
-                                <?php 
-                                  if($row6['electricity'] == "Yes"){
+                                <?php
+                                if ($row6['electricity'] == "Yes") {
                                     echo "<option selected>Yes</option>";
-                                  }else{
+                                } else {
                                     echo "<option>Yes</option>";
-                                  }
-                                  if($row6['electricity'] == "No"){
+                                }
+                                if ($row6['electricity'] == "No") {
                                     echo "<option selected>No</option>";
-                                  }else{
+                                } else {
                                     echo "<option>No</option>";
-                                  }
+                                }
                                 ?>
                             </select>
                         </div>
                         <div class="input-field">
                             <label>Extra Facility</label>
-                            <input type="text" name="edit_extrafacility" placeholder="Extra Facility" value="<?php echo $row6['extrafacility'];?>" required>
+                            <input type="text" name="edit_extrafacility" placeholder="Extra Facility" value="<?php echo $row6['extrafacility']; ?>" required>
                         </div>
 
                         <div class="input-field" style="margin-left:50px; text-align:center;">
                             <!-- <img style="width:150px; height:150px; border-radius:5px;" src="../mess_image/" alt="Old image"> -->
                             <!-- <input style="border:none;" name="edit_imagename" type="file"> -->
-                            <input style="border:none;" name="edit_old_image" type="hidden" value="<?php echo $row6['imagename'];?>">
+                            <input style="border:none;" name="edit_old_image" type="hidden" value="<?php echo $row6['imagename']; ?>">
                         </div>
                     </div>
-                        <div>
-                            <button class="nextBtn">
-                                <input type="submit" name="edit_mess_button" value="Submit"
-                                style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%;">
-                            </button>
+                    <div>
+                        <button class="nextBtn">
+                            <input type="submit" name="edit_mess_button" value="Submit" style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%;">
+                        </button>
                     </div>
                 </div>
             </div>

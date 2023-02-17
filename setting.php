@@ -1,14 +1,14 @@
 <?php
-   session_start();
-   if(isset($_SESSION['phone'])){
-       if(isset($_SESSION['password'])){
-          
-       }else{
-        header("location:loginpage.php");    
-       }
-   }else{
-    header("location:loginpage.php");
-   }
+session_start();
+if (isset($_SESSION['phone'])) {
+  if (isset($_SESSION['password'])) {
+  } else {
+    // header("location:loginpage.php");    
+  }
+} else {
+  // header("location:loginpage.php");
+}
+include "php/config.php";
 ?>
 
 <!DOCTYPE html>
@@ -33,35 +33,52 @@
   </style>
 </head>
 
-<body>  
+<body>
   <div class="top-div" style="width: 00px; height: 5%;">
 
   </div>
-  <div class="container">
+  <div class="container" style="background-color:rgb(245,245,245); border-radius:10px;">
     <div class="img__profile">
-      <img src="<?php if (isset($_SESSION['image'])) {
-									echo "mess_image/".$_SESSION['image'];
-							} else {
-									echo "assets/image/profile.png";
-								}?>" class="three-width" alt="profile" width="200" height="200"
-        style="text-align:center; width:100px; height:100px; border-radius: 50%;">
+      <img src="assets/<?php
+      $get_prifile_image = "SELECT image FROM user WHERE phone='{$_SESSION['phone']}'";
+      $get_prifile_image_result = mysqli_query($conn, $get_prifile_image);
+      if (mysqli_num_rows($get_prifile_image_result)) {
+        $image_name5 = mysqli_fetch_assoc($get_prifile_image_result);
+        if ("profile_image.png" == $image_name5['image']) {
+          echo "profile_image/profile_image.png";
+        } else {
+          echo "user_profile_image/" . $image_name5['image'];
+        }
+      } ?>" class="three-width" alt="profile" width="200" height="200" style="text-align:center; width:100px; height:100px; border-radius: 50%;">
       <div>
-        <?php echo $_SESSION['name'];?>
+        <?php
+        if (isset($_SESSION['name'])) {
+          echo $_SESSION['name'];
+        }
+        ?>
       </div>
       <div>
-        <?php echo $_SESSION['email'];?>
+        <?php
+        if (isset($_SESSION['email'])) {
+          echo $_SESSION['email'];
+        }
+        ?>
       </div>
     </div>
 
     <div class="item">
       <!-- <img src="assets/img/icon/Profile.png" alt="profile"> -->
-      <i class="fa-regular fa-user icon_color"></i>
-      <span><a href="userprofile.php"
-          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">My
-          Profile</a></span>
-      <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
-      </div>
+      <?php
+      if (isset($_SESSION['name'])) { ?>
+        <i class="fa-regular fa-user icon_color"></i>
+        <span><a href="userprofile.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">My
+            Profile</a></span>
+
+        <div class="icon">
+          <img src="assets/icon/chevron-right.png" alt="more">
+        </div>
+      <?php  }
+      ?>
     </div>
     <div class="item">
       <i class="fa-solid fa-circle-half-stroke icon_color"></i>
@@ -70,59 +87,65 @@
         <img src="assets/icon/chevron-right.png" alt="more">
       </div>
     </div>
-    <div class="item">
-      <i class="fa-regular fa-bell icon_color"></i>
-      <span><a href="settings/notification.php"
-          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Notifications</a></span>
-      <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+    <?php
+    if (isset($_SESSION['name'])) { ?>
+      <div class="item">
+        <i class="fa-regular fa-bell icon_color"></i>
+        <span><a href="settings/notification.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Notifications</a></span>
+        <div class="icon">
+          <img src="assets/icon/chevron-right.png" alt="more">
+        </div>
       </div>
-    </div>
+    <?php   }
+    ?>
+
     <div class="item">
       <i class="fa-solid fa-fingerprint icon_color"></i>
-      <span><a href="settings/privacy_policy.php"
-          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Privacy
+      <span><a href="settings/privacy_policy.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Privacy
           Policy</a></span>
       <div class="icon">
         <img src="assets/icon/chevron-right.png" alt="more">
       </div>
     </div>
-    <div class="item">
-      <i class="fa-regular fa-address-book icon_color"></i>
-      <span><a href="settings/contactus.php"
-          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Contact
-          Us</a></span>
-      <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+    <?php
+    if (isset($_SESSION['name'])) { ?>
+      <div class="item">
+        <i class="fa-regular fa-address-book icon_color"></i>
+        <span><a href="settings/contactus.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Contact
+            Us</a></span>
+        <div class="icon">
+          <img src="assets/icon/chevron-right.png" alt="more">
+        </div>
       </div>
-    </div>
+    <?php    }
+    ?>
     <div class="item">
       <i class="fa-regular fa-circle-question icon_color"></i>
-      <span><a href="settings/aboutus.php"
-          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">About
+      <span><a href="settings/aboutus.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">About
           Us</a></span>
       <div class="icon">
         <img src="assets/icon/chevron-right.png" alt="more">
       </div>
     </div>
-
-    <div class="item">
-      <i class="fa-solid fa-user-plus icon_color"></i>
-      <span><a href="settings/your_activity.php"
-          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Your Activity</a></span>
-      <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+    <?php
+    if (isset($_SESSION['name'])) { ?>
+      <div class="item">
+        <i class="fa-solid fa-user-plus icon_color"></i>
+        <span><a href="settings/your_activity.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Your Activity</a></span>
+        <div class="icon">
+          <img src="assets/icon/chevron-right.png" alt="more">
+        </div>
       </div>
-    </div>
-
-    <div class="item">
-      <i class="fa-regular fa-comment icon_color"></i>
-      <span><a href="settings/feedback.php"
-          style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Feedback</a></span>
-      <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+      <div class="item">
+        <i class="fa-regular fa-comment icon_color"></i>
+        <span><a href="settings/feedback.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Feedback</a></span>
+        <div class="icon">
+          <img src="assets/icon/chevron-right.png" alt="more">
+        </div>
       </div>
-    </div>
+    <?php   }
+    ?>
+
     <div class="item">
       <i class="fa-regular fa-share-from-square icon_color"></i>
 
@@ -132,8 +155,7 @@
       <!-- invite friends popup -->
       <!-- invite friends popup -->
 
-      <span><a class="invite_friends_button"
-          style="color:black; cursor: pointer; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Invite
+      <span><a class="invite_friends_button" style="color:black; cursor: pointer; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Invite
           Friends</a></span>
       <div class="popup">
         <header>
@@ -164,14 +186,17 @@
 
     <!--  logout -->
 
-    <div class="item__logout">
-      <i class="fa-solid fa-arrow-up-from-bracket icon_color" style="transform: rotateZ(90deg); color: red;"></i>
-      <span><a href="php/logout.php"
-          style="color: red; width: 100%;display: inline-block;padding: 5px; font-size: 23px; text-decoration: none;">Logout</a></span>
-      <div class="icon">
-        <img class="logout" src="assets/icon/chevron-right.png" alt="more">
+    <?php
+    if (isset($_SESSION['name'])) { ?>
+      <div class="item__logout">
+        <i class="fa-solid fa-arrow-up-from-bracket icon_color" style="transform: rotateZ(90deg); color: red;"></i>
+        <span><a href="php/logout.php" style="color: red; width: 100%;display: inline-block;padding: 5px; font-size: 23px; text-decoration: none;">Logout</a></span>
+        <div class="icon">
+          <img class="logout" src="assets/icon/chevron-right.png" alt="more">
+        </div>
       </div>
-    </div>
+    <?php    }
+    ?>
   </div>
 </body>
 

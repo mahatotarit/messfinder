@@ -94,11 +94,9 @@ if (isset($_GET['id'])) {
                   $result = mysqli_query($conn, $recive_sql);
                   if (mysqli_num_rows($result)) {
                     while ($image_row = mysqli_fetch_assoc($result)) {
-                      $image_name = $image_row['imagename'];
-                      $image_array = explode(",", $image_name);
-                      foreach ($image_array as $ok) { ?>
+                      for ($i = 1; $i <= 4; $i++) { ?>
 
-                        <img src="mess_image/<?php echo $ok ?>" alt="mess image" style="border-radius: 5px; width: 100%; height:100%;">
+                        <img src="mess_image/<?php echo $image_row['messimage' . $i] ?>" alt="mess image" style="border-radius: 5px; width: 100%; height:100%;">
 
                     <?php
                       }
@@ -113,12 +111,12 @@ if (isset($_GET['id'])) {
                     $result1 = mysqli_query($conn, $recive_sql);
                     if (mysqli_num_rows($result1)) {
                       while ($image_row1 = mysqli_fetch_assoc($result1)) {
-                        $image_name1 = $image_row1['imagename'];
-                        $image_array1 = explode(",", $image_name1);
-                        foreach ($image_array1 as $ok1) { ?>
+
+                        for ($i = 1; $i <= 4; $i++) {
+                ?>
                       <div class="img-item" style="width: 25%;">
                         <a href="#" data-id="<?php echo $number1; ?>">
-                          <img src="mess_image/<?php echo $ok1; ?>" alt="Mess Image" style="width:100%; height:100%;">
+                          <img src="mess_image/<?php echo $image_row1['messimage' . $i] ?>" alt="Mess Image" style="width:100%; height:100%;">
                         </a>
                       </div>
 
@@ -141,7 +139,7 @@ if (isset($_GET['id'])) {
             <i class = "fas fa-star"></i>
             <i class = "fas fa-star-half-alt"></i>
             <span>4.7(21)</span>
-          </div> -->
+           </div> -->
 
             <div class="product-price">
               <p class="last-price">Bed Price: <span style="text-decoration: none; color:blue; font-weight:bold;"><?php echo $single_result['price']; ?></span></p>
@@ -149,48 +147,47 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="product-detail">
-              <h2>about this Mess: </h2>
-              <p><?php echo $single_result['messabout']; ?></p>
-              <ul>
-                <li>Food Facility: <span><?php echo $single_result['foodfacility']; ?></span></li>
-                <li>Bed Available: <span><?php echo $single_result['bedavailable']; ?></span></li>
-                <li>Bathroom: <span><?php echo $single_result['bathroom']; ?></span></li>
-                <li>Contect: <span><?php echo $single_result['messcontactno']; ?></span></li>
-                <li>Contect Email: <span>this12@gmail.com</span></li>
-                <p><?php echo $single_result['extrafacility']; ?></p>
-              </ul>
-            </div>
-
-            <div class="purchase-info">
-              <button type="button" class="btn">
-                <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
-              </button>
-              <!-- <button type="button" class="btn">Call</button> -->
-            </div>
-
-            <!-- <div class = "social-links">
-            <p>Share At: </p>
-            <a href = "#">
-              <i class = "fab fa-facebook-f"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-twitter"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-instagram"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-whatsapp"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-pinterest"></i>
-            </a>
-          </div> -->
+                <h2>about this Mess: </h2>  
+               <p><?php echo $single_result['messabout']; ?></p>
+                 <ul>
+                   <li>Food Facility: <span><?php echo $single_result['foodfacility']; ?></span></li>
+                   <li>Bed Available: <span><?php echo $single_result['bedavailable']; ?></span  ></li>
+                    <li>Bathroom: <span><?php echo $single_result['bathroom']; ?></span></li>  
+                    <li>Contect: <span><?php echo $single_result['messcontactno']; ?></span></li>
+                      <li>Contect Email: <span>this12@gmail.com</span></li>
+                      <p><?php echo $single_result['extrafacility']; ?></p>
+                    </ul>
+                   </div>
+       
+                   <div class="purchase-info">
+                       <button type="button" class="btn">
+                         <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
+                       </button>
+                       <!-- <button type="button" class="btn">Call</button> -->
+                     </div>
+       
+                     <!-- <div class = "social-links">
+                     <p>Share At: </p>
+                     <a href = "#">
+                       <i class = "fab fa-facebook-f"></i>
+                  </a>
+                  <a href = "#">
+                    <i class = "fab fa-twitter"></i>
+                  </a>
+                  <a href = "#">
+                   <i class = "fab fa-instagram"></i>
+                 </a>
+                 <a href = "#">
+                 <i class = "fab fa-whatsapp"></i>
+               </a>
+               <a href = "#">
+                 <i class = "fab fa-pinterest"></i>
+               </a>
+             </div> -->
+             <?php include 'php/comment_box.php';?>
           </div>
           </div>
         </div>
-
-
         <script src="all-script/show-details.js"></script>
       </body>
 
