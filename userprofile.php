@@ -3,10 +3,10 @@ session_start();
 if (isset($_SESSION['phone'])) {
 	if (isset($_SESSION['password'])) {
 	} else {
-		header("location:loginpage.php");
+		header("location:loginpage.php?p=userprofile.php");
 	}
 } else {
-	header("location:loginpage.php");
+	header("location:loginpage.php?p=userprofile.php");
 }
 include 'php/config.php';
 ?>

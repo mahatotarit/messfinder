@@ -1,6 +1,3 @@
-<!-- 230 to 330 line number -->
-<!-- 230 to 330 line number -->
-
 <?php
 session_start();
 if (isset($_SESSION['phone'])) {
@@ -14,26 +11,22 @@ if (isset($_SESSION['phone'])) {
 ?>
 
 <?php
-      include "php/config.php";
-      if (isset($_SESSION['name'])) {
-        $admin_name = $_SESSION['name'];
-        $admin_phone = $_SESSION['phone'];
-        $admin_password = $_SESSION['password'];
-        $admin_hash_password = md5($admin_password);
+include "php/config.php";
+if (isset($_SESSION['name'])) {
+    $admin_name = $_SESSION['name'];
+    $admin_phone = $_SESSION['phone'];
+    $admin_password = $_SESSION['password'];
+    $admin_hash_password = md5($admin_password);
 
-        $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_hash_password}'";
-        $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
-        if (mysqli_num_rows($admin_button_show_result)) {
-
-        }else{
-            header("location:index.php");
-        }
-      }
+    $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_hash_password}'";
+    $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
+    if (mysqli_num_rows($admin_button_show_result)) {
+    } else {
+        header("location:index.php");
+    }
+}
 
 ?>
-
-
-
 
 <?php include "mainheader.php"; ?>
 <!DOCTYPE html>
@@ -65,9 +58,32 @@ if (isset($_SESSION['phone'])) {
             width: 50px;
         }
 
-        #hide_btn {
+        #comment_btn {
             box-shadow: 2px 2px 5px black;
             border: 4px inset black;
+        }
+         .th_top{
+            padding: 00px 10px;
+            width:8%;
+         }
+        .th_1{
+           padding: 00px 2px;
+            width:10%;
+        }
+        .th_2{
+           padding: 00px 5px;
+            width:15%;
+        }
+        .th_3{
+           padding: 00px 5px;
+            width:10%;
+        }
+        .th_4{
+           padding: 00px 5px;
+            width:45%;
+        }
+        .all_td{
+            padding-left: 2%;
         }
     </style>
 </head>
@@ -99,7 +115,7 @@ if (isset($_SESSION['phone'])) {
                                     $total_user_sql = "SELECT * FROM user";
                                     $total_user_result = mysqli_query($conn, $total_user_sql);
                                     if (mysqli_num_rows($total_user_result)) {
-                                        echo $total_uuser1 = mysqli_num_rows($total_user_result);
+                                        echo $total_uuser = mysqli_num_rows($total_user_result);
                                     }
                                     ?>
                                 </h2>
@@ -153,12 +169,20 @@ if (isset($_SESSION['phone'])) {
                         <div class="card">
                             <div class="card-head">
                                 <h2>
-                                    00
+                                    <?php
+                                    $total_mess_show_sql8 = "SELECT * FROM mess_comment";
+                                    $total_mess_show_sql5_result8 = mysqli_query($conn, $total_mess_show_sql8);
+                                    if (mysqli_num_rows($total_mess_show_sql5_result8)) {
+                                        echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result8);
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?>
                                 </h2>
                                 <span class="fa-solid fa-house-chimney" style="font-size:150%;"></span>
                             </div>
                             <div class="card-progress">
-                                <small>Total Mess</small>
+                                <small>Total Comment</small>
                             </div>
                         </div>
 
@@ -169,8 +193,7 @@ if (isset($_SESSION['phone'])) {
                         <button id="comment_btn" style="padding:5px; margin:2px 15px 2px 15px; background-color:rgb(209, 0, 0); border-color:rgb(209, 0, 0); border-radius:5px; color:white; font-weight:bold;"><a href="admin3.php" style="color:white;"><span style="font-size:130%;">Co</span></a></button>
                     </div>
 
-
-                    <div class="records table-responsive" id="second-hide-div">
+                    <div class="records table-responsive" id="first-hide-div">
 
                         <div class="record-header">
                             <div class="add">
@@ -180,10 +203,14 @@ if (isset($_SESSION['phone'])) {
                                 </select> -->
                             </div>
 
+
                             <div class="browse">
+                                <!-- search mess name and id -->
+                                <!-- search mess name and id -->
+
                                 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" style="display:flex; padding:00px; margin:00px; box-sizing:border-box;">
-                                    <input type="number" placeholder="Search" class="record-search" name="find_allmess_post_input">
-                                    <input type="submit" name="find_allmess_post_btn" style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;">
+                                    <input type="number" placeholder="Search" class="record-search" name="admin_search_input" required>
+                                    <input type="submit" style="width:60%; background-color:rgb(10,200,200); font-weight:bold; color:white;" name="admin_search_btn">
                                 </form>
                             </div>
                         </div>
@@ -193,79 +220,81 @@ if (isset($_SESSION['phone'])) {
                                 <!-- table head start -->
                                 <thead>
                                     <tr>
-                                        <th>Id No</th>
-                                        <th><span class="las la-sort"></span>Mess Name</th>
-                                        <th><span class="las la-sort"></span>User Name</th>
-                                        <th><span class="las la-sort"></span>Mobile</th>
-                                        <th><span class="las la-sort"></span>Mess Address</th>
-                                        <th><span class="las la-sort"></span>Email</th>
-                                        <th><span class="las la-sort"></span>Password</th>
-                                        <th><span class="las la-sort"></span>Actions</th>
+                                        <th class="th_top">Comment Id</th>
+                                        <th class="th_1"><span class="las la-sort"></span>Mess Id</th>
+                                        <th class="th_2"><span class="las la-sort"></span>User Name</th>
+                                        <th class="th_3"><span class="las la-sort"></span>OwnerPhone</th>
+                                        <th class="th_4"><span class="las la-sort"></span>Comment</th>
+                                        <!-- <th><span class="las la-sort"></span>Email</th> -->
+                                        <!-- <th><span class="las la-sort"></span>Password</th> -->
+                                        <th class="th_5"><span class="las la-sort"></span>Actions</th>
                                     </tr>
                                 </thead>
                                 <!-- // table body start -->
-                                <tbody>
+                                <tbody">
                                     <!-- first row start in table -->
                                     <!-- start php loop -->
                                     <?php
+
                                     $admin_page_show_sql = "";
-                                    $admin_page_show_sql = "SELECT * FROM allmess";
-                                    if (isset($_POST['find_allmess_post_btn'])) {
-                                        $find_allmess_post_input = $_POST['find_allmess_post_input'];
-                                        if (preg_match("/^[A-z]*$/", $find_allmess_post_input)) {
-                                            $admin_page_show_sql = "SELECT * FROM allmess";
+                                    $admin_page_show_sql = "SELECT * FROM mess_comment";
+                                    if (isset($_POST['admin_search_btn'])) {
+                                        $search_id = $_POST['admin_search_input'];
+                                        if (preg_match("/^[A-z]*$/", $search_id)) {
+                                            $admin_page_show_sql = "SELECT * FROM mess_comment";
                                         } else {
-                                            $admin_page_show_sql = "SELECT * FROM allmess
-                                                WHERE id LIKE '%$find_allmess_post_input%'";
+                                            $admin_page_show_sql = "SELECT * FROM mess_comment
+                                                    WHERE id LIKE '%$search_id%'";
                                         }
+                                    } else {
                                     }
                                     $admin_page_show_result = mysqli_query($conn, $admin_page_show_sql);
-                                    if (mysqli_num_rows($admin_page_show_result)) {
+                                    if (mysqli_num_rows($admin_page_show_result) > 0) {
                                         while ($result_row4 = mysqli_fetch_assoc($admin_page_show_result)) {
                                     ?>
                                             <tr>
                                                 <td class="id-td" style="padding-left: 0.7rem;">
                                                     <?php echo $result_row4['id']; ?>
                                                 </td>
-                                                <td class="mess-td">
+                                                <td class="mess-td all_td">
                                                     <div class="client">
-                                                        <div class="client-img bg-img" style="overflow:hidden;">
-                                                            <img src="mess_image/<?php echo $result_row4['messimage1']; ?>" alt="Mess Image" style="width:100%; height:100%;">
-                                                        </div>
                                                         <div class="client-info">
                                                             <h4 style="font-size:15px;">
-                                                                <?php echo $result_row4['messname']; ?>
+                                                                <?php echo $result_row4['mess_id']; ?>
                                                             </h4>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="user-td">
+                                                <td class="user-td all_td">
                                                     <?php echo $result_row4['ownername']; ?>
                                                 </td>
-                                                <td class="phone-td">
-                                                    <?php echo $result_row4['messcontactno']; ?>
+                                                <td class="phone-td all_td">
+                                                    <?php echo $result_row4['owner_phone']; ?>
                                                 </td>
-                                                <td class="address-td">
-                                                    <?php echo $result_row4['messlocation']; ?>
+                                                <td class="address-td all_td">
+                                                    <?php echo $result_row4['commenttext']; ?>
                                                 </td>
-                                                <td class="email-td">
-                                                    <?php echo $result_row4['authoremail']; ?>
-                                                </td>
-                                                <td class="password-td">
-                                                    <?php echo $result_row4['authorpassword']; ?>
-                                                </td>
+                                                <!-- <td class="email-td">
+                                                    <?php 
+                                                    // echo $result_row4['authoremail']; 
+                                                    ?>
+                                                </td> -->
+                                                <!-- <td class="password-td"> -->
+                                                    <?php 
+                                                    // echo $result_row4['authorpassword']; 
+                                                    ?>
+                                                <!-- </td> -->
                                                 <td class="action">
                                                     <!-- Delete Update and Read -->
                                                     <div class="actions">
-                                                        <a href="php/check_mess.php?delete_from_allmess=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash" style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
-                                                        <a href=""> <i class="fa-solid fa-pen-to-square" style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
-                                                        <a href="php/check_mess.php?success_id=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-square-check" style="color:rgb(0, 202, 0); margin:10% 10%;cursor: pointer;"></i></a>
+                                                        <a href="php/check_mess.php?d_c=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash" style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
+                                                        <!-- <a href=""> <i class="fa-solid fa-pen-to-square" style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a> -->
+                                                        <!-- <a href="php/check_mess.php?hide_from_showpost=<?php echo $result_row4['id']; ?>"> <i class="fa-sharp fa-solid fa-eye-slash" style="color:rgb(50, 50, 0); margin:5% 5%;cursor: pointer;"></i></a> -->
                                                     </div>
                                                 </td>
                                             </tr>
 
                                     <?php     }
-                                    } else {
                                     }
                                     ?>
 
@@ -289,4 +318,3 @@ if (isset($_SESSION['phone'])) {
 </body>
 
 </html>
-<?php mysqli_close($conn); ?>

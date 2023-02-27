@@ -433,9 +433,8 @@ if (isset($_GET['ji_jij_jdfhdhg_jdfhhsf_jdhfhsgdf'])) {
                 console.log(ajax.responseText);
                 if (ajax.responseText == "ok") {
                     form.reset();
-                    alert("mess register successfully");
                     loading_animation_div.setAttribute("class", "loading_animation_div");
-                    window.location.href = "../index.php";
+                    window.location.href = "location_picker.php?next=upload_location.php";
                 } else {
                     loading_animation_div.setAttribute("class", "loading_animation_div loading_hide");
                     console.log("falied");

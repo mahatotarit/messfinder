@@ -1,6 +1,6 @@
 <?php
+include "config.php";
 if (isset($_GET['success_id'])) {
-   include "config.php";
    $success_id = $_GET['success_id'];
 
    //  collect all post data
@@ -26,13 +26,15 @@ if (isset($_GET['success_id'])) {
    $post_authorphone = $collect_all_post_data_row['authorphone'];
    $post_authoremail = $collect_all_post_data_row['authoremail'];
    $post_authorpassword = $collect_all_post_data_row['authorpassword'];
+   $lat = $collect_all_post_data_row['lat'];
+   $lng = $collect_all_post_data_row['lng'];
 
    $messimage1 = $collect_all_post_data_row['messimage1'];
    $messimage2 = $collect_all_post_data_row['messimage2'];
    $messimage3 = $collect_all_post_data_row['messimage3'];
    $messimage4 = $collect_all_post_data_row['messimage4'];
 
-   $insert_showpost = "INSERT INTO showpost (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}')";
+   $insert_showpost = "INSERT INTO showpost (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4,lat,lng) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}','{$lat}','{$lng}')";
 
    $insert_showpost_result = mysqli_query($conn, $insert_showpost);
    if ($insert_showpost_result) {
@@ -105,13 +107,15 @@ if (isset($_GET['hide_from_showpost'])) {
    $post_authorphone = $collect_all_post_data_row1['authorphone'];
    $post_authoremail = $collect_all_post_data_row1['authoremail'];
    $post_authorpassword = $collect_all_post_data_row1['authorpassword'];
+   $lat1 = $collect_all_post_data_row1['lat'];
+   $lng1 = $collect_all_post_data_row1['lng'];
 
    $messimage1 = $collect_all_post_data_row1['messimage1'];
    $messimage2 = $collect_all_post_data_row1['messimage2'];
    $messimage3 = $collect_all_post_data_row1['messimage3'];
    $messimage4 = $collect_all_post_data_row1['messimage4'];
 
-   $insert_showpost1 = "INSERT INTO allmess (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}')";
+   $insert_showpost1 = "INSERT INTO allmess (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4,lat,lng) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}','{$lat1}','{$lng1}')";
 
    $insert_showpost_result1 = mysqli_query($conn, $insert_showpost1);
    if ($insert_showpost_result1) {
@@ -152,4 +156,18 @@ if (isset($_GET['delete_from_allmess'])) {
       echo "not ok";
    }
 }
+
+
+if (isset($_GET['d_c'])) {
+   $delete_comment = $_GET['d_c'];
+   $d_c_sql = "DELETE FROM mess_comment WHERE id = '{$delete_comment}'";
+   $delete_comment_result = mysqli_query($conn, $d_c_sql);
+   if ($delete_comment_result) {
+      header("location:../admin3.php");
+   } else {
+      echo "comment delete failed";
+   }
+}
+
+
 mysqli_close($conn);

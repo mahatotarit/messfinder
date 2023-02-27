@@ -350,6 +350,12 @@
       <li><a style="user-select: none;" href="addmess.php">Register Mess</a></li>
       <li><a style="user-select: none;" href="userprofile.php">Profile</a></li>
       <li><a style="user-select: none;" href="setting.php">Settings</a></li>
+      <?php 
+        if(isset($_SESSION['phone'])){
+        }else{
+          echo '<li><a style="user-select: none;" href="loginpage.php">Login</a></li>';
+        }
+      ?>
 
       <!-- admin button show using admin user -->
       <!-- admin button show using admin user -->

@@ -1,5 +1,6 @@
 <?php
-
+// mess details
+// mess details
 
 if (!empty($_POST['messname'])) {
     $messname = $_POST['messname'];
@@ -124,7 +125,6 @@ $authorname = $_SESSION['name'];
 $authorphone = $_SESSION['phone'];
 $authoremail = $_SESSION['email'];
 $authorpassword = $_SESSION['password'];
-
 
 $insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,authorname,authorphone,authoremail,authorpassword,postdate) VALUES ('{$messname}','{$price}','{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdata}')";
 

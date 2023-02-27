@@ -39,21 +39,26 @@ include "php/config.php";
   </div>
   <div class="container" style="background-color:rgb(245,245,245); border-radius:10px;">
     <div class="img__profile">
-      <img src="assets/<?php
-      $get_prifile_image = "SELECT image FROM user WHERE phone='{$_SESSION['phone']}'";
-      $get_prifile_image_result = mysqli_query($conn, $get_prifile_image);
-      if (mysqli_num_rows($get_prifile_image_result)) {
-        $image_name5 = mysqli_fetch_assoc($get_prifile_image_result);
-        if ("profile_image.png" == $image_name5['image']) {
-          echo "profile_image/profile_image.png";
-        } else {
-          echo "user_profile_image/" . $image_name5['image'];
-        }
-      } ?>" class="three-width" alt="profile" width="200" height="200" style="text-align:center; width:100px; height:100px; border-radius: 50%;">
+      <img src="assets/<?php if (isset($_SESSION['phone'])) {
+                          $phone =  $_SESSION['phone'];
+                        }
+                        $get_prifile_image = "SELECT image FROM user WHERE phone='{$phone}'";
+                        $get_prifile_image_result = mysqli_query($conn, $get_prifile_image);
+                        if (mysqli_num_rows($get_prifile_image_result)) {
+                          $image_name5 = mysqli_fetch_assoc($get_prifile_image_result);
+                          if ("profile_image.png" == $image_name5["image"]) {
+                            echo "profile_image/profile_image.png";
+                          } else {
+                            echo "user_profile_image/" . $image_name5["image"];
+                          }
+                        } ?>" class='three-width' alt='profile' width='200' height='200' style='text-align:center; width:100px; height:100px; border-radius: 50%;'>
+
       <div>
         <?php
         if (isset($_SESSION['name'])) {
           echo $_SESSION['name'];
+        } else {
+          echo "";
         }
         ?>
       </div>
@@ -61,13 +66,14 @@ include "php/config.php";
         <?php
         if (isset($_SESSION['email'])) {
           echo $_SESSION['email'];
+        } else {
+          echo "";
         }
         ?>
       </div>
     </div>
 
     <div class="item">
-      <!-- <img src="assets/img/icon/Profile.png" alt="profile"> -->
       <?php
       if (isset($_SESSION['name'])) { ?>
         <i class="fa-regular fa-user icon_color"></i>

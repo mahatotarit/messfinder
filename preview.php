@@ -1,13 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['phone'])) {
-  if (isset($_SESSION['password'])) {
-  } else {
-    header("location:loginpage.php");
-  }
-} else {
-  header("location:loginpage.php");
-}
+// if (isset($_SESSION['phone'])) {
+//   if (isset($_SESSION['password'])) {
+//   } else {
+//     header("location:loginpage.php");
+//   }
+// } else {
+//   header("location:loginpage.php");
+// }
 ?>
 
 <?php
@@ -184,6 +184,23 @@ if (isset($_GET['id'])) {
                  <i class = "fab fa-pinterest"></i>
                </a>
              </div> -->
+
+
+            <!--  embed map div  -->
+            <?php
+            $get_lat_sql = "SELECT * FROM allmess WHERE id='{$mess_id}'";
+            $get_lat_sql_result = mysqli_query($conn, $get_lat_sql);
+            if (mysqli_num_rows($get_lat_sql_result) > 0) {
+              while ($get_lat_sql_result_row = mysqli_fetch_assoc($get_lat_sql_result)) {
+                $get_lat = $get_lat_sql_result_row['lat'];
+                $get_lng = $get_lat_sql_result_row['lng'];
+              }
+            }
+            ?>
+            <div class="first_embed_div" style="border:1px solid black; width:100%; height:300px; border-radius:5px; overflow:hidden;">
+              <iframe width="100%" height="100%" src="https://maps.google.com/maps?q=<?php $get_lat;?>,<?php $get_lng;?>&amp;z=4&amp;output=embed"></iframe>
+            </div><br><br>
+            <!-- comment box file  -->
             <?php include 'php/comment_box.php'; ?>
           </div>
           </div>
@@ -192,9 +209,14 @@ if (isset($_GET['id'])) {
       </body>
 
       </html>
+
+      <!-- <div style="width:100vw; height:100vh;" class="loading_animation_div sticky">
+        <div class="loader sticky"></div>
+      </div> -->
 <?php
     }
   }
+  mysqli_close($conn);
 }
 ?>
 <script>
@@ -218,4 +240,3 @@ if (isset($_GET['id'])) {
 
   window.addEventListener('resize', slideImage);
 </script>
-<?php mysqli_close($conn); ?>

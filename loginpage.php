@@ -1,8 +1,8 @@
-<?php 
-  session_start();
-  if(isset($_SESSION['phone'])){
+<?php
+session_start();
+if (isset($_SESSION['phone'])) {
     header("location:index.php");
-  }
+}
 ?>
 <!DOCTYPE html>
 <!-- === Coding by CodingLab | www.codinglabweb.com === -->
@@ -30,7 +30,7 @@
             <div class="form login">
                 <span class="title">Login</span>
 
-                <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" id="login-from">
+                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" id="login-from" autocomplete="off">
                     <div class="input-field">
                         <i class="fa-solid fa-mobile-screen"></i>
                         <input type="number" name="login-phone" placeholder="Enter Phone No" id="login-number" required>
@@ -51,7 +51,7 @@
                         <a href="#" class="text">Forgot password?</a>
                     </div>
 
-                        <!-- login button -->
+                    <!-- login button -->
 
                     <div class="input-field button">
                         <input type="submit" name="login-btn" value="Login">
@@ -63,34 +63,55 @@
                         <a href="registerpage.php" class="text signup-link">Signup Now</a>
                     </span>
                 </div>
-        <?php
-        if(isset($_POST['login-btn'])){
-            $login_btn = $_POST['login-btn'];
-            $login_phone = $_POST['login-phone'];
-            $login_password = $_POST['login-password'];
-            $filter_login_password = md5($login_password);
+                <?php
+                if (isset($_POST['login-btn'])) {
+                    $login_btn = $_POST['login-btn'];
+                    $login_phone = $_POST['login-phone'];
+                    $login_password = $_POST['login-password'];
+                    $filter_login_password = md5($login_password);
 
-            include "php/config.php";
+                    include "php/config.php";
 
-            $login_sql = "SELECT * FROM user WHERE phone='{$login_phone}' and password='{$filter_login_password}'";
-            $login_sql_result = mysqli_query($conn,$login_sql);
-            if(mysqli_num_rows($login_sql_result)){
-                while($row = mysqli_fetch_assoc($login_sql_result)){
+                    $login_sql = "SELECT * FROM user WHERE phone='{$login_phone}' and password='{$filter_login_password}'";
+                    $login_sql_result = mysqli_query($conn, $login_sql);
+                    if (mysqli_num_rows($login_sql_result)) {
+                        while ($row = mysqli_fetch_assoc($login_sql_result)) {
 
-                    session_start();
-                    $_SESSION['name'] = $row['name'];
-                    $_SESSION['phone'] = $row['phone'];
-                    $_SESSION['email'] = $row['email'];
-                    $_SESSION['password'] = $login_password;
-                    header("location:index.php");
+                            // session_start();
+                            $_SESSION['name'] = $row['name'];
+                            $_SESSION['phone'] = $row['phone'];
+                            $_SESSION['email'] = $row['email'];
+                            $_SESSION['password'] = $login_password;
+                            
+                            // addmess page
+                            if (isset($_GET['a'])) {
+                                // $a = $_GET['a'];
+                                header("location:addmess.php");
+                                die();
+                            }
+                            //   profile page
+                            if (isset($_GET['p'])) {
+                                // $p = $_GET['p'];
+                                header("location:userprofile.php");
+                                die();
+                            }
+                            //   preview page
+                            if (isset($_GET['c'])) {
+                                $ct = $_GET['ct'];
+                                // $p = $_GET['c'];
+                                header("location:preview.php?id={$_GET['c']}&ct={$_GET['ct']}");
+                                die();
+                            }
+                            header("location:index.php");
+                        }
+                    } else {
+                        echo "<div style='color:red; text-align:center; font-size:15px; padding:10px 00px 00px 00px; '>user does't exit</div>";
+                    }
                 }
-            }else{
-                echo "<div style='color:red; text-align:center; font-size:15px; padding:10px 00px 00px 00px; '>user does't exit</div>";
-            }
-        }
-        ?>
-        </div>
+                ?>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
