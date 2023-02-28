@@ -62,27 +62,33 @@ if (isset($_SESSION['name'])) {
             box-shadow: 2px 2px 5px black;
             border: 4px inset black;
         }
-         .th_top{
+
+        .th_top {
             padding: 00px 10px;
-            width:8%;
-         }
-        .th_1{
-           padding: 00px 2px;
-            width:10%;
+            width: 8%;
         }
-        .th_2{
-           padding: 00px 5px;
-            width:15%;
+
+        .th_1 {
+            padding: 00px 2px;
+            width: 10%;
         }
-        .th_3{
-           padding: 00px 5px;
-            width:10%;
+
+        .th_2 {
+            padding: 00px 5px;
+            width: 15%;
         }
-        .th_4{
-           padding: 00px 5px;
-            width:45%;
+
+        .th_3 {
+            padding: 00px 5px;
+            width: 10%;
         }
-        .all_td{
+
+        .th_4 {
+            padding: 00px 5px;
+            width: 45%;
+        }
+
+        .all_td {
             padding-left: 2%;
         }
     </style>
@@ -275,14 +281,14 @@ if (isset($_SESSION['name'])) {
                                                     <?php echo $result_row4['commenttext']; ?>
                                                 </td>
                                                 <!-- <td class="email-td">
-                                                    <?php 
+                                                    <?php
                                                     // echo $result_row4['authoremail']; 
                                                     ?>
                                                 </td> -->
                                                 <!-- <td class="password-td"> -->
-                                                    <?php 
-                                                    // echo $result_row4['authorpassword']; 
-                                                    ?>
+                                                <?php
+                                                // echo $result_row4['authorpassword']; 
+                                                ?>
                                                 <!-- </td> -->
                                                 <td class="action">
                                                     <!-- Delete Update and Read -->
@@ -300,8 +306,8 @@ if (isset($_SESSION['name'])) {
 
 
                                     <!-- first row end in table -->
-                                </tbody>
-                                <!-- table body close -->
+                                    </tbody>
+                                    <!-- table body close -->
 
                             </table>
                         </div>

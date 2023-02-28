@@ -3,7 +3,7 @@
 // mess details
 
 if (!empty($_POST['messname'])) {
-    $messname = $_POST['messname'];
+    $messname = str_replace("'", "", $_POST['messname']);
     if (preg_match('/^[A-z 0-9 ]/', trim($messname))) {
     } else {
         echo "Please Enter Mess Name";
@@ -31,7 +31,7 @@ if (!empty($_POST['price'])) {
     die();
 }
 if (!empty($_POST['messlocation'])) {
-    $messlocation = $_POST['messlocation'];
+    $messlocation = str_replace("'", "", $_POST['messlocation']);
     if (preg_match('/^[A-z 0-9 ]/', trim($messlocation))) {
     } else {
         echo "Enter Mess Location";
@@ -59,7 +59,7 @@ if (!empty($_POST['messtype'])) {
     die();
 }
 if (!empty($_POST['messabout'])) {
-    $messabout = $_POST['messabout'];
+    $messabout = str_replace("'", "", $_POST['messabout']);
     if (preg_match('/^[A-z 0-9 ]/', trim($messabout))) {
     } else {
         echo "Enter Mess About";
@@ -82,7 +82,7 @@ if (!empty($_POST['bathroom'])) {
     die();
 }
 if (!empty($_POST['ownername'])) {
-    $ownername = $_POST['ownername'];
+    $ownername = str_replace("'", "", $_POST['ownername']);
     if (preg_match('/^[A-z 0-9 ]/', trim($ownername))) {
     } else {
         echo "Enter mess OwnerName";
@@ -105,7 +105,7 @@ if (!empty($_POST['electricity'])) {
     die();
 }
 if (!empty($_POST['extrafacility'])) {
-    $extrafacility = $_POST['extrafacility'];
+    $extrafacility = str_replace("'", "", $_POST['extrafacility']);
     if (preg_match('/^[A-z 0-9 ]/', trim($extrafacility))) {
     } else {
         echo "Enter extrafacility";

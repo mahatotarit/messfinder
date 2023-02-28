@@ -25,7 +25,7 @@ if (isset($_GET['next'])) {
             padding: 5px;
             width: 98%;
             margin: 00px auto;
-            height: 90vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -146,7 +146,7 @@ if (isset($_GET['next'])) {
 
     </div><br>
     <div class="form">
-        <input type="submit" Value="Submit" name="locaton_btn" class="locaton_btn">
+        <input type="submit" Value="Submit" name="locaton_btn" class="locaton_btn" style="color:white; font-weight:bold;">
     </div>
 
     <!-- loading animation -->

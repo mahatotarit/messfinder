@@ -73,7 +73,8 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                                                 </span>
                                             </div>
                                             <p class="description">
-                                                <?PHP echo $row1['messlocation']; ?>
+                                                <?PHP echo  substr($row1['messlocation'],0,100) . "..."; ?>
+                                                
                                             </p>
                                             <a class='read-more pull-right' href='preview.php?id=<?php echo $row1['id']; ?>'>read more</a>
                                         </div>

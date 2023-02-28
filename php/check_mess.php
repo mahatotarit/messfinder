@@ -26,6 +26,7 @@ if (isset($_GET['success_id'])) {
    $post_authorphone = $collect_all_post_data_row['authorphone'];
    $post_authoremail = $collect_all_post_data_row['authoremail'];
    $post_authorpassword = $collect_all_post_data_row['authorpassword'];
+   $postdate = $collect_all_post_data_row['postdate'];
    $lat = $collect_all_post_data_row['lat'];
    $lng = $collect_all_post_data_row['lng'];
 
@@ -34,7 +35,7 @@ if (isset($_GET['success_id'])) {
    $messimage3 = $collect_all_post_data_row['messimage3'];
    $messimage4 = $collect_all_post_data_row['messimage4'];
 
-   $insert_showpost = "INSERT INTO showpost (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4,lat,lng) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}','{$lat}','{$lng}')";
+   $insert_showpost = "INSERT INTO showpost (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,imagename,bathroom,authorname,authorphone,authoremail,authorpassword,messimage1,messimage2,messimage3,messimage4,lat,lng,postdate) VALUES ({$post_id},'{$post_messname}','{$post_price}','{$post_messlocation}','{$post_messcontactno}','{$post_messtype}','{$post_messabout}','{$post_foodfacility}','{$post_ownername}','{$post_bedavailable}','{$post_electricity}','{$post_extrafacility}','{$post_imagename}','{$post_bathroom}','{$post_authorname}','{$post_authorphone}','{$post_authoremail}','{$post_authorpassword}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}','{$lat}','{$lng}','{$postdate}')";
 
    $insert_showpost_result = mysqli_query($conn, $insert_showpost);
    if ($insert_showpost_result) {

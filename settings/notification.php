@@ -23,6 +23,82 @@
     .delete {
       border-radius: 3px;
     }
+
+    a {
+      color: black;
+      text-decoration: none;
+      padding: 00px;
+      margin: 00px;
+      box-sizing: border-box;
+    }
+
+    .read_div {
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(139, 189, 251, 0.714);
+      position: fixed;
+      top: 00px;
+      left: 00px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box_show {
+      display: block;
+    }
+
+    .box_hide {
+      display: none;
+    }
+
+    #read_div_first {
+      width: 50%;
+      background-color: rgb(235, 246, 255);
+      height: 8%;
+      border-radius: 7px 7px 0px 0px;
+      border: none;
+      border-bottom: 0.8px solid black;
+      display: flex;
+    }
+
+    #read_div_second {
+      width: 50%;
+      background-color: rgb(235, 246, 255);
+      height: 50%;
+      border-radius: 0px 0px 7px 7px;
+      padding: 10px 20px 10px 20px;
+    }
+
+    #close_n_b {
+      cursor: pointer;
+    }
+    @media(min-width:1300px){
+       #read_div_second,#read_div_first{
+         width:40%;
+       } 
+    }
+    @media(max-width:1300px){
+       #read_div_second,#read_div_first{
+         width:60%;
+       } 
+    }
+    @media(max-width:1000px){
+       #read_div_second,#read_div_first{
+         width:70%;
+       } 
+    }
+    @media(max-width:800px){
+       #read_div_second,#read_div_first{
+         width:80%;
+       } 
+    }
+    @media(max-width:600px){
+       #read_div_second,#read_div_first{
+         width:95%;
+       } 
+    }
   </style>
 </head>
 
@@ -34,14 +110,19 @@
       </div>
     </header>
     <main>
+      <script>
+        let id;
+        let div;
+      </script>
       <?php
       include "../php/config.php";
       session_start();
       $sql = "SELECT * FROM notificatioin ORDER BY id DESC";
       $result = mysqli_query($conn, $sql);
       if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-          <div class="notif_card" style="border:1px solid rgb(100,100,100);">
+        while ($row = mysqli_fetch_assoc($result)) {
+          $div_id = $row['id']; ?>
+          <div class="notif_card" style="border:1px solid rgb(100,100,100);" id="<?php echo $row['id']; ?>">
             <img style="width:50px; height:50px; border-radius:50%;" src="../mess_image/<?php echo $row['image']; ?>" alt="avatar" />
             <div class="description">
               <p class="user_activity">
@@ -60,6 +141,7 @@
               echo "<button class='delete' style=' margin-left:auto; display:inline-block; border:1px solid black; padding:4px; text-align:center;'><a href='notification.php' class='delete_a'>Delete</a></button>";
             }
             ?>
+            <a href="notification.php?r_id=<?php echo $row['id']; ?>" style="text-decoration: underline; color:blue; margin-left:auto;">Read</a>
           </div>
 
       <?php }
@@ -78,10 +160,60 @@
           header("location:notification.php");
         }
       }
+
+      // show single notification
+      $row1;
+      if (isset($_GET['r_id'])) {
+        $single_comment_sql = "SELECT * FROM notificatioin WHERE id={$_GET['r_id']}";
+        $single_comment_sql_result = mysqli_query($conn, $single_comment_sql);
+        if (mysqli_num_rows($single_comment_sql_result) > 0) {
+          $row1 = mysqli_fetch_assoc($single_comment_sql_result);
+        }
+      }
       ?>
 
     </main>
+    <!-- notification read div -->
+
+    <div class="read_div">
+      <div id="read_div_first">
+        <span style="display:inline-block; height:100%; margin-top:1.8vh; padding:00px 10px 00px 30px; font-size:25px;"><?php echo $row1['heading']; ?></span>
+        <span style="display:inline-block; height:100%; padding:5px; margin-left:auto; padding:1.3vh 3vh 00px 00px; font-size:35px;" id="close_n_b">&#10539;</span>
+      </div>
+      <div id="read_div_second">
+        <?php echo $row1['about']; ?>
+      </div>
+    </div>
+    <script>
+      let close_n_b = document.querySelector("#close_n_b");
+      close_n_b.addEventListener("click", function() {
+        let read_box1 = document.querySelector('.read_div');
+        read_box1.setAttribute("class", "read_div box_hide");
+        window.location.href = 'notification.php';
+      });
+    </script>
+
+    <?php
+    if (isset($_GET['r_id'])) {
+      echo "
+        <script>
+          let read_box = document.querySelector('.read_div');
+         read_box.setAttribute('class','read_div');
+      </script>
+        ";
+    } else {
+      echo "
+      <script>
+        let read_box = document.querySelector('.read_div');
+        read_box.setAttribute('class','read_div box_hide');
+    </script>
+      ";
+    }
+    ?>
+
   </div>
+  </div>
+
 
   <script src="app.js"></script>
 </body>

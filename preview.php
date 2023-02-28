@@ -188,8 +188,11 @@ if (isset($_GET['id'])) {
 
             <!--  embed map div  -->
             <?php
-            $get_lat_sql = "SELECT * FROM allmess WHERE id='{$mess_id}'";
-            $get_lat_sql_result = mysqli_query($conn, $get_lat_sql);
+            $get_lat = 0;
+            $get_lng = 0;
+
+            $get_lat_sql = "SELECT * FROM showpost WHERE id='{$mess_id}'";
+            $get_lat_sql_result = mysqli_query($conn, $get_lat_sql) or die("query failed");
             if (mysqli_num_rows($get_lat_sql_result) > 0) {
               while ($get_lat_sql_result_row = mysqli_fetch_assoc($get_lat_sql_result)) {
                 $get_lat = $get_lat_sql_result_row['lat'];
@@ -198,7 +201,7 @@ if (isset($_GET['id'])) {
             }
             ?>
             <div class="first_embed_div" style="border:1px solid black; width:100%; height:300px; border-radius:5px; overflow:hidden;">
-              <iframe width="100%" height="100%" src="https://maps.google.com/maps?q=<?php $get_lat;?>,<?php $get_lng;?>&amp;z=4&amp;output=embed"></iframe>
+              <iframe width="100%" height="100%" src="https://maps.google.com/maps?q=<?php echo $get_lat; ?>,<?php echo  $get_lng; ?>&amp;z=4&amp;output=embed"></iframe>
             </div><br><br>
             <!-- comment box file  -->
             <?php include 'php/comment_box.php'; ?>

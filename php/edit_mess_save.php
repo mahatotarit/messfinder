@@ -1,9 +1,5 @@
 <?php
-if(isset($_GET[''])){
-   
-}else{
-   echo "<h1 style='text-align:center; color:red; width:100vw; height:100vh;display: flex;align-items: center;justify-content: center;'>Click Submit Button</h1>";
-}
+include 'config.php';
 if (isset($_POST['edit_mess_button'])) {
 
    //   $file_name = $_POST['edit_old_image'];
@@ -21,15 +17,40 @@ if (isset($_POST['edit_mess_button'])) {
       $electricity = $_POST['edit_electricity'];
       $extrafacility = $_POST['edit_extrafacility'];
       $bathroom = $_POST['edit_bathroom'];
+      $id;
+      $authorname;
+      $authorphone;
+      $authoremail;
+      $authorpassword;
+      $postdate;
+      $lat;
+      $lng;
 
+      $edit_r_table = $_POST['edit_r_table'];
 
       $edit_id = $_POST['edit_id'];
-      $edit_r_table = $_POST['edit_r_table'];
+      if ($edit_r_table == "allmesseditid") {
+         $get_details_mess = "SELECT * FROM allmess WHERE id='{$edit_id}'";
+      } else {
+         $get_details_mess = "SELECT * FROM showpost WHERE id='{$edit_id}'";
+      }
+      $get_details_mess_result = mysqli_query($conn, $get_details_mess);
+      if (mysqli_num_rows($get_details_mess_result)) {
+         while ($row = mysqli_fetch_assoc($get_details_mess_result)) {
+            $id = $row['id'];
+            $authorname = $row['authorname'];
+            $authorphone = $row['authorphone'];
+            $authoremail = $row['authoremail'];
+            $authorpassword = $row['authorpassword'];
+            $postdate = $row['postdate'];
+            $lat = $row['lat'];
+            $lng = $row['lng'];
+         }
+      }
       // check almess table
       if ($edit_r_table == "allmesseditid") {
-         include 'config.php';
          //  update data from all mess
-         $update_data_from_allmess_sql = "UPDATE allmess SET messname = '{$messname}', price = '{$price}', messlocation = '{$messlocation}', messcontactno = '{$messcontactno}', messtype = '{$messtype}', messabout = '{$messabout}', foodfacility = '{$foodfacility}', ownername = '{$ownername}', bedavailable = '{$bedavailable}', electricity = '{$electricity}', extrafacility = '{$extrafacility}', bathroom = '{$bathroom}' WHERE id={$edit_id}";
+         $update_data_from_allmess_sql = "UPDATE allmess SET id={$id}, messname = '{$messname}', price = '{$price}', messlocation = '{$messlocation}', messcontactno = '{$messcontactno}', messtype = '{$messtype}', messabout = '{$messabout}', foodfacility = '{$foodfacility}', ownername = '{$ownername}', bedavailable = '{$bedavailable}', electricity = '{$electricity}', extrafacility = '{$extrafacility}', bathroom = '{$bathroom}',authorname='{$authorname}',authorphone='{$authorphone}',authoremail='{$authoremail}',authorpassword='{$authorpassword}',postdate='{$postdate}',lat='{$lat}',lng='{$lng}' WHERE id={$edit_id}";
 
          $result2 = mysqli_query($conn, $update_data_from_allmess_sql);
          if ($result2) {
@@ -60,7 +81,7 @@ if (isset($_POST['edit_mess_button'])) {
          $authoremail = $_SESSION['email'];
          $authorpassword = $_SESSION['password'];
          $postdate = date("d m y");
-         $insert_sql1 = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,authorname,authorphone,authoremail,authorpassword,postdate,messimage1,messimage2,messimage3,messimage4) VALUES ('{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdate}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}')";
+         $insert_sql1 = "INSERT INTO allmess (id,messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,authorname,authorphone,authoremail,authorpassword,postdate,messimage1,messimage2,messimage3,messimage4,lat,lng) VALUES ({$id},'{$messname}',{$price},'{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdate}','{$messimage1}','{$messimage2}','{$messimage3}','{$messimage4}','{$lat}','{$lng}')";
          $result3 = mysqli_query($conn, $insert_sql1);
          if ($result3) {
             $delete_showpost_sql = "DELETE FROM showpost WHERE id = {$edit_id}";

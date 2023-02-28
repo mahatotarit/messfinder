@@ -14,21 +14,20 @@ if (isset($_SESSION['phone'])) {
 ?>
 
 <?php
-      include "php/config.php";
-      if (isset($_SESSION['name'])) {
-        $admin_name = $_SESSION['name'];
-        $admin_phone = $_SESSION['phone'];
-        $admin_password = $_SESSION['password'];
-        $admin_hash_password = md5($admin_password);
+include "php/config.php";
+if (isset($_SESSION['name'])) {
+    $admin_name = $_SESSION['name'];
+    $admin_phone = $_SESSION['phone'];
+    $admin_password = $_SESSION['password'];
+    $admin_hash_password = md5($admin_password);
 
-        $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_hash_password}'";
-        $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
-        if (mysqli_num_rows($admin_button_show_result)) {
-
-        }else{
-            header("location:index.php");
-        }
-      }
+    $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_hash_password}'";
+    $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
+    if (mysqli_num_rows($admin_button_show_result)) {
+    } else {
+        header("location:index.php");
+    }
+}
 
 ?>
 
@@ -246,7 +245,7 @@ if (isset($_SESSION['phone'])) {
                                                     <?php echo $result_row4['messcontactno']; ?>
                                                 </td>
                                                 <td class="address-td">
-                                                    <?php echo $result_row4['messlocation']; ?>
+                                                    <?PHP echo  substr($result_row4['messlocation'], 0, 100) . "..."; ?>
                                                 </td>
                                                 <td class="email-td">
                                                     <?php echo $result_row4['authoremail']; ?>

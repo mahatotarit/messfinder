@@ -14,21 +14,20 @@ if (isset($_SESSION['phone'])) {
 ?>
 
 <?php
-      include "php/config.php";
-      if (isset($_SESSION['name'])) {
-        $admin_name = $_SESSION['name'];
-        $admin_phone = $_SESSION['phone'];
-        $admin_password = $_SESSION['password'];
-        $admin_hash_password = md5($admin_password);
+include "php/config.php";
+if (isset($_SESSION['name'])) {
+    $admin_name = $_SESSION['name'];
+    $admin_phone = $_SESSION['phone'];
+    $admin_password = $_SESSION['password'];
+    $admin_hash_password = md5($admin_password);
 
-        $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_hash_password}'";
-        $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
-        if (mysqli_num_rows($admin_button_show_result)) {
-
-        }else{
-            header("location:index.php");
-        }
-      }
+    $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_hash_password}'";
+    $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
+    if (mysqli_num_rows($admin_button_show_result)) {
+    } else {
+        header("location:index.php");
+    }
+}
 
 ?>
 
@@ -110,12 +109,12 @@ if (isset($_SESSION['phone'])) {
                         <div class="card">
                             <div class="card-head">
                                 <h2>
-                                <?php
+                                    <?php
                                     $total_mess_show_sql5 = "SELECT * FROM showpost";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
-                                    }else{
+                                    } else {
                                         echo "0";
                                     }
                                     ?>
@@ -130,12 +129,12 @@ if (isset($_SESSION['phone'])) {
                         <div class="card">
                             <div class="card-head">
                                 <h2>
-                                <?php
+                                    <?php
                                     $total_mess_show_sql5 = "SELECT * FROM allmess";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
-                                    }else{
+                                    } else {
                                         echo "0";
                                     }
                                     ?>
@@ -214,9 +213,9 @@ if (isset($_SESSION['phone'])) {
                                     if (isset($_POST['admin_search_btn'])) {
                                         $search_id = $_POST['admin_search_input'];
                                         if (preg_match("/^[A-z]*$/", $search_id)) {
-                                           $admin_page_show_sql = "SELECT * FROM showpost";
+                                            $admin_page_show_sql = "SELECT * FROM showpost";
                                         } else {
-                                           $admin_page_show_sql = "SELECT * FROM showpost
+                                            $admin_page_show_sql = "SELECT * FROM showpost
                                                     WHERE id LIKE '%$search_id%'";
                                         }
                                     } else {
@@ -227,12 +226,12 @@ if (isset($_SESSION['phone'])) {
                                     ?>
                                             <tr>
                                                 <td class="id-td" style="padding-left: 0.7rem;">
-                                                    <?php echo $result_row4['id'];?>
+                                                    <?php echo $result_row4['id']; ?>
                                                 </td>
                                                 <td class="mess-td">
                                                     <div class="client">
                                                         <div class="client-img bg-img" style="overflow:hidden;">
-                                                        <img src="mess_image/<?php echo $result_row4['messimage1'];?>" alt="Mess Image" style="width:100%; height:100%;">
+                                                            <img src="mess_image/<?php echo $result_row4['messimage1']; ?>" alt="Mess Image" style="width:100%; height:100%;">
                                                         </div>
                                                         <div class="client-info">
                                                             <h4 style="font-size:15px;">
@@ -248,7 +247,7 @@ if (isset($_SESSION['phone'])) {
                                                     <?php echo $result_row4['messcontactno']; ?>
                                                 </td>
                                                 <td class="address-td">
-                                                    <?php echo $result_row4['messlocation']; ?>
+                                                    <?PHP echo  substr($result_row4['messlocation'], 0, 100) . "..."; ?>
                                                 </td>
                                                 <td class="email-td">
                                                     <?php echo $result_row4['authoremail']; ?>
