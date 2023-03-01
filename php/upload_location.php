@@ -15,7 +15,7 @@ if (isset($_GET['lat'])) {
     $id = mysqli_query($conn, $sql);
     if (mysqli_num_rows($id)) {
         while ($idno = mysqli_fetch_assoc($id)) {
-           $current_mess_id = $idno['id'];
+            $current_mess_id = $idno['id'];
         }
     } else {
         echo "failed 80";
@@ -23,12 +23,11 @@ if (isset($_GET['lat'])) {
     }
 
     $update_sql = "UPDATE allmess SET lat='{$lat}', lng='{$lng}' WHERE id={$current_mess_id}";
-    $result = mysqli_query($conn,$update_sql);
+    $result = mysqli_query($conn, $update_sql);
 
-    if($result){
-          echo "1";
-    }else{
+    if ($result) {
+        echo "1";
+    } else {
         echo "0";
     }
 }
-?>

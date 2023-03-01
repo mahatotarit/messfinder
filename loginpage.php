@@ -30,7 +30,7 @@ if (isset($_SESSION['phone'])) {
             <div class="form login">
                 <span class="title">Login</span>
 
-                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" id="login-from" autocomplete="off">
+                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" id="login-from">
                     <div class="input-field">
                         <i class="fa-solid fa-mobile-screen"></i>
                         <input type="number" name="login-phone" placeholder="Enter Phone No" id="login-number" required>

@@ -1,4 +1,14 @@
 <?php
+include 'config.php';
+$current_mess_id = 0;
+session_start();
+$phone = $_SESSION['phone'];
+$email = $_SESSION['email'];
+
+$img1;
+$img2;
+$img3;
+$img4;
 //  check first image
 if (isset($_FILES['imagename1'])) {
     $image1 = $_FILES['imagename1'];
@@ -7,6 +17,7 @@ if (isset($_FILES['imagename1'])) {
     $image1_size = $image1['size'];
     if ($image1_size < 5000000) {
         $image_name1 = time() . "1" . str_replace(' ', "", $image1_name);
+        filter_image($image1_tmp, $image_name1, 1);
     } else {
         echo "Image 1 must be 5mb";
         die();
@@ -23,6 +34,7 @@ if (isset($_FILES['imagename2'])) {
     $image2_size = $image2['size'];
     if ($image2_size < 5000000) {
         $image_name2 = time() . "2" . str_replace(' ', "", $image2_name);
+        filter_image($image2_tmp, $image_name2, 2);
     } else {
         echo "Image 2 must be 5mb";
         die();
@@ -39,6 +51,7 @@ if (isset($_FILES['imagename3'])) {
     $image3_size = $image3['size'];
     if ($image3_size < 5000000) {
         $image_name3 = time() . "3" . str_replace(' ', "", $image3_name);
+        filter_image($image3_tmp, $image_name3, 3);
     } else {
         echo "Image 3 must be 5mb";
         die();
@@ -55,6 +68,7 @@ if (isset($_FILES['imagename4'])) {
     $image4_size = $image4['size'];
     if ($image4_size < 5000000) {
         $image_name4 = time() . "4" . str_replace(' ', "", $image4_name);
+        filter_image($image4_tmp, $image_name4, 4);
     } else {
         echo "Image 4 must be 5mb";
         die();
@@ -64,35 +78,95 @@ if (isset($_FILES['imagename4'])) {
     die();
 }
 
- include 'config.php';
- $current_mess_id = 0;
- session_start();
- $phone = $_SESSION['phone'];
- $email = $_SESSION['email'];
 
-  $sql = "SELECT id FROM allmess WHERE authorphone='{$phone}' and authoremail='{$email}' ORDER BY id DESC LIMIT 1";
-  $id = mysqli_query($conn,$sql);
-  if(mysqli_num_rows($id)){
-    while($idno = mysqli_fetch_assoc($id)){
+// compress and upload image into folderr code
+
+function compress_image($source_url, $destination_url, $quality)
+{
+    $info = getimagesize($source_url);
+
+    if ($info['mime'] == 'image/jpeg') {
+        $image = imagecreatefromjpeg($source_url);
+    } elseif ($info['mime'] == 'image/gif') {
+        $image = imagecreatefromgif($source_url);
+    } elseif ($info['mime'] == 'image/png') {
+        $image = imagecreatefrompng($source_url);
+    } elseif ($info['mime'] == 'image/jpg') {
+        $image = imagecreatefromjpeg($source_url);
+    } else {
+        echo "only select jpeg,gif,png,jpg image";
+        die();
+    }
+
+    //save it
+    imagejpeg($image, $destination_url, $quality);
+
+    //return destination file url
+    return $destination_url;
+}
+function filter_image($tmp_name, $image1_name, $image_roll)
+{
+    $imname = $tmp_name;
+    $source_photo = $imname;
+    // $namecreate = "messfinder_" . time().$image1_name;
+    // $namecreatenumber = rand(1000, 10000);
+    // $picname = $namecreate . $namecreatenumber;
+    $finalname = $image1_name . ".jpeg";
+    $dest_photo = '../mess_image/' . $finalname;
+    $compressimage = compress_image($source_photo, $dest_photo, 30);
+
+    if ($image_roll == 1) {
+        global $img1;
+        $img1 = $image1_name . ".jpeg";
+    }
+    if ($image_roll == 2) {
+        global $img2;
+        $img2 = $image1_name . ".jpeg";
+    }
+    if ($image_roll == 3) {
+        global $img3;
+        $img3 = $image1_name . ".jpeg";
+    }
+    if ($image_roll == 4) {
+        global $img4;
+        $img4 = $image1_name . ".jpeg";
+    }
+}
+
+// compress and upload image into folderr code end
+// compress and upload image into folderr code end
+
+
+$sql = "SELECT id FROM allmess WHERE authorphone='{$phone}' and authoremail='{$email}' ORDER BY id DESC LIMIT 1";
+$id = mysqli_query($conn, $sql);
+if (mysqli_num_rows($id)) {
+    while ($idno = mysqli_fetch_assoc($id)) {
         $current_mess_id = $idno['id'];
     }
-  }else{
+} else {
     echo "failed 80";
     die();
-  }
+}
+
+$has_image_sql = "SELECT * FROM allmess WHERE id={$current_mess_id}";
+$has_image_sql_result = mysqli_query($conn, $has_image_sql);
+if (mysqli_num_rows($has_image_sql_result) > 0) {
+    while ($delete_image = mysqli_fetch_assoc($has_image_sql_result)) {
+        unlink("../mess_image/{$delete_image['messimage1']}");
+        unlink("../mess_image/{$delete_image['messimage2']}");
+        unlink("../mess_image/{$delete_image['messimage3']}");
+        unlink("../mess_image/{$delete_image['messimage4']}");
+    }
+}
 
 
-  $update_sql = "UPDATE allmess SET messimage1='{$image_name1}',messimage2='{$image_name2}',messimage3='{$image_name3}',messimage4='{$image_name4}' WHERE id={$current_mess_id}";
+$update_sql = "UPDATE allmess SET messimage1='{$img1}',messimage2='{$img2}',messimage3='{$img3}',messimage4='{$img4}' WHERE id={$current_mess_id}";
 
-  $result = mysqli_query($conn,$update_sql);
-  if($result){
-       move_uploaded_file($image1_tmp, "../mess_image/" . $image_name1);
-    move_uploaded_file($image2_tmp, "../mess_image/" . $image_name2);
-    move_uploaded_file($image3_tmp, "../mess_image/" . $image_name3);
-    move_uploaded_file($image4_tmp, "../mess_image/" . $image_name4);
+$result = mysqli_query($conn, $update_sql);
+if ($result) {
+
     echo "ok";
-  }else{
+} else {
     echo "Image Upload Failed";
     die();
-  }
-?>
+}

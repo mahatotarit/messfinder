@@ -97,7 +97,7 @@ button {
 }
 
 .comment-box {
-    width: 500px;
+    width: 600px;
     background: white;
     padding: 10px;
     margin: 15px 0px 15px 0px;
@@ -179,7 +179,8 @@ button {
         font-size: 6px;
     }
 }
-.co_container{
+
+.co_container {
     max-width: 500px;
     margin: 00px auto;
 }

@@ -28,8 +28,13 @@ if (isset($_GET['id'])) {
         <title>Product Card/Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="all-css/preview.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <style>
+          * {
+            scroll-behavior: smooth;
+          }
+
           .back_btn_div {
             display: none;
             position: absolute;
@@ -129,9 +134,11 @@ if (isset($_GET['id'])) {
               </div>
             </div><?php } ?>
           <!-- card right -->
-          <div class="product-content">
+          <div class="product-content ">
             <h1 style="font-size:2rem;" class="product-title"><?php echo $single_result['messname']; ?></h1>
-            <a href="#" class="product-link"><?php echo $single_result['messtype']; ?></a>
+            <a href="#" class="product-link" style="border-radius:5px;"><?php echo $single_result['messtype']; ?></a>
+            <!-- <div id="scroll_map" href="#" class="product-link" style="background-color:rgba(255, 44, 44, 0.96); border-radius:10px; margin-left:30px; cursor: pointer;">Get Direction</div> -->
+            <a id="scroll_map" href="#map_scroll" class="product-link" style=" background: #337ab7; border-radius:10px; margin-left:20px; padding: 1.5px 15px 1.5px 15px; cursor: pointer;"><i class="fa-solid fa-diamond-turn-right"></i></a>
             <!-- <div class = "product-rating">
             <i class = "fas fa-star"></i>
             <i class = "fas fa-star"></i>
@@ -141,12 +148,12 @@ if (isset($_GET['id'])) {
             <span>4.7(21)</span>
            </div> -->
 
-            <div class="product-price">
+            <div class="product-price border_buttom">
               <p class="last-price">Bed Price: <span style="text-decoration: none; color:blue; font-weight:bold;"><?php echo $single_result['price']; ?></span></p>
               <p class="new-price">adddress:<span style="color:black;"><?php echo $single_result['messlocation']; ?></span></p>
             </div>
 
-            <div class="product-detail">
+            <div class="product-detail border_buttom">
               <h2>about this Mess: </h2>
               <p><?php echo $single_result['messabout']; ?></p>
               <ul>
@@ -160,10 +167,12 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="purchase-info">
-              <button type="button" class="btn">
-                <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp</a>
+              <button type="button" class="btn" style="background-color:green; height:40px;">
+                <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp<i style="padding:00px 00px 00px 10px; font-size:18px;" class="fa-brands fa-whatsapp"></i></a>
               </button>
-              <!-- <button type="button" class="btn">Call</button> -->
+                <button type="button" class="btn" style=" background-color: rgb(0, 115, 255); height:40px;">
+                <a href="tel:+91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">Call<i class="fa-solid fa-phone" style="padding:00px 00px 00px 10px;"></i></a>
+              </button>
             </div>
 
             <!-- <div class = "social-links">
@@ -200,7 +209,7 @@ if (isset($_GET['id'])) {
               }
             }
             ?>
-            <div class="first_embed_div" style="border:1px solid black; width:100%; height:300px; border-radius:5px; overflow:hidden;">
+            <div id="map_scroll" class="first_embed_div" style="border:1px solid black; width:100%; height:300px; border-radius:5px; overflow:hidden;">
               <iframe width="100%" height="100%" src="https://maps.google.com/maps?q=<?php echo $get_lat; ?>,<?php echo  $get_lng; ?>&amp;z=4&amp;output=embed"></iframe>
             </div><br><br>
             <!-- comment box file  -->

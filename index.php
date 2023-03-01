@@ -8,6 +8,10 @@ session_start();
 // } else {
 //     header("location:loginpage.php");
 // }
+if (isset($_GET['page'])) {
+} else {
+    header("location:index.php?page=1");
+}
 ?>
 <style>
     #main-content .post-content img {
@@ -16,7 +20,7 @@ session_start();
 </style>
 <?php
 include 'mainheader.php';
-$pagenation_limit = 4;
+$pagenation_limit = 5;
 if (isset($_GET['page'])) {
     $current_page = $_GET['page'];
 } else {
@@ -53,7 +57,7 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                             <div class="post-content">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <a class="post-img"><img src="mess_image/<?php echo $row1['messimage1'];?>" alt="messimage" /></a>
+                                        <a class="post-img"><img src="mess_image/<?php echo $row1['messimage1']; ?>" alt="messimage" /></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="inner-content clearfix">
@@ -73,8 +77,8 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                                                 </span>
                                             </div>
                                             <p class="description">
-                                                <?PHP echo  substr($row1['messlocation'],0,100) . "..."; ?>
-                                                
+                                                <?PHP echo  substr($row1['messlocation'], 0, 100) . "..."; ?>
+
                                             </p>
                                             <a class='read-more pull-right' href='preview.php?id=<?php echo $row1['id']; ?>'>read more</a>
                                         </div>
@@ -103,13 +107,11 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                         if ($current_page > 1) {
                             echo "<li><a href='index.php?page=" . ($current_page - 1) . "'>Pre</a></li>";
                         }
-                        for ($i = 1; $i <= $pagenation_total_pages; $i++) {
-                            if ($i == $current_page) {
-                                $pagenation_active = "active";
-                            } else {
-                                $pagenation_active = "";
-                            }
-                            echo '<li class="' . $pagenation_active . '"><a href="index.php?page=' . $i . '">' . $i . '</a></li>';
+                        $get_id = $_GET['page'];
+                        for ($i = 1; $i <= 1; $i++) {
+                            $pagenation_active = "active";
+                            echo '<li class="' . $pagenation_active . '"><a href="index.php?page=' . $i . '">' . $get_id . '</a></li>';
+                            $get_id++;
                         }
                         if ($pagenation_total_pages > $current_page) {
                             echo "<li><a href='index.php?page=" . ($current_page + 1) . "'>Next</a></li>";

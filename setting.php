@@ -38,20 +38,20 @@ include "php/config.php";
 
   </div>
   <div class="container" style="background-color:rgb(245,245,245); border-radius:10px;">
-    <div class="img__profile">
-      <img src="assets/<?php if (isset($_SESSION['phone'])) {
-                          $phone =  $_SESSION['phone'];
-                        }
-                        $get_prifile_image = "SELECT image FROM user WHERE phone='{$phone}'";
-                        $get_prifile_image_result = mysqli_query($conn, $get_prifile_image);
-                        if (mysqli_num_rows($get_prifile_image_result)) {
-                          $image_name5 = mysqli_fetch_assoc($get_prifile_image_result);
-                          if ("profile_image.png" == $image_name5["image"]) {
-                            echo "profile_image/profile_image.png";
-                          } else {
-                            echo "user_profile_image/" . $image_name5["image"];
-                          }
-                        } ?>" class='three-width' alt='profile' width='200' height='200' style='text-align:center; width:100px; height:100px; border-radius: 50%;'>
+    <div class="img__profile" style="overflow:hidden;">
+      <img style="border:0.1px solid black; border-radius:50%; overflow:hidden;" src="assets/<?php if (isset($_SESSION['phone'])) {
+                                                                                                $phone =  $_SESSION['phone'];
+                                                                                              }
+                                                                                              $get_prifile_image = "SELECT image FROM user WHERE phone='{$phone}'";
+                                                                                              $get_prifile_image_result = mysqli_query($conn, $get_prifile_image);
+                                                                                              if (mysqli_num_rows($get_prifile_image_result)) {
+                                                                                                $image_name5 = mysqli_fetch_assoc($get_prifile_image_result);
+                                                                                                if ("profile_image.png" == $image_name5["image"]) {
+                                                                                                  echo "profile_image/profile_image.png";
+                                                                                                } else {
+                                                                                                  echo "user_profile_image/" . $image_name5["image"];
+                                                                                                }
+                                                                                              } ?>" class='three-width' alt='Profile Image' width='200' height='200' style='text-align:center; width:100px; height:100px; border-radius: 50%;'>
 
       <div>
         <?php
@@ -86,7 +86,7 @@ include "php/config.php";
       <?php  }
       ?>
     </div>
-    <div class="item">
+    <div class="item" style="user-select:none;">
       <i class="fa-solid fa-circle-half-stroke icon_color"></i>
       <span>Color Theme</span>
       <div class="icon">

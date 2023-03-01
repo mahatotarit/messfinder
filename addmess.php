@@ -159,7 +159,7 @@ if (isset($_SESSION['phone'])) {
                 console.log(ajax.responseText);
                 if (ajax.responseText == "ok") {
                     form.reset();
-                    window.location.href = "php/image_upload.php?ji_jij_jdfhdhg_jdfhhsf_jdhfhsgdf=bdshgfsdgvnkdfjjshdfhgsdhbnsduhygadhbdjnfjhsdgfhsbdjfhkjds78tgsjjfdhshgfv7s7d786ds8ftsd6fts78yfsbdfbsndfsfgdfhfv";
+                    window.location.href = "php/image_upload.php?add_mess=ok";
                 } else {
                     loading_animation_div.setAttribute("class", "loading_animation_div loading_hide");
                     document.querySelector(".error_show_div").innerHTML = ajax.responseText;

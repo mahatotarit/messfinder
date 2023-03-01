@@ -5,9 +5,9 @@ if (isset($_SESSION['phone'])) {
     header("location:loginpage.php");
 }
 
-if (isset($_GET['ji_jij_jdfhdhg_jdfhhsf_jdhfhsgdf'])) {
-    $match_id = $_GET['ji_jij_jdfhdhg_jdfhhsf_jdhfhsgdf'];
-    $match_id1 = "bdshgfsdgvnkdfjjshdfhgsdhbnsduhygadhbdjnfjhsdgfhsbdjfhkjds78tgsjjfdhshgfv7s7d786ds8ftsd6fts78yfsbdfbsndfsfgdfhfv";
+if (isset($_GET['add_mess'])) {
+    $match_id = $_GET['add_mess'];
+    $match_id1 = "ok";
     if ($match_id == $match_id1) {
     } else {
         die();
