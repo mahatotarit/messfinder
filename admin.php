@@ -110,7 +110,7 @@ if (isset($_SESSION['name'])) {
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                    $total_mess_show_sql5 = "SELECT * FROM showpost";
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess WHERE p='show'";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
@@ -130,7 +130,7 @@ if (isset($_SESSION['name'])) {
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                    $total_mess_show_sql5 = "SELECT * FROM allmess";
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess WHERE p='hide'";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
@@ -209,14 +209,14 @@ if (isset($_SESSION['name'])) {
                                     <?php
 
                                     $admin_page_show_sql = "";
-                                    $admin_page_show_sql = "SELECT * FROM showpost";
+                                    $admin_page_show_sql = "SELECT * FROM allmess WHERE p='show'";
                                     if (isset($_POST['admin_search_btn'])) {
                                         $search_id = $_POST['admin_search_input'];
                                         if (preg_match("/^[A-z]*$/", $search_id)) {
-                                            $admin_page_show_sql = "SELECT * FROM showpost";
+                                            $admin_page_show_sql = "SELECT * FROM allmess WHERE p='show'";
                                         } else {
-                                            $admin_page_show_sql = "SELECT * FROM showpost
-                                                    WHERE id LIKE '%$search_id%'";
+                                            $admin_page_show_sql = "SELECT * FROM allmess
+                                                    WHERE id LIKE '%$search_id%' AND p='show'";
                                         }
                                     } else {
                                     }
@@ -258,9 +258,9 @@ if (isset($_SESSION['name'])) {
                                                 <td class="action">
                                                     <!-- Delete Update and Read -->
                                                     <div class="actions">
-                                                        <a href="php/check_mess.php?delete_post_from_showpost=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash" style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
+                                                        <a href="php/check_mess.php?delete_post_from_allmess=<?php echo $result_row4['id']; ?>"> <i class="fa-solid fa-trash" style="color:red;margin: 10%  10%; cursor: pointer;"></i></a>
                                                         <a href=""> <i class="fa-solid fa-pen-to-square" style="color:rgb(0, 147, 205); margin:10% 10%;cursor: pointer;"></i></a>
-                                                        <a href="php/check_mess.php?hide_from_showpost=<?php echo $result_row4['id']; ?>"> <i class="fa-sharp fa-solid fa-eye-slash" style="color:rgb(50, 50, 0); margin:5% 5%;cursor: pointer;"></i></a>
+                                                        <a href="php/check_mess.php?hide_from_allmess=<?php echo $result_row4['id']; ?>"> <i class="fa-sharp fa-solid fa-eye-slash" style="color:rgb(50, 50, 0); margin:5% 5%;cursor: pointer;"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -74,30 +74,45 @@
     #close_n_b {
       cursor: pointer;
     }
-    @media(min-width:1300px){
-       #read_div_second,#read_div_first{
-         width:40%;
-       } 
+
+    @media(min-width:1300px) {
+
+      #read_div_second,
+      #read_div_first {
+        width: 40%;
+      }
     }
-    @media(max-width:1300px){
-       #read_div_second,#read_div_first{
-         width:60%;
-       } 
+
+    @media(max-width:1300px) {
+
+      #read_div_second,
+      #read_div_first {
+        width: 60%;
+      }
     }
-    @media(max-width:1000px){
-       #read_div_second,#read_div_first{
-         width:70%;
-       } 
+
+    @media(max-width:1000px) {
+
+      #read_div_second,
+      #read_div_first {
+        width: 70%;
+      }
     }
-    @media(max-width:800px){
-       #read_div_second,#read_div_first{
-         width:80%;
-       } 
+
+    @media(max-width:800px) {
+
+      #read_div_second,
+      #read_div_first {
+        width: 80%;
+      }
     }
-    @media(max-width:600px){
-       #read_div_second,#read_div_first{
-         width:95%;
-       } 
+
+    @media(max-width:600px) {
+
+      #read_div_second,
+      #read_div_first {
+        width: 95%;
+      }
     }
   </style>
 </head>
@@ -133,12 +148,14 @@
             <?php
             $admin_name = $_SESSION['name'];
             $admin_phone = $_SESSION['phone'];
-            $admin_password = $_SESSION['password'];
+            $admin_password = md5($_SESSION['password']);
 
             $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_password}'";
             $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
             if (mysqli_num_rows($admin_button_show_result)) {
-              echo "<button class='delete' style=' margin-left:auto; display:inline-block; border:1px solid black; padding:4px; text-align:center;'><a href='notification.php' class='delete_a'>Delete</a></button>";
+              echo "<button class='delete' style=' margin-left:63%; display:inline-block; border:1px solid black; padding:4px; text-align:center;'><a href='../php/notification_data.php?delete_no=".$div_id = $row['id']."' class='delete_a'>Delete</a></button>";
+            } else {
+              echo "not admin";
             }
             ?>
             <a href="notification.php?r_id=<?php echo $row['id']; ?>" style="text-decoration: underline; color:blue; margin-left:auto;">Read</a>
@@ -184,6 +201,8 @@
         <?php echo $row1['about']; ?>
       </div>
     </div>
+
+
     <script>
       let close_n_b = document.querySelector("#close_n_b");
       close_n_b.addEventListener("click", function() {

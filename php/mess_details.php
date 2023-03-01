@@ -126,7 +126,7 @@ $authorphone = $_SESSION['phone'];
 $authoremail = $_SESSION['email'];
 $authorpassword = $_SESSION['password'];
 
-$insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,authorname,authorphone,authoremail,authorpassword,postdate) VALUES ('{$messname}','{$price}','{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdata}')";
+$insert_sql = "INSERT INTO allmess (messname,price,messlocation,messcontactno,messtype,messabout,foodfacility,ownername,bedavailable,electricity,extrafacility,bathroom,authorname,authorphone,authoremail,authorpassword,postdate,p) VALUES ('{$messname}','{$price}','{$messlocation}','{$messcontactno}','{$messtype}','{$messabout}','{$foodfacility}','{$ownername}','{$bedavailable}','{$electricity}','{$extrafacility}','{$bathroom}','{$authorname}','{$authorphone}','{$authoremail}','{$authorpassword}','{$postdata}','hide')";
 
 if (mysqli_query($conn, $insert_sql)) {
     echo "ok";

@@ -14,7 +14,7 @@ session_start();
 if (isset($_GET['id'])) {
   include "php/config.php";
   $mess_id = $_GET['id'];
-  $single_record_sql = "SELECT * FROM showpost WHERE id={$mess_id}";
+  $single_record_sql = "SELECT * FROM allmess WHERE id={$mess_id} AND p='show'";
   $single_record_result = mysqli_query($conn, $single_record_sql);
   if (mysqli_num_rows($single_record_result)) {
     while ($single_result = mysqli_fetch_assoc($single_record_result)) {
@@ -95,7 +95,7 @@ if (isset($_GET['id'])) {
 
 
 
-                  <?php $recive_sql = "SELECT * FROM showpost WHERE id='{$mess_id}'";
+                  <?php $recive_sql = "SELECT * FROM allmess WHERE id='{$mess_id}' AND p='show'";
                   $result = mysqli_query($conn, $recive_sql);
                   if (mysqli_num_rows($result)) {
                     while ($image_row = mysqli_fetch_assoc($result)) {
@@ -200,7 +200,7 @@ if (isset($_GET['id'])) {
             $get_lat = 0;
             $get_lng = 0;
 
-            $get_lat_sql = "SELECT * FROM showpost WHERE id='{$mess_id}'";
+            $get_lat_sql = "SELECT * FROM allmess WHERE id='{$mess_id}' AND p='show'";
             $get_lat_sql_result = mysqli_query($conn, $get_lat_sql) or die("query failed");
             if (mysqli_num_rows($get_lat_sql_result) > 0) {
               while ($get_lat_sql_result_row = mysqli_fetch_assoc($get_lat_sql_result)) {

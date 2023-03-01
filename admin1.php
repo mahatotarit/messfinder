@@ -113,7 +113,7 @@ if (isset($_SESSION['name'])) {
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                    $total_mess_show_sql5 = "SELECT * FROM showpost";
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess WHERE p='show'";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
@@ -133,7 +133,7 @@ if (isset($_SESSION['name'])) {
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                    $total_mess_show_sql5 = "SELECT * FROM allmess";
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess WHERE p='hide'";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
@@ -208,14 +208,14 @@ if (isset($_SESSION['name'])) {
                                     <!-- start php loop -->
                                     <?php
                                     $admin_page_show_sql = "";
-                                    $admin_page_show_sql = "SELECT * FROM allmess";
+                                    $admin_page_show_sql = "SELECT * FROM allmess WHERE p='hide'";
                                     if (isset($_POST['find_allmess_post_btn'])) {
                                         $find_allmess_post_input = $_POST['find_allmess_post_input'];
                                         if (preg_match("/^[A-z]*$/", $find_allmess_post_input)) {
-                                            $admin_page_show_sql = "SELECT * FROM allmess";
+                                            $admin_page_show_sql = "SELECT * FROM allmess WHERE p='hide'";
                                         } else {
                                             $admin_page_show_sql = "SELECT * FROM allmess
-                                                WHERE id LIKE '%$find_allmess_post_input%'";
+                                                WHERE id LIKE '%$find_allmess_post_input%' AND p='hide'";
                                         }
                                     }
                                     $admin_page_show_result = mysqli_query($conn, $admin_page_show_sql);

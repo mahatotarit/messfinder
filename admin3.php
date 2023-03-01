@@ -136,7 +136,7 @@ if (isset($_SESSION['name'])) {
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                    $total_mess_show_sql5 = "SELECT * FROM showpost";
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess WHERE p='show'";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);
@@ -156,7 +156,7 @@ if (isset($_SESSION['name'])) {
                             <div class="card-head">
                                 <h2>
                                     <?php
-                                    $total_mess_show_sql5 = "SELECT * FROM allmess";
+                                    $total_mess_show_sql5 = "SELECT * FROM allmess WHERE p='hide'";
                                     $total_mess_show_sql5_result = mysqli_query($conn, $total_mess_show_sql5);
                                     if (mysqli_num_rows($total_mess_show_sql5_result)) {
                                         echo $total_uuser = mysqli_num_rows($total_mess_show_sql5_result);

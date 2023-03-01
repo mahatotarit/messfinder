@@ -1,8 +1,8 @@
 
 <?php
 
+include 'config.php';
 if(isset($_POST['send_notification_btn'])){
-    include 'config.php';
 if(isset($_FILES['image'])){
     $errors = array();
     $file_name = $_FILES["image"]['name'];
@@ -42,4 +42,18 @@ if(isset($_POST['send_notification_btn'])){
 }else{
     echo "<div style='text-align:center; color:red;'>Notification Send Failed</div>";
 }
+
+
+
+// delete notification code
+ if(isset($_GET['delete_no'])){
+    $delete_no = $_GET['delete_no'];
+     $delete_no_sql = "DELETE FROM notificatioin WHERE id={$delete_no}";
+    if(mysqli_query($conn,$delete_no_sql)){
+        header("location:../settings/notification.php");
+    }else{
+        echo "<script>alert('Notificatio delete falied');</script>";
+        header("location:../settings/notification.php");
+    }
+ }
 ?>

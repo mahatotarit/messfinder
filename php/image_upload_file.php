@@ -152,10 +152,13 @@ $has_image_sql = "SELECT * FROM allmess WHERE id={$current_mess_id}";
 $has_image_sql_result = mysqli_query($conn, $has_image_sql);
 if (mysqli_num_rows($has_image_sql_result) > 0) {
     while ($delete_image = mysqli_fetch_assoc($has_image_sql_result)) {
-        unlink("../mess_image/{$delete_image['messimage1']}");
-        unlink("../mess_image/{$delete_image['messimage2']}");
-        unlink("../mess_image/{$delete_image['messimage3']}");
-        unlink("../mess_image/{$delete_image['messimage4']}");
+        if ($delete_image['messimage1'] == "") {
+        } else {
+            unlink("../mess_image/{$delete_image['messimage1']}");
+            unlink("../mess_image/{$delete_image['messimage2']}");
+            unlink("../mess_image/{$delete_image['messimage3']}");
+            unlink("../mess_image/{$delete_image['messimage4']}");
+        }
     }
 }
 

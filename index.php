@@ -8,10 +8,6 @@ session_start();
 // } else {
 //     header("location:loginpage.php");
 // }
-if (isset($_GET['page'])) {
-} else {
-    header("location:index.php?page=1");
-}
 ?>
 <style>
     #main-content .post-content img {
@@ -20,7 +16,7 @@ if (isset($_GET['page'])) {
 </style>
 <?php
 include 'mainheader.php';
-$pagenation_limit = 5;
+$pagenation_limit = 10;
 if (isset($_GET['page'])) {
     $current_page = $_GET['page'];
 } else {
@@ -44,9 +40,9 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                     //   home page search button 
                     if (isset($_GET['s_b'])) {
                         $home_page_search_input = $_GET['home_search'];
-                        $get_data_sql = "SELECT * FROM showpost WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%'";
+                        $get_data_sql = "SELECT * FROM allmess WHERE CONCAT (messname,messlocation) LIkE '%$home_page_search_input%' AND p='show'";
                     } else {
-                        $get_data_sql = "SELECT * FROM showpost ORDER BY id DESC LIMIT {$page_offset} , {$pagenation_limit}"; // default sql query.
+                        $get_data_sql = "SELECT * FROM allmess WHERE p='show' ORDER BY id DESC LIMIT {$page_offset} , {$pagenation_limit}"; // default sql query.
                     }
 
                     $get_data_result = mysqli_query($conn, $get_data_sql) or die("query failed 39");
@@ -96,7 +92,7 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                     // pagenation code 
                     // pagenation code 
 
-                    $pagenation_sql1 = "SELECT * FROM showpost";
+                    $pagenation_sql1 = "SELECT * FROM allmess WHERE p='show'";
                     $pagenation_result = mysqli_query($conn, $pagenation_sql1);
                     if (mysqli_num_rows($pagenation_result)) {
                         $pagenation_total_records = mysqli_num_rows($pagenation_result);
@@ -107,7 +103,11 @@ $page_offset = ($current_page - 1) * $pagenation_limit;
                         if ($current_page > 1) {
                             echo "<li><a href='index.php?page=" . ($current_page - 1) . "'>Pre</a></li>";
                         }
-                        $get_id = $_GET['page'];
+                        if (isset($_GET['page'])) {
+                            $get_id = $_GET['page'];
+                        } else {
+                            $get_id = 1;
+                        }
                         for ($i = 1; $i <= 1; $i++) {
                             $pagenation_active = "active";
                             echo '<li class="' . $pagenation_active . '"><a href="index.php?page=' . $i . '">' . $get_id . '</a></li>';

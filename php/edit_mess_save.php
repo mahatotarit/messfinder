@@ -50,7 +50,7 @@ if (isset($_POST['edit_mess_button'])) {
       // check almess table
       if ($edit_r_table == "allmesseditid") {
          //  update data from all mess
-         $update_data_from_allmess_sql = "UPDATE allmess SET id={$id}, messname = '{$messname}', price = '{$price}', messlocation = '{$messlocation}', messcontactno = '{$messcontactno}', messtype = '{$messtype}', messabout = '{$messabout}', foodfacility = '{$foodfacility}', ownername = '{$ownername}', bedavailable = '{$bedavailable}', electricity = '{$electricity}', extrafacility = '{$extrafacility}', bathroom = '{$bathroom}',authorname='{$authorname}',authorphone='{$authorphone}',authoremail='{$authoremail}',authorpassword='{$authorpassword}',postdate='{$postdate}',lat='{$lat}',lng='{$lng}' WHERE id={$edit_id}";
+         $update_data_from_allmess_sql = "UPDATE allmess SET id={$id}, messname = '{$messname}', price = '{$price}', messlocation = '{$messlocation}', messcontactno = '{$messcontactno}', messtype = '{$messtype}', messabout = '{$messabout}', foodfacility = '{$foodfacility}', ownername = '{$ownername}', bedavailable = '{$bedavailable}', electricity = '{$electricity}', extrafacility = '{$extrafacility}', bathroom = '{$bathroom}',authorname='{$authorname}',authorphone='{$authorphone}',authoremail='{$authoremail}',authorpassword='{$authorpassword}',postdate='{$postdate}',lat='{$lat}',lng='{$lng}',p='hide' WHERE id={$edit_id}";
 
          $result2 = mysqli_query($conn, $update_data_from_allmess_sql);
          if ($result2) {
