@@ -168,3 +168,6 @@ html {
     display: inline-block;
     text-align: center;
 }
+.item__logout{
+    cursor: pointer;
+}

@@ -22,6 +22,9 @@ if (isset($_GET['lat'])) {
         die();
     }
 
+    if (isset($_GET['c'])) {
+        $current_mess_id = $_GET['c'];
+    }
     $update_sql = "UPDATE allmess SET lat='{$lat}', lng='{$lng}' WHERE id={$current_mess_id}";
     $result = mysqli_query($conn, $update_sql);
 

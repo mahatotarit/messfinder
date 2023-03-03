@@ -7,7 +7,9 @@
   <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
   <link rel="stylesheet" href="../all-css/notification.css" />
-  <title>Frontend Mentor | Notifications page</title>
+  <?php
+  include "../php/dynimic_title.php";
+  ?>
   <style>
     .container {
       background-color: white;
@@ -35,7 +37,7 @@
     .read_div {
       width: 100vw;
       height: 100vh;
-      background-color: rgba(139, 189, 251, 0.714);
+      background-color: rgba(59, 59, 51, 0.714);
       position: fixed;
       top: 00px;
       left: 00px;
@@ -153,7 +155,7 @@
             $admin_button_show_sql = "SELECT * FROM admin WHERE phone= '{$admin_phone}' and password = '{$admin_password}'";
             $admin_button_show_result = mysqli_query($conn, $admin_button_show_sql);
             if (mysqli_num_rows($admin_button_show_result)) {
-              echo "<button class='delete' style=' margin-left:63%; display:inline-block; border:1px solid black; padding:4px; text-align:center;'><a href='../php/notification_data.php?delete_no=".$div_id = $row['id']."' class='delete_a'>Delete</a></button>";
+              echo "<button class='delete' style=' margin-left:63%; display:inline-block; border:1px solid black; padding:4px; text-align:center;'><a href='../php/notification_data.php?delete_no=" . $div_id = $row['id'] . "' class='delete_a'>Delete</a></button>";
             } else {
               echo "not admin";
             }
@@ -162,6 +164,8 @@
           </div>
 
       <?php }
+      } else {
+        echo "Notification is no avalable";
       }
 
       if (isset($_GET['delete_noti'])) {

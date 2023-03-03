@@ -13,7 +13,9 @@ if (isset($_GET['next'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpQPx0LXaDqtWm9rPnrpJ_f11lbApm5fI&callback=initMap" defer></script>
-    <title>Location Picker</title>
+    <?php
+    include "dynimic_title.php";
+    ?>
     <style>
         * {
             margin: 00px;
@@ -213,7 +215,7 @@ if (isset($_GET['next'])) {
                 document.querySelector(".error").textContent = "";
 
                 let xhr = new XMLHttpRequest();
-                xhr.open("GET", "upload_location.php?lat=" + lat + "&lng=" + lng, true);
+                xhr.open("GET", "upload_location.php?lat=" + lat + "&lng=" + lng + "&c='<?php echo $_GET['c']; ?>'", true);
 
                 xhr.onload = () => {
                     if (xhr.status === 200) {

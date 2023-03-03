@@ -15,13 +15,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Mess Finder</title>
-  <!-- Bootstrap -->
+  <?php
+  include "php/dynimic_title.php";
+  ?>
   <link rel="stylesheet" href="all-css/bootstrap.min.css" />
-  <!-- Font Awesome Icon -->
   <link rel="stylesheet" href="all-css/font-awesome.css">
-  <!-- Custom stlylesheet -->
   <link rel="stylesheet" href="all-css/homepage.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
@@ -350,11 +348,11 @@
       <li><a style="user-select: none;" href="addmess.php">Register Mess</a></li>
       <li><a style="user-select: none;" href="userprofile.php">Profile</a></li>
       <li><a style="user-select: none;" href="setting.php">Settings</a></li>
-      <?php 
-        if(isset($_SESSION['phone'])){
-        }else{
-          echo '<li><a style="user-select: none;" href="loginpage.php">Login</a></li>';
-        }
+      <?php
+      if (isset($_SESSION['phone'])) {
+      } else {
+        echo '<li><a style="user-select: none;" href="loginpage.php">Login</a></li>';
+      }
       ?>
 
       <!-- admin button show using admin user -->

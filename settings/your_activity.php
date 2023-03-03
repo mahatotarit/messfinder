@@ -7,7 +7,9 @@
   <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
   <link rel="stylesheet" href="../all-css/your_activity.css" />
-  <title>Frontend Mentor | Notifications page</title>
+  <?php
+  include "../php/dynimic_title.php";
+  ?>
   <style>
   </style>
 </head>
@@ -42,9 +44,20 @@
               </p>
               <p class="time" style="font-size:10px;"><?php echo $row['postdate']; ?></p>
             </div>
-            <button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?allmesseditid=<?php echo  $row['id']; ?>" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>
+            <!-- show continue buttton -->
+            <?php
+            if (empty($row['messimage1'])) {
+              echo '<button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/image_upload.php?add_mess=ok&c=' . $row['id'] . '" style="text-decoration: none; font-weight: bold; color: black;">Continue</a></button>';
+            } elseif (empty($row['lat'])) {
+              echo '<button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/location_picker.php?next=upload_location.php&c=' . $row['id'] . '" style="text-decoration: none; font-weight: bold; color: black;">Continue</a></button>';
+            } else {
+              echo '<button id="edit_btn" style="margin-left:auto; padding:3px;"><a href="../php/edit_mess.php?allmesseditid=' . $row["id"] . '" style="text-decoration: none; font-weight: bold; color: black;">Edit</a></button>';
+            }
+            ?>
           </div>
       <?php }
+      } else {
+        // echo "";
       }
       ?>
   </div>

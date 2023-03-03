@@ -20,7 +20,7 @@ if (!empty($_POST['register-phone'])) {
 
 if (!empty($_POST['register-email'])) {
     $user_email = $_POST['register-email'];
-    $regex = '/^[_a-z0-9-]+@[a-z0-9-]{5}+(\.[a-z0-9-]+)*(\.[a-z]{3})$/';
+    $regex = '/^[_a-z0-9-]+@[a-z]{5}+(\.[a-z0-9-]+)*(\.[a-z]{3})$/';
     if (preg_match($regex, $user_email)) {
     } else {
         echo  "Enter Valid Email";

@@ -19,7 +19,9 @@ include "php/config.php";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Profile</title>
+  <?php
+  include "php/dynimic_title.php";
+  ?>
   <!-- Custom css -->
   <link rel="stylesheet" href="all-css/settings.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -81,7 +83,7 @@ include "php/config.php";
             Profile</a></span>
 
         <div class="icon">
-          <img src="assets/icon/chevron-right.png" alt="more">
+          <a href="userprofile.php"><img src="assets/icon/chevron-right.png" alt="more"></a>
         </div>
       <?php  }
       ?>
@@ -90,7 +92,7 @@ include "php/config.php";
       <i class="fa-solid fa-circle-half-stroke icon_color"></i>
       <span>Color Theme</span>
       <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+        <a href="#"><img src="assets/icon/chevron-right.png" alt="more"></a>
       </div>
     </div>
     <?php
@@ -99,7 +101,7 @@ include "php/config.php";
         <i class="fa-regular fa-bell icon_color"></i>
         <span><a href="settings/notification.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Notifications</a></span>
         <div class="icon">
-          <img src="assets/icon/chevron-right.png" alt="more">
+          <a href="settings/notification.php"><img src="assets/icon/chevron-right.png" alt="more"></a>
         </div>
       </div>
     <?php   }
@@ -110,7 +112,7 @@ include "php/config.php";
       <span><a href="settings/privacy_policy.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Privacy
           Policy</a></span>
       <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+        <a href="settings/privacy_policy.php"><img src="assets/icon/chevron-right.png" alt="more"></a>
       </div>
     </div>
     <?php
@@ -120,7 +122,7 @@ include "php/config.php";
         <span><a href="settings/contactus.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Contact
             Us</a></span>
         <div class="icon">
-          <img src="assets/icon/chevron-right.png" alt="more">
+          <a href="settings/contactus.php"><img src="assets/icon/chevron-right.png" alt="more"></a>
         </div>
       </div>
     <?php    }
@@ -130,7 +132,7 @@ include "php/config.php";
       <span><a href="settings/aboutus.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">About
           Us</a></span>
       <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+        <a href="settings/aboutus.php"><img src="assets/icon/chevron-right.png" alt="more"></a>
       </div>
     </div>
     <?php
@@ -139,14 +141,14 @@ include "php/config.php";
         <i class="fa-solid fa-user-plus icon_color"></i>
         <span><a href="settings/your_activity.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Your Activity</a></span>
         <div class="icon">
-          <img src="assets/icon/chevron-right.png" alt="more">
+          <a href="settings/your_activity.php"><img src="assets/icon/chevron-right.png" alt="more"></a>
         </div>
       </div>
       <div class="item">
         <i class="fa-regular fa-comment icon_color"></i>
         <span><a href="settings/feedback.php" style="color:black; text-decoration: none; font-size: 17px; width: 100%; display:inline-block;">Feedback</a></span>
         <div class="icon">
-          <img src="assets/icon/chevron-right.png" alt="more">
+          <a href="settings/feedback.php"><img src="assets/icon/chevron-right.png" alt="more"></a>
         </div>
       </div>
     <?php   }
@@ -186,7 +188,7 @@ include "php/config.php";
         </div>
       </div>
       <div class="icon">
-        <img src="assets/icon/chevron-right.png" alt="more">
+        <img src="assets/icon/chevron-right.png" alt="more" style="cursor: pointer;" class='i_btn'>
       </div>
     </div>
 
@@ -195,10 +197,10 @@ include "php/config.php";
     <?php
     if (isset($_SESSION['name'])) { ?>
       <div class="item__logout">
-        <i class="fa-solid fa-arrow-up-from-bracket icon_color" style="transform: rotateZ(90deg); color: red;"></i>
-        <span><a href="php/logout.php" style="color: red; width: 100%;display: inline-block;padding: 5px; font-size: 23px; text-decoration: none;">Logout</a></span>
-        <div class="icon">
-          <img class="logout" src="assets/icon/chevron-right.png" alt="more">
+        <i class="fa-solid fa-arrow-up-from-bracket icon_color" id="logout_btn2" style="transform: rotateZ(90deg); color: red; cursor: pointer;"></i>
+        <span id="logout_btn1"><a style="color: red; width: 100%;display: inline-block;padding: 5px; font-size: 23px; text-decoration: none;  cursor: pointer;">Logout</a></span>
+        <div class="icon" style=" cursor: pointer;">
+          <a id="logout_btn"><img src="assets/icon/chevron-right.png" alt="more"></a>
         </div>
       </div>
     <?php    }
@@ -213,6 +215,7 @@ include "php/config.php";
 <!-- invite friends popup -->
 <script>
   const viewBtn = document.querySelector(".invite_friends_button"),
+    i_btn = document.querySelector(".i_btn"),
     popup = document.querySelector(".popup"),
     close = popup.querySelector(".close"),
     field = popup.querySelector(".field"),
@@ -220,6 +223,9 @@ include "php/config.php";
     copy = field.querySelector("button");
 
   viewBtn.onclick = () => {
+    popup.classList.toggle("show");
+  }
+  i_btn.onclick = () => {
     popup.classList.toggle("show");
   }
   close.onclick = () => {
@@ -236,6 +242,38 @@ include "php/config.php";
         field.classList.remove("active");
         copy.innerText = "Copy";
       }, 3000);
+    }
+  }
+</script>
+
+<!-- logout script  -->
+<!-- logout script  -->
+<script>
+  const logout_btn = document.querySelector("#logout_btn");
+  const logout_btn1 = document.querySelector("#logout_btn1").addEventListener("click", logout_fun);
+  const logout_btn2 = document.querySelector("#logout_btn2").addEventListener("click", logout_fun);
+  logout_btn.addEventListener("click", logout_fun);
+
+  function logout_fun() {
+    let confirm_logout = confirm("Logout");
+
+    if (confirm_logout) {
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", "php/logout.php?logout=logout", true);
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          let type = xhr.responseText;
+          console.log(typeof type);
+          if (xhr.responseText = "1") {
+            window.location.href = "index.php";
+          }
+        } else {
+          alert("logout failed");
+        }
+      }
+      xhr.send();
+    } else {
+
     }
   }
 </script>

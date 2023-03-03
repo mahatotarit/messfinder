@@ -5,15 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comment</title>
+    <?php
+    include "dynimic_title.php";
+    ?>
     <link rel="stylesheet" href="all-css/comment_box.css">
+    <style>
+        .comment-box {
+            width: 500px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="co_container" style="border-radius:5px;">
         <h2>Leave Us a Comment</h2>
-        <form method="POST" id="comment_form">
-            <textarea placeholder="Add Your Comment" cols="15" rows="1" name="comment" id="comment_inpt" required></textarea>
+        <form method="POST" id="comment_form" autocomplete="off">
+            <?php
+            $comment;
+            if (isset($_GET['ct'])) {
+                $comment = $_GET['ct'];
+            } else {
+                $comment = "";
+            }
+            ?>
+            <input class="textarea" type="text" value="<?php echo $comment; ?>" placeholder="Add Your Comment" name="comment" id="comment_inpt" required></input>
             <div class="comment_btn">
                 <input type="submit" name="btn">
                 <input type="text" value="<?php echo $_GET['id']; ?>" name="id" hidden>
@@ -33,7 +48,7 @@
 </html>
 <!-- login form animation script -->
 <script>
-    var feild = document.querySelector('textarea');
+    var feild = document.querySelector('.textarea');
     // var backUp = feild.getAttribute('placeholder');
     var btn = document.querySelector('.comment_btn');
     var clear = document.getElementById('clear');
@@ -46,6 +61,18 @@
     clear.onclick = function() {
         btn.style.display = 'none';
         feild.value = '';
+        let p_v = '<?php echo $_GET['id']; ?>';
+        window.location.href = "preview.php?id=" + p_v;
+    }
+    let a_v = '<?php if (isset($_GET['ct'])) {
+                    echo 1;
+                } else {
+                    echo 0;
+                } ?>';
+    if (a_v == 1) {
+        btn.style.display = 'block';
+    } else {
+
     }
 </script>
 <!-- comment script -->

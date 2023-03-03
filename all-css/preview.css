@@ -244,6 +244,10 @@ img {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .product-content {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.comment-box {
+    width: 500px;
 }

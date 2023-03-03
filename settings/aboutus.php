@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aboutus</title>
+    <?php
+    include "../php/dynimic_title.php";
+    ?>
 </head>
 <body style="padding:15px 10px 10px 20px; text-align:left;">
     <p>Hello, Dear friends, Welcome to Mess Finder also, we are happy you want to know something more about our site</p>

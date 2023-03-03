@@ -96,4 +96,8 @@ if (isset($_POST['edit_mess_button'])) {
          }
       }
    }
+}else{
+   header("location:edit_mess.php?allmesseditid={$_POST['edit_id']}&c_s=0");
 }
+?>
+

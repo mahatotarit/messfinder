@@ -16,6 +16,9 @@ if (isset($_SESSION['phone'])) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <?php
+    include "dynimic_title.php";
+    ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <style>
@@ -405,7 +408,14 @@ if (isset($_SESSION['phone'])) {
             </div>
         </form>
 
-
+        <?php
+        if (isset($_GET['c_s'])) {
+            echo '<div style="color:red; text-align:center;">
+            Please click Submit button</div>';
+        } else {
+            echo "";
+        }
+        ?>
     </div>
 
     <!--<script src="script.js"></script>-->

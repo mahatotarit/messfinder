@@ -25,7 +25,9 @@ if (isset($_GET['id'])) {
       <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Product Card/Page</title>
+        <?php
+        include "php/dynimic_title.php";
+        ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="all-css/preview.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
@@ -77,6 +79,10 @@ if (isset($_GET['id'])) {
               border: none;
             }
 
+          }
+
+          .comment-box {
+            width: 500px;
           }
         </style>
       </head>
@@ -170,7 +176,7 @@ if (isset($_GET['id'])) {
               <button type="button" class="btn" style="background-color:green; height:40px;">
                 <a href="https://wa.me/91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">WhatsApp<i style="padding:00px 00px 00px 10px; font-size:18px;" class="fa-brands fa-whatsapp"></i></a>
               </button>
-                <button type="button" class="btn" style=" background-color: rgb(0, 115, 255); height:40px;">
+              <button type="button" class="btn" style=" background-color: rgb(0, 115, 255); height:40px;">
                 <a href="tel:+91<?php echo $single_result['messcontactno']; ?>" target="_blank" style="color:black; text-decoration:none; color:white; font-weight:bold;">Call<i class="fa-solid fa-phone" style="padding:00px 00px 00px 10px;"></i></a>
               </button>
             </div>

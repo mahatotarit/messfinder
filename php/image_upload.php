@@ -24,6 +24,9 @@ if (isset($_GET['add_mess'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    include "dynimic_title.php";
+    ?>
 
     <!----======== CSS ======== -->
     <!-- <link rel="stylesheet" href="all-css/register-mess.css"> -->
@@ -361,6 +364,12 @@ if (isset($_GET['add_mess'])) {
         .loading_hide {
             display: none;
         }
+
+        .error_div {
+            height: 60px;
+            z-index: +111;
+            color: red;
+        }
     </style>
 </head>
 
@@ -369,6 +378,11 @@ if (isset($_GET['add_mess'])) {
         <header>Upload Mess Image</header>
 
         <form method="POST" enctype="multipart/form-data" id="add_mess_form">
+            <?php
+            if (isset($_GET['c'])) {
+                echo "<input type='text' hidden name='c' value='{$_GET['c']}'>";
+            }
+            ?>
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Mess Image</span>
@@ -399,6 +413,7 @@ if (isset($_GET['add_mess'])) {
                         <input type="submit" name="add_mess_button" value="Submit" style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%; height:120%; padding:10px;">
                         <input type="text" vlaue='ok' name='ok' id='ok' hidden>
                     </span>
+                    <div class="error_div" style="color:red; text-align: center; font-size:12px; padding:3px 0px 2px 0px;"></div>
                 </div>
             </div>
     </div>
@@ -437,9 +452,8 @@ if (isset($_GET['add_mess'])) {
                     window.location.href = "location_picker.php?next=upload_location.php";
                 } else {
                     loading_animation_div.setAttribute("class", "loading_animation_div loading_hide");
-                    console.log("falied");
+                    document.querySelector(".error_div").innerHTML = ajax.responseText;
                 }
-                console.log(ajax.responseText);
             } else {
 
             }

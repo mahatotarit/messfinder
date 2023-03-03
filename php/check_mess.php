@@ -24,6 +24,9 @@ if (isset($_GET['delete_post_from_allmess'])) {
    unlink("../mess_image/{$collect_delete_post_row['messimage3']}");
    unlink("../mess_image/{$collect_delete_post_row['messimage4']}");
 
+   $delete_comment_sql = "DELETE FROM mess_comment WHERE mess_id='{$delete_post_from_allmess}'";
+   $delete_comment_sql_result = mysqli_query($conn,$delete_comment_sql);
+
    $delete_data = "DELETE FROM allmess WHERE id={$delete_post_from_allmess}";
    if(mysqli_query($conn,$delete_data)){
       header("location:../admin.php");
@@ -61,6 +64,9 @@ if (isset($_GET['delete_from_allmess'])) {
    unlink("../mess_image/{$image_row['messimage2']}");
    unlink("../mess_image/{$image_row['messimage3']}");
    unlink("../mess_image/{$image_row['messimage4']}");
+
+   $delete_comment_sql = "DELETE FROM mess_comment WHERE mess_id='{$check_id2}'";
+   $delete_comment_sql_result = mysqli_query($conn,$delete_comment_sql);
 
    $mess_check_sql2 = "DELETE FROM allmess WHERE id={$check_id2}";
    $mess_check_result2 = mysqli_query($conn, $mess_check_sql2);

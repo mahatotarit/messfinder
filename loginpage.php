@@ -12,6 +12,9 @@ if (isset($_SESSION['phone'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    include "php/dynimic_title.php";
+    ?>
 
     <!-- ===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -82,7 +85,7 @@ if (isset($_SESSION['phone'])) {
                             $_SESSION['phone'] = $row['phone'];
                             $_SESSION['email'] = $row['email'];
                             $_SESSION['password'] = $login_password;
-                            
+
                             // addmess page
                             if (isset($_GET['a'])) {
                                 // $a = $_GET['a'];

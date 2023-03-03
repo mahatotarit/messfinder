@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <?php
+    include "php/dynimic_title.php";
+    ?>
     <!-- ===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -141,11 +143,11 @@
                 console.log(aj.responseTextv);
                 a = /[%()]/;
                 // check response text
-                if(a.test(aj.responseTextv)){
+                if (a.test(aj.responseTextv)) {
                     form.reset();
                     document.querySelector(".loading_animation_div").setAttribute("class", "loading_animation_div");
                     window.location.href = "index.php";
-                }else{
+                } else {
                     document.querySelector(".loading_animation_div").setAttribute("class", "loading_animation_div loading_hide");
                     document.querySelector(".error_div").innerHTML = aj.responseTextv;
                 }

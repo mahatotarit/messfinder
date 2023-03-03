@@ -24,7 +24,7 @@ body {
     margin-bottom: 15px
 }
 
-textarea {
+.textarea {
     height: 20px;
     width: 100%;
     border: none;
@@ -97,7 +97,8 @@ button {
 }
 
 .comment-box {
-    width: 600px;
+    width: 500px;
+    /* min-width: 500px; */
     background: white;
     padding: 10px;
     margin: 15px 0px 15px 0px;
@@ -256,4 +257,8 @@ button {
     .loader {
         left: 40%;
     }
+}
+
+.comment-box {
+    width: 500px;
 }

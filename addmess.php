@@ -13,6 +13,9 @@ if (isset($_SESSION['phone'])) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <?php
+    include "php/dynimic_title.php";
+    ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="all-css/addmess.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -28,7 +31,7 @@ if (isset($_SESSION['phone'])) {
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Mess Details</span>
-                    
+
                     <div class="fields">
                         <div class="input-field">
                             <label>Mess Name</label>
@@ -67,67 +70,67 @@ if (isset($_SESSION['phone'])) {
                     </div>
                 </div>
 
-                    <div class="details ID">
+                <div class="details ID">
 
 
-                        <div class="fields">
-                            <div class="input-field">
-                                <label>Food Facility</label>
-                                <select name="foodfacility" id="foodfacility" required>
-                                    <option disabled selected>Food Available?</option>
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                    <!-- <option>Family Flate</option> -->
-                                </select>
-                            </div>
-
-                            <div class="input-field">
-                                <label>Bathroom</label>
-                                <select name="bathroom" id="bathroom" required>
-                                    <option disabled selected>Bathroom Available?</option>
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                    <!-- <option>Family Flate</option> -->
-                                </select>
-                            </div>
-
-                            <div class="input-field">
-                                <label>Mess Owner Name</label>
-                                <input type="text" name="ownername" placeholder="Owner Name" id="ownername" required>
-                            </div>
-
-
-                            <div class="input-field">
-                                <label>Bed Available?</label>
-                                <select name="bedavailable" id="bedavailable" required>
-                                    <option disabled selected>Bed Available?</option>
-                                    <option>Available</option>
-                                    <option>Not Available</option>
-                                </select>
-                            </div>
-
-                            <div class="input-field">
-                                <label>Extra Electricity Cost</label>
-                                <select name="electricity" id="electricity" required>
-                                    <option disabled selected>Choose</option>
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select>
-                            </div>
-                            <div class="input-field">
-                                <label>Extra Facility</label>
-                                <input type="text" name="extrafacility" placeholder="Extra Facility" id="extrafacility" required>
-                            </div>
-                        </div><br>
-                        <!-- google map place picker form user -->
-                        <div>
-                            <br>
-                            <span class="nextBtn">
-                                <input type="submit" name="add_mess_button" value="Submit" style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%; height:120%; padding:10px;">
-                            </span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Food Facility</label>
+                            <select name="foodfacility" id="foodfacility" required>
+                                <option disabled selected>Food Available?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                                <!-- <option>Family Flate</option> -->
+                            </select>
                         </div>
+
+                        <div class="input-field">
+                            <label>Bathroom</label>
+                            <select name="bathroom" id="bathroom" required>
+                                <option disabled selected>Bathroom Available?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                                <!-- <option>Family Flate</option> -->
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Mess Owner Name</label>
+                            <input type="text" name="ownername" placeholder="Owner Name" id="ownername" required>
+                        </div>
+
+
+                        <div class="input-field">
+                            <label>Bed Available?</label>
+                            <select name="bedavailable" id="bedavailable" required>
+                                <option disabled selected>Bed Available?</option>
+                                <option>Available</option>
+                                <option>Not Available</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Extra Electricity Cost</label>
+                            <select name="electricity" id="electricity" required>
+                                <option disabled selected>Choose</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label>Extra Facility</label>
+                            <input type="text" name="extrafacility" placeholder="Extra Facility" id="extrafacility" required>
+                        </div>
+                    </div><br>
+                    <!-- google map place picker form user -->
+                    <div>
+                        <br>
+                        <span class="nextBtn">
+                            <input type="submit" name="add_mess_button" value="Submit" style=" width:100%; height:100%; border-radius:10px;color:white; font-weight:bold;background-color: #4070f4; border: none; font-size: 100%; height:120%; padding:10px;">
+                        </span>
                     </div>
                 </div>
+            </div>
         </form>
         <div class="error_show_div" style="text-align:center; color:red; overflow-x:auto; font-size:12px; padding:5px;"></div>
     </div>
